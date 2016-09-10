@@ -1,0 +1,2125 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>BasicHttpRequest</title>
+	<meta name="keywords" content="cfboom.http.message.concurrent.Callable interface">
+	<!-- common assets -->
+	
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel ="stylesheet" type="text/css" href="../../../bootstrap/css/bootstrap.min.css">
+<link rel ="stylesheet" type="text/css" href="../../../stylesheet.css">
+	
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic|Ubuntu+Mono' rel='stylesheet' type='text/css' />
+	
+<script src="../../../bootstrap/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function() {
+	// Global Tool Tip Settings
+	$( '[title]' ).tooltip({
+		 animation: 'slide',
+		 delay: { show: 250, hide: 250 }
+	});
+});
+</script>
+	<!-- syntax highlighter -->
+	<link type="text/css" rel="stylesheet" href="../../../highlighter/styles/shCoreDefault.css">
+	<script src="../../../highlighter/scripts/shCore.js"></script>
+	<script src="../../../highlighter/scripts/shBrushColdFusion.js"></script>
+	<script src="../../../highlighter/scripts/shBrushXml.js"></script>
+	<script src="../../../highlighter/scripts/shBrushSql.js"></script>
+	<script src="../../../highlighter/scripts/shBrushJScript.js"></script>
+	<script src="../../../highlighter/scripts/shBrushJava.js"></script>
+	<script src="../../../highlighter/scripts/shBrushCss.js"></script>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body class="withNavbar">
+
+
+
+
+
+
+<!-- ========= START OF NAVBAR ======= -->
+<a name="navbar_top"></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>	
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+    
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#class-navigation">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><strong>&ltcfboom/&gt HTTP</strong></a>
+		</div>
+
+	    <div class="collapse navbar-collapse" id="class-navigation">
+	    	<ul class="nav navbar-nav">
+				
+					
+					<li><a href="../../../overview-summary.html"><i class="glyphicon glyphicon-plane"></i> overview</a></li>
+					
+				
+
+				
+					<li><a href="package-summary.html"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;package</a></li>
+				
+
+			  	
+					<li class="dropdown active">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-file"></i> class <b class="caret"></b></a>
+
+						<ul class="dropdown-menu">
+							<li><a href="#class">Class Definition</a></li>
+							<li><a href="#constructor_summary">Constructor Summary</a></li>
+							<li><a href="#constructor_detail">Constructor Detail</a></li>
+							<li><a href="#inherited_methods">Inherited Methods</a></li>
+							<li><a href="#method_summary">Method Summary</a></li>
+							<li><a href="#method_detail">Method Detail</a></li>
+							<li><a href="#property_summary">Property Summary</a></li>
+							<li><a href="#property_detail">Property Detail</a></li>
+							
+						</ul>
+					</li>
+				
+	      	</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../../../index.html?cfboom/http/message/BasicHttpRequest.html" target="_top">
+					<i class="glyphicon glyphicon-fullscreen"></i> Frames
+					</a>
+				</li>
+			</ul>
+	    </div>
+
+	</div>
+</nav>	
+
+<a name="skip-navbar_top"></a>
+<!-- ========= END OF NAVBAR ========= -->
+
+<!-- ======== start of class data ======== -->
+<a name="class"><!-- --></a>
+
+<!-- Package -->
+<div class="pull-right">
+	<a href="package-summary.html" title="Package: cfboom.http.message"><span class="label label-success">cfboom.http.message</span></a>
+</div>
+
+<h2>
+
+
+Class
+
+ BasicHttpRequest</h2>
+
+
+
+
+
+
+
+
+	
+		
+	
+	
+
+	
+		
+		
+			
+		
+	
+	
+
+	
+		
+		
+			
+		
+	
+	
+
+	
+		
+		
+			
+		
+	
+	
+
+
+<!-- Inheritance Tree-->
+<pre style="background:white">lucee.Component
+    <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.lang.Object
+      <img src="../../../resources/inherit.gif" alt="extended by "><a href="../../../cfboom/http/message/AbstractHttpMessage.html" title="class in cfboom.http.message">cfboom.http.message.AbstractHttpMessage</a>
+        <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.http.message.BasicHttpRequest
+</pre>
+
+
+
+	
+	
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong>All Implemented Interfaces:</strong></div>
+  			<div class="panel-body">
+			
+			
+				
+				
+				<a href="../../../cfboom/http/HttpMessage.html" title="interface in cfboom.http">HttpMessage</a>
+			
+				
+				,
+				<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a>
+			
+			</div>
+		</div>
+	
+
+
+
+
+
+
+
+<div id="class-hint">
+	<p>Basic implementation of {@link HttpRequest}.</p>
+</div>
+
+
+<!-- Clas Attributes -->
+<div class="panel panel-info">
+	<div class="panel-heading"><strong>Class Attributes:</strong></div>
+		<div class="panel-body">
+		
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				cfboom 
+				
+				: Joel Tobey		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				output 
+				
+				: false		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				displayname 
+				
+				: Class BasicHttpRequest		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				synchronized 
+				
+				: false		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				accessors 
+				
+				: false		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				persistent 
+				
+				: false		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+		
+	</div>
+</div>
+
+
+
+
+
+
+	
+	
+	<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+	<a name="constructor_summary"><!-- --></a>
+	<table class="table table-bordered table-hover">
+		<tr class="info">
+			<th align="left" colspan="2">
+				<strong>Constructor Summary</strong>
+			</th>
+		</tr>
+		<tr>
+			
+			<td>
+				<strong><a href="BasicHttpRequest.html#init()">init</A></strong>(string method, string uri)
+				<br>
+				
+			</td>
+		</tr>
+	</table>
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<a name="method_summary"><!-- --></a>
+<table class="table table-bordered table-hover">
+	<tr class="info">
+		<th align="left" colspan="2">
+			<strong>Method Summary</strong>
+		</th>
+	</tr>
+
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#addBody()">addBody</A></strong>([string value])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#addFormField()">addFormField</A></strong>([string name], [string value], [boolean encoded='true'])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#addParam()">addParam</A></strong>([<a href="../../../cfboom/http/RequestParam.html" title="class in cfboom.http">RequestParam</a> param])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#addQueryParam()">addQueryParam</A></strong>([string name], [string value])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>boolean</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#containsFormField()">containsFormField</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>boolean</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#containsQueryParam()">containsQueryParam</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getAllFormFields()">getAllFormFields</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getAllOtherParams()">getAllOtherParams</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getAllQueryParams()">getAllQueryParams</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getBody()">getBody</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getFirstFormField()">getFirstFormField</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getFirstQueryParam()">getFirstQueryParam</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getFormFields()">getFormFields</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getLastFormField()">getLastFormField</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getLastQueryParam()">getLastQueryParam</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getMethod()">getMethod</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getName()">getName</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getQueryParams()">getQueryParams</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#getURI()">getURI</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>boolean</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#hasExecuted()">hasExecuted</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>private&nbsp;string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#paramsToJson()">paramsToJson</A></strong>(struct params, [boolean addType='false'])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#removeBody()">removeBody</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#removeFormFields()">removeFormFields</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#removeQueryParams()">removeQueryParams</A></strong>([string name])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#setBody()">setBody</A></strong>([<a href="../../../cfboom/http/RequestParam.html" title="class in cfboom.http">RequestParam</a> body])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#setExecuted()">setExecuted</A></strong>([boolean executed='false'])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#setFormField()">setFormField</A></strong>([string name], [string value], [boolean encoded='true'])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#setFormFields()">setFormFields</A></strong>([array formFields])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#setName()">setName</A></strong>(string name)
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#setQueryParam()">setQueryParam</A></strong>([string name], [string value])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#setQueryParams()">setQueryParams</A></strong>([array queryParams])
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#toJson()">toJson</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpRequest.html#toString()">toString</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+</table>
+
+
+
+<a name="inherited_methods"><!-- --></a>
+
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_cfboom.http.message.AbstractHttpMessage"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd><a href="../../../cfboom/http/message/AbstractHttpMessage.html" title="class in cfboom.http.message">cfboom.http.message.AbstractHttpMessage</a></kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+					
+					
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+				
+				
+					<a href="../../../cfboom/http/message/AbstractHttpMessage.html#addHeader()">addHeader</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#containsHeader()">containsHeader</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#getAllHeaders()">getAllHeaders</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#getContentEncoding()">getContentEncoding</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#getContentLength()">getContentLength</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#getContentType()">getContentType</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#getFirstHeader()">getFirstHeader</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#getHeaders()">getHeaders</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#getLastHeader()">getLastHeader</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#removeHeaders()">removeHeaders</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#setHeader()">setHeader</a>, <a href="../../../cfboom/http/message/AbstractHttpMessage.html#setHeaders()">setHeaders</a>
+				
+			</td>
+		</tr>
+	</table>
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_cfboom.lang.Object"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd>cfboom.lang.Object</kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+					
+					
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+				
+					
+					
+				
+				
+				
+					<a href="../../../cfboom/lang/Object.html#$equals()">$equals</a>, <a href="../../../cfboom/lang/Object.html#getComponentName()">getComponentName</a>, <a href="../../../cfboom/lang/Object.html#getIdentityHashCode()">getIdentityHashCode</a>, <a href="../../../cfboom/lang/Object.html#getIdentityString()">getIdentityString</a>, <a href="../../../cfboom/lang/Object.html#getMeta()">getMeta</a>, <a href="../../../cfboom/lang/Object.html#hashCode()">hashCode</a>
+				
+			</td>
+		</tr>
+	</table>
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_lucee.Component"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd>lucee.Component</kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+				
+				
+					<span class="label label-warning"><em>None</em></span>
+				
+			</td>
+		</tr>
+	</table>
+
+
+<hr>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+	<a name="constructor_detail"><!-- --></a>
+	<table class="table table-bordered">
+		<tr class="info">
+			<th colspan="1" align="left">
+				<strong>Constructor Detail</strong>
+			</th>
+		</tr>
+	</table>
+
+	<a name="init()"><!-- --></a><h3>
+	init</h3>
+	<kbd>public <strong>init</strong>(string method, string uri)</kbd>
+
+	<br><br>
+
+	
+	<p></p>
+	
+
+	
+	<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+			<dd><code>method</code></dd>
+		
+			<dd><code>uri</code></dd>
+		
+	</dl>
+	
+	<hr>
+
+
+<!-- ============ PROPERTY DETAIL ========== -->
+
+
+
+
+
+
+
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<a name="method_detail"><!-- --></a>
+<table class="table table-bordered">
+	<tr class="info">
+		<th colspan="1" align="left">
+			<strong>Method Detail</strong>
+		</th>
+	</tr>
+</table>
+
+
+	
+	<a name="addBody()"><!-- --></a>
+	<h3>addBody</h3>
+	
+	<kbd>public void <strong>addBody</strong>([string value])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>value</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="addFormField()"><!-- --></a>
+	<h3>addFormField</h3>
+	
+	<kbd>public void <strong>addFormField</strong>([string name], [string value], [boolean encoded='true'])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		<dd><code>value</code></dd>
+		
+		<dd><code>encoded</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="addParam()"><!-- --></a>
+	<h3>addParam</h3>
+	
+	<kbd>public void <strong>addParam</strong>([<a href="../../../cfboom/http/RequestParam.html" title="class in cfboom.http">RequestParam</a> param])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>param</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="addQueryParam()"><!-- --></a>
+	<h3>addQueryParam</h3>
+	
+	<kbd>public void <strong>addQueryParam</strong>([string name], [string value])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		<dd><code>value</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="containsFormField()"><!-- --></a>
+	<h3>containsFormField</h3>
+	
+	<kbd>public boolean <strong>containsFormField</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="containsQueryParam()"><!-- --></a>
+	<h3>containsQueryParam</h3>
+	
+	<kbd>public boolean <strong>containsQueryParam</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getAllFormFields()"><!-- --></a>
+	<h3>getAllFormFields</h3>
+	
+	<kbd>public array <strong>getAllFormFields</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getAllOtherParams()"><!-- --></a>
+	<h3>getAllOtherParams</h3>
+	
+	<kbd>public array <strong>getAllOtherParams</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getAllQueryParams()"><!-- --></a>
+	<h3>getAllQueryParams</h3>
+	
+	<kbd>public array <strong>getAllQueryParams</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getBody()"><!-- --></a>
+	<h3>getBody</h3>
+	
+	<kbd>public any <strong>getBody</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getFirstFormField()"><!-- --></a>
+	<h3>getFirstFormField</h3>
+	
+	<kbd>public string <strong>getFirstFormField</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getFirstQueryParam()"><!-- --></a>
+	<h3>getFirstQueryParam</h3>
+	
+	<kbd>public string <strong>getFirstQueryParam</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getFormFields()"><!-- --></a>
+	<h3>getFormFields</h3>
+	
+	<kbd>public array <strong>getFormFields</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getLastFormField()"><!-- --></a>
+	<h3>getLastFormField</h3>
+	
+	<kbd>public string <strong>getLastFormField</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getLastQueryParam()"><!-- --></a>
+	<h3>getLastQueryParam</h3>
+	
+	<kbd>public string <strong>getLastQueryParam</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getMethod()"><!-- --></a>
+	<h3>getMethod</h3>
+	
+	<kbd>public string <strong>getMethod</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+			<dl>
+				<dt><strong>Specified by:</strong></dt>
+				<dd>
+				<code>
+				<a href="../../../cfboom/http/HttpRequest.html#getMethod()">getMethod</a></code>
+				in interface
+				<code>
+					<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a>
+				</code>
+				</dd>
+			</dl>
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getName()"><!-- --></a>
+	<h3>getName</h3>
+	
+	<kbd>public string <strong>getName</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+			<dl>
+				<dt><strong>Specified by:</strong></dt>
+				<dd>
+				<code>
+				<a href="../../../cfboom/http/HttpRequest.html#getName()">getName</a></code>
+				in interface
+				<code>
+					<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a>
+				</code>
+				</dd>
+			</dl>
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getQueryParams()"><!-- --></a>
+	<h3>getQueryParams</h3>
+	
+	<kbd>public array <strong>getQueryParams</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getURI()"><!-- --></a>
+	<h3>getURI</h3>
+	
+	<kbd>public any <strong>getURI</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+			<dl>
+				<dt><strong>Specified by:</strong></dt>
+				<dd>
+				<code>
+				<a href="../../../cfboom/http/HttpRequest.html#getURI()">getURI</a></code>
+				in interface
+				<code>
+					<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a>
+				</code>
+				</dd>
+			</dl>
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="hasExecuted()"><!-- --></a>
+	<h3>hasExecuted</h3>
+	
+	<kbd>public boolean <strong>hasExecuted</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="paramsToJson()"><!-- --></a>
+	<h3>paramsToJson</h3>
+	
+	<kbd>private string <strong>paramsToJson</strong>(struct params, [boolean addType='false'])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>params</code></dd>
+		
+		<dd><code>addType</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="removeBody()"><!-- --></a>
+	<h3>removeBody</h3>
+	
+	<kbd>public void <strong>removeBody</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="removeFormFields()"><!-- --></a>
+	<h3>removeFormFields</h3>
+	
+	<kbd>public void <strong>removeFormFields</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="removeQueryParams()"><!-- --></a>
+	<h3>removeQueryParams</h3>
+	
+	<kbd>public void <strong>removeQueryParams</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setBody()"><!-- --></a>
+	<h3>setBody</h3>
+	
+	<kbd>public void <strong>setBody</strong>([<a href="../../../cfboom/http/RequestParam.html" title="class in cfboom.http">RequestParam</a> body])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>body</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setExecuted()"><!-- --></a>
+	<h3>setExecuted</h3>
+	
+	<kbd>public void <strong>setExecuted</strong>([boolean executed='false'])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>executed</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setFormField()"><!-- --></a>
+	<h3>setFormField</h3>
+	
+	<kbd>public void <strong>setFormField</strong>([string name], [string value], [boolean encoded='true'])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		<dd><code>value</code></dd>
+		
+		<dd><code>encoded</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setFormFields()"><!-- --></a>
+	<h3>setFormFields</h3>
+	
+	<kbd>public void <strong>setFormFields</strong>([array formFields])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>formFields</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setName()"><!-- --></a>
+	<h3>setName</h3>
+	
+	<kbd>public void <strong>setName</strong>(string name)</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setQueryParam()"><!-- --></a>
+	<h3>setQueryParam</h3>
+	
+	<kbd>public void <strong>setQueryParam</strong>([string name], [string value])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		<dd><code>value</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setQueryParams()"><!-- --></a>
+	<h3>setQueryParams</h3>
+	
+	<kbd>public void <strong>setQueryParams</strong>([array queryParams])</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>queryParams</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="toJson()"><!-- --></a>
+	<h3>toJson</h3>
+	
+	<kbd>public string <strong>toJson</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="toString()"><!-- --></a>
+	<h3>toString</h3>
+	
+	<kbd>public string <strong>toString</strong>()</kbd>
+	
+	<br><br>
+
+	
+
+	
+		
+		
+	
+
+	
+	
+		<dl>
+			<dt><strong>Overrides:</strong></dt>
+			<dd>
+			<code>
+			<a href="../../../cfboom/lang/Object.html#toString()">toString</a></code>
+			in class
+			<code>
+				cfboom.lang.Object
+			</code>
+			</dd>
+		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+
+
+
+</body>
+</html>
+

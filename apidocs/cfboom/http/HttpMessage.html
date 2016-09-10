@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HttpMessage</title>
+	<meta name="keywords" content="cfboom.http.concurrent.Callable interface">
+	<!-- common assets -->
+	
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel ="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+<link rel ="stylesheet" type="text/css" href="../../stylesheet.css">
+	
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic|Ubuntu+Mono' rel='stylesheet' type='text/css' />
+	
+<script src="../../bootstrap/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function() {
+	// Global Tool Tip Settings
+	$( '[title]' ).tooltip({
+		 animation: 'slide',
+		 delay: { show: 250, hide: 250 }
+	});
+});
+</script>
+	<!-- syntax highlighter -->
+	<link type="text/css" rel="stylesheet" href="../../highlighter/styles/shCoreDefault.css">
+	<script src="../../highlighter/scripts/shCore.js"></script>
+	<script src="../../highlighter/scripts/shBrushColdFusion.js"></script>
+	<script src="../../highlighter/scripts/shBrushXml.js"></script>
+	<script src="../../highlighter/scripts/shBrushSql.js"></script>
+	<script src="../../highlighter/scripts/shBrushJScript.js"></script>
+	<script src="../../highlighter/scripts/shBrushJava.js"></script>
+	<script src="../../highlighter/scripts/shBrushCss.js"></script>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body class="withNavbar">
+
+
+
+
+
+
+<!-- ========= START OF NAVBAR ======= -->
+<a name="navbar_top"></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>	
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+    
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#class-navigation">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><strong>&ltcfboom/&gt HTTP</strong></a>
+		</div>
+
+	    <div class="collapse navbar-collapse" id="class-navigation">
+	    	<ul class="nav navbar-nav">
+				
+					
+					<li><a href="../../overview-summary.html"><i class="glyphicon glyphicon-plane"></i> overview</a></li>
+					
+				
+
+				
+					<li><a href="package-summary.html"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;package</a></li>
+				
+
+			  	
+					<li class="dropdown active">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-file"></i> class <b class="caret"></b></a>
+
+						<ul class="dropdown-menu">
+							<li><a href="#class">Class Definition</a></li>
+							<li><a href="#constructor_summary">Constructor Summary</a></li>
+							<li><a href="#constructor_detail">Constructor Detail</a></li>
+							<li><a href="#inherited_methods">Inherited Methods</a></li>
+							<li><a href="#method_summary">Method Summary</a></li>
+							<li><a href="#method_detail">Method Detail</a></li>
+							<li><a href="#property_summary">Property Summary</a></li>
+							<li><a href="#property_detail">Property Detail</a></li>
+							
+						</ul>
+					</li>
+				
+	      	</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../../index.html?cfboom/http/HttpMessage.html" target="_top">
+					<i class="glyphicon glyphicon-fullscreen"></i> Frames
+					</a>
+				</li>
+			</ul>
+	    </div>
+
+	</div>
+</nav>	
+
+<a name="skip-navbar_top"></a>
+<!-- ========= END OF NAVBAR ========= -->
+
+<!-- ======== start of class data ======== -->
+<a name="class"><!-- --></a>
+
+<!-- Package -->
+<div class="pull-right">
+	<a href="package-summary.html" title="Package: cfboom.http"><span class="label label-success">cfboom.http</span></a>
+</div>
+
+<h2>
+
+
+Interface
+
+ HttpMessage</h2>
+
+
+
+
+
+
+
+
+	
+		
+	
+	
+
+
+<!-- Inheritance Tree-->
+<pre style="background:white">cfboom.http.HttpMessage
+</pre>
+
+
+
+	
+	<div class="panel panel-default">
+		<div class="panel-heading"><strong>All Known Implementing Classes:</strong></div>
+  		<div class="panel-body">
+		
+			
+			<a href="../../cfboom/http/message/AbstractHttpMessage.html" title="class in cfboom.http.message">AbstractHttpMessage</a>
+		
+			,
+			<a href="../../cfboom/http/message/BasicHttpRequest.html" title="class in cfboom.http.message">BasicHttpRequest</a>
+		
+			,
+			<a href="../../cfboom/http/message/BasicHttpResponse.html" title="class in cfboom.http.message">BasicHttpResponse</a>
+		
+		</div>
+	</div>
+	
+
+
+
+<div class="panel panel-default">
+	<div class="panel-heading"><strong>All Known Subinterfaces:</strong></div>
+  	<div class="panel-body">
+	
+		
+		<a href="../../cfboom/http/HttpRequest.html" title="class in cfboom.http">HttpRequest</a>
+	
+		,
+		<a href="../../cfboom/http/HttpResponse.html" title="class in cfboom.http">HttpResponse</a>
+	
+	</div>
+</div>
+
+
+
+
+
+<div id="class-hint">
+	<p>HTTP messages head consisting of multiple message headers.</p>
+</div>
+
+
+<!-- Clas Attributes -->
+<div class="panel panel-info">
+	<div class="panel-heading"><strong>Class Attributes:</strong></div>
+		<div class="panel-body">
+		
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				cfboom 
+				
+				: Joel Tobey		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				displayname 
+				
+				: Interface HttpMessage		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<a name="method_summary"><!-- --></a>
+<table class="table table-bordered table-hover">
+	<tr class="info">
+		<th align="left" colspan="2">
+			<strong>Method Summary</strong>
+		</th>
+	</tr>
+
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#addHeader()">addHeader</A></strong>([string name], [string value])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adds a header to this message.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>boolean</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#containsHeader()">containsHeader</A></strong>([string name])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks if a certain header is present in this message.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#getAllHeaders()">getAllHeaders</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns all the headers of this message.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#getContentEncoding()">getContentEncoding</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obtains the Content-Encoding header, if known.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>numeric</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#getContentLength()">getContentLength</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tells the length of the content, if known.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#getContentType()">getContentType</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obtains the Content-Type header, if known.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#getFirstHeader()">getFirstHeader</A></strong>([string name])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the first header with a specified name of this message.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#getHeaders()">getHeaders</A></strong>([string name])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns all the headers with a specified name of this message.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#getLastHeader()">getLastHeader</A></strong>([string name])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the last header with a specified name of this message.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#removeHeaders()">removeHeaders</A></strong>([string name])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes all headers with a certain name from this message.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#setHeader()">setHeader</A></strong>([string name], [string value])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overwrites the first header with the same name.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="HttpMessage.html#setHeaders()">setHeaders</A></strong>([array headers])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overwrites all the headers in the message.
+			
+		</td>
+	</tr>
+	
+</table>
+
+
+
+<a name="inherited_methods"><!-- --></a>
+
+
+
+<hr>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+
+<!-- ============ PROPERTY DETAIL ========== -->
+
+
+
+
+
+
+
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<a name="method_detail"><!-- --></a>
+<table class="table table-bordered">
+	<tr class="info">
+		<th colspan="1" align="left">
+			<strong>Method Detail</strong>
+		</th>
+	</tr>
+</table>
+
+
+	
+	<a name="addHeader()"><!-- --></a>
+	<h3>addHeader</h3>
+	
+	<kbd>public void <strong>addHeader</strong>([string name], [string value])</kbd>
+	
+	<br><br>
+
+	
+		<p>Adds a header to this message. The header will be appended to the end of
+the list.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code> - the name of the header.</dd>
+		
+		<dd><code>value</code> - the value of the header.</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="containsHeader()"><!-- --></a>
+	<h3>containsHeader</h3>
+	
+	<kbd>public boolean <strong>containsHeader</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+		<p>Checks if a certain header is present in this message. Header values are
+ignored.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>true if at least one header with this name is present.</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getAllHeaders()"><!-- --></a>
+	<h3>getAllHeaders</h3>
+	
+	<kbd>public array <strong>getAllHeaders</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Returns all the headers of this message. Headers are orderd in the sequence
+they will be sent over a connection.</p>
+	
+
+	
+
+	
+	
+
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>all the headers of this message</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getContentEncoding()"><!-- --></a>
+	<h3>getContentEncoding</h3>
+	
+	<kbd>public string <strong>getContentEncoding</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Obtains the Content-Encoding header, if known.
+This is the header that should be used when sending the entity,
+or the one that was received with the entity.
+Wrapping entities that modify the content encoding should
+adjust this header accordingly.
+{@code null} if the content encoding is unknown</p>
+	
+
+	
+
+	
+	
+
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the Content-Encoding header for this entity, or</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getContentLength()"><!-- --></a>
+	<h3>getContentLength</h3>
+	
+	<kbd>public numeric <strong>getContentLength</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Tells the length of the content, if known.
+a negative number if unknown. If the content length is known
+but exceeds {@link java.lang.Long#MAX_VALUE Long.MAX_VALUE},
+a negative number is returned.</p>
+	
+
+	
+
+	
+	
+
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the number of bytes of the content, or</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getContentType()"><!-- --></a>
+	<h3>getContentType</h3>
+	
+	<kbd>public string <strong>getContentType</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Obtains the Content-Type header, if known.
+This is the header that should be used when sending the entity,
+or the one that was received with the entity. It can include a
+charset attribute.
+{@code null} if the content type is unknown</p>
+	
+
+	
+
+	
+	
+
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the Content-Type header for this entity, or</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getFirstHeader()"><!-- --></a>
+	<h3>getFirstHeader</h3>
+	
+	<kbd>public string <strong>getFirstHeader</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+		<p>Returns the first header with a specified name of this message. Header
+values are ignored. If there is more than one matching header in the
+message the first element of {@link #getHeaders(String)} is returned.
+If there is no matching header in the message {@code null} is
+returned.
+or {@code null} if no such header could be found.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the first header whose name property equals {@code name}</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getHeaders()"><!-- --></a>
+	<h3>getHeaders</h3>
+	
+	<kbd>public array <strong>getHeaders</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+		<p>Returns all the headers with a specified name of this message. Header values
+are ignored. Headers are orderd in the sequence they will be sent over a
+connection.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the headers whose name property equals {@code name}.</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getLastHeader()"><!-- --></a>
+	<h3>getLastHeader</h3>
+	
+	<kbd>public string <strong>getLastHeader</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+		<p>Returns the last header with a specified name of this message. Header values
+are ignored. If there is more than one matching header in the message the
+last element of {@link #getHeaders(String)} is returned. If there is no
+matching header in the message {@code null} is returned.
+or {@code null} if no such header could be found.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code></dd>
+		
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the last header whose name property equals {@code name}.</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="removeHeaders()"><!-- --></a>
+	<h3>removeHeaders</h3>
+	
+	<kbd>public void <strong>removeHeaders</strong>([string name])</kbd>
+	
+	<br><br>
+
+	
+		<p>Removes all headers with a certain name from this message.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code> - The name of the headers to remove.</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setHeader()"><!-- --></a>
+	<h3>setHeader</h3>
+	
+	<kbd>public void <strong>setHeader</strong>([string name], [string value])</kbd>
+	
+	<br><br>
+
+	
+		<p>Overwrites the first header with the same name. The new header will be appended to
+the end of the list, if no header with the given name can be found.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>name</code> - the name of the header.</dd>
+		
+		<dd><code>value</code> - the value of the header.</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setHeaders()"><!-- --></a>
+	<h3>setHeaders</h3>
+	
+	<kbd>public void <strong>setHeaders</strong>([array headers])</kbd>
+	
+	<br><br>
+
+	
+		<p>Overwrites all the headers in the message.</p>
+	
+
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>headers</code> - the array of headers to set.</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+
+
+
+</body>
+</html>
+
