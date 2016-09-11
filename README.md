@@ -22,4 +22,15 @@ Just drop into your **modules** folder or use CommandBox to install
 The module registers the BasicHttpClient: `BasicHttpClient@cfboomHttp` that executes all of your HTTP requests. Check out the API Docs for all the possible functions.
 
 ## Settings
-There are no settings for this module
+You must set the admin password in your `ColdBox.cfc` file under a `cfboomHttp` struct:
+
+```js
+cfboomHttp = {
+    /**
+     * The HttpRequestExecutor used by the BasicHttpClient by default.
+     * It must implement cfboom.http.protocol.HttpRequestExecutor.
+     * The default is [cfboom.http.protocol.BasicHttpRequestExecutor]
+     */
+    httpRequestExecutor = "cfboom.http.protocol.HttpRequestExecutor"
+};
+```

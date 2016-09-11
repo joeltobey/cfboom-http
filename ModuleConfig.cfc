@@ -42,6 +42,12 @@ component {
 
     function configure(){
 
+        // module settings - stored in modules.name.settings
+        settings = {
+            // The HttpRequestExecutor used by the BasicHttpClient by default
+            "httpRequestExecutor" = "cfboom.http.protocol.BasicHttpRequestExecutor"
+        };
+
         // Binder Mappings
         binder.map("BasicHttpClient@cfboomHttp").to("cfboom.http.client.BasicHttpClient");
 
@@ -54,11 +60,26 @@ component {
     /**
      * Fired when the module is registered and activated.
      */
-    function onLoad(){}
+    function onLoad(){
+    	// parse parent settings
+		parseParentSettings();
+    }
 
     /**
      * Fired when the module is unregistered and unloaded
      */
     function onUnload(){}
+
+    private function parseParentSettings() {
+        // Read parent application config
+        var oConfig         = controller.getSetting( "ColdBoxConfig" );
+        var parentSettings  = oConfig.getPropertyMixin( "cfboomHttp", "variables", {} );
+        var configStruct    = controller.getConfigSettings();
+        var moduleSettings  = configStruct.modules['cfboom-http'].settings;
+
+        if (structKeyExists(parentSettings, "httpRequestExecutor") && len(parentSettings.httpRequestExecutor)) {
+            moduleSettings['httpRequestExecutor'] = parentSettings.httpRequestExecutor;
+        }
+    }
 
 }
