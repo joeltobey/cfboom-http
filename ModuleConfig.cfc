@@ -23,7 +23,7 @@ component {
     this.title              = "cfboom HTTP";
     this.author             = "Joel Tobey";
     this.webURL             = "https://github.com/joeltobey/cfboom-http";
-    this.description        = "A ColdBox Module with a sweet HTTP service";
+    this.description        = "The cfboom-http module provides solid, consistent HTTP request and response handling.";
     this.version            = "1.0.0";
     // If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
     this.viewParentLookup   = true;

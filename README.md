@@ -1,7 +1,7 @@
 [![Build Status](https://api.travis-ci.org/joeltobey/cfboom-http.svg?branch=development)](https://travis-ci.org/joeltobey/cfboom-http)
 
 # WELCOME TO THE CFBOOM HTTP COLDBOX MODULE
-A ColdBox Module with a sweet HTTP service.
+The cfboom-http module provides solid, consistent HTTP request and response handling.
 
 ##LICENSE
 Apache License, Version 2.0.
