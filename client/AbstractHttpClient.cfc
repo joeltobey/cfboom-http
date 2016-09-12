@@ -25,6 +25,8 @@ component
     displayname="Abstract Class AbstractHttpClient"
     output="false"
 {
+    property name="log" inject="logbox:logger:{this}";
+
     public cfboom.http.client.AbstractHttpClient function init() {
         return this;
     }
@@ -34,6 +36,14 @@ component
     }
 
     public void function setExecutor(cfboom.http.protocol.HttpRequestExecutor executor) {
+        var executorName = "";
+        if (isInstanceOf(arguments.executor,"cfboom.lang.Object")) {
+            executorName = arguments.executor.getComponentName();
+        } else {
+            var executorMeta = getComponentMetadata( arguments.executor );
+            executorName = structKeyExists(executorMeta, "fullname") ? executorMeta.fullname : executorMeta.name;
+        }
+        log.info(getComponentName() & " setting executor with [" & executorName & "]");
         _instance['executor'] = arguments.executor;
     }
 

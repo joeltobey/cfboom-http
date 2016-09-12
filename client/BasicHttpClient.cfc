@@ -26,10 +26,15 @@ component
     displayname="Class BasicHttpClient"
     output="false"
 {
+    property name="httpRequestExecutor" inject="coldbox:setting:httpRequestExecutor@cfboom-http";
+
     public cfboom.http.client.BasicHttpClient function init() {
         super.init();
-        setExecutor( new cfboom.http.protocol.BasicHttpRequestExecutor() );
         return this;
+    }
+
+    public void function onDIComplete() {
+        setExecutor( new "#httpRequestExecutor#"() );
     }
 
     public cfboom.http.HttpResponse function execute(cfboom.http.HttpRequest req) {
