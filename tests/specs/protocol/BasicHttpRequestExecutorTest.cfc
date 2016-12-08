@@ -58,4 +58,22 @@ component
         var res = executor.execute( req );
         assertEqualsCase("example text", res.getFileContent());
     }
+
+    /**
+     * @Test
+     */
+    public void function testWithBody() {
+        var executor = new cfboom.http.protocol.BasicHttpRequestExecutor();
+        var sb = createObject("java", "java.lang.StringBuilder").init("http");
+        if (cgi.server_port_secure)
+            sb.append("s");
+        sb.append("://")
+            .append(cgi.http_host)
+            .append(cgi.context_path)
+            .append( EXAMPLE_FILE );
+        var req = new cfboom.http.message.BasicHttpRequest("POST", sb.toString());
+        req.addBody("foobarbaz");
+        var res = executor.execute( req );
+        assertEqualsCase("example text", res.getFileContent());
+    }
 }

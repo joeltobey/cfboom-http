@@ -47,7 +47,7 @@ component
             httpService.addParam(type="header", name="#header.getName()#", value="#header.getValue()#");
         }
         if ( !isNull(arguments.req.getBody()) ) {
-            httpService.addParam(type="body", value="#getBody().getValue()#");
+            httpService.addParam(type="body", value="#arguments.req.getBody().getValue()#");
         }
         for (var queryParam in arguments.req.getAllQueryParams()) {
             httpService.addParam(type="URL", name="#queryParam.getName()#", value="#queryParam.getValue()#");
