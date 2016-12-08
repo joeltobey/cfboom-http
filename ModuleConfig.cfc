@@ -24,7 +24,7 @@ component {
     this.author             = "Joel Tobey";
     this.webURL             = "https://github.com/joeltobey/cfboom-http";
     this.description        = "The cfboom-http module provides solid, consistent HTTP request and response handling.";
-    this.version            = "1.0.0";
+    this.version            = "1.0.1";
     // If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
     this.viewParentLookup   = true;
     // If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
