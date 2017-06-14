@@ -34,4 +34,14 @@ interface
     public any function getRequest();
 
     public void function setRequest(cfboom.http.HttpRequest req);
+
+	public boolean function isInformational();
+
+	public boolean function isSuccess();
+
+	public boolean function isRedirection();
+
+	public boolean function isClientError();
+
+	public boolean function isServerError();
 }
