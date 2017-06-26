@@ -24,7 +24,7 @@ component {
     this.author             = "Joel Tobey";
     this.webURL             = "https://github.com/joeltobey/cfboom-http";
     this.description        = "The cfboom-http module provides solid, consistent HTTP request and response handling.";
-    this.version            = "1.0.1";
+    this.version            = "1.1.0";
     // If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
     this.viewParentLookup   = true;
     // If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
@@ -60,26 +60,11 @@ component {
     /**
      * Fired when the module is registered and activated.
      */
-    function onLoad(){
-    	// parse parent settings
-		parseParentSettings();
-    }
+    function onLoad() {}
 
     /**
      * Fired when the module is unregistered and unloaded
      */
-    function onUnload(){}
-
-    private function parseParentSettings() {
-        // Read parent application config
-        var oConfig         = controller.getSetting( "ColdBoxConfig" );
-        var parentSettings  = oConfig.getPropertyMixin( "cfboomHttp", "variables", {} );
-        var configStruct    = controller.getConfigSettings();
-        var moduleSettings  = configStruct.modules['cfboom-http'].settings;
-
-        if (structKeyExists(parentSettings, "httpRequestExecutor") && len(parentSettings.httpRequestExecutor)) {
-            moduleSettings['httpRequestExecutor'] = parentSettings.httpRequestExecutor;
-        }
-    }
+    function onUnload() {}
 
 }

@@ -4,7 +4,7 @@ dist: trusty
 
 env:
   global:
-    - RELEASE_VERSION="1.0.1"
+    - RELEASE_VERSION="1.1.0"
     - RELEASE_PLACEHOLDER="@release.number@"
     - BUILD_PLACEHOLDER="@build.number@"
 
@@ -30,17 +30,9 @@ before_install:
   - mv RequestParam.cfc modules/cfboom-http/
 
 install:
-  # create app 2x to ensure no time outs
   - box coldbox create app
-  - box coldbox create app
-  # install coldbox 2x to ensure no time outs. It skips if coldbox is already installed.
   - box install coldbox
-  - box install coldbox
-  # install testbox 2x to ensure no time outs. It skips if testbox is already installed.
   - box install testbox
-  - box install testbox
-  # install cfboom-lang 2x to ensure no time outs. It skips if cfboom-lang is already installed.
-  - box install cfboom-lang
   - box install cfboom-lang
   - box server start port=45123 openBrowser=false
 
