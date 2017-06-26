@@ -68,6 +68,36 @@ component
         _instance['request'] = arguments.req;
     }
 
+    public boolean function isInformational() {
+        if (left(getCode(), 1) == 1)
+            return true;
+        return false;
+    }
+
+    public boolean function isSuccess() {
+        if (left(getCode(), 1) == 2)
+            return true;
+        return false;
+    }
+
+    public boolean function isRedirection() {
+        if (left(getCode(), 1) == 3)
+            return true;
+        return false;
+    }
+
+    public boolean function isClientError() {
+        if (left(getCode(), 1) == 4)
+            return true;
+        return false;
+    }
+
+    public boolean function isServerError() {
+        if (left(getCode(), 1) == 5)
+            return true;
+        return false;
+    }
+
     public any function getSource() {
         if (structKeyExists(_instance, "source"))
             return _instance.source;
@@ -86,6 +116,21 @@ component
     public string function getFileContent() {
         if (structKeyExists(_instance, "prefix") && structKeyExists(_instance.prefix, "filecontent"))
             return _instance.prefix.filecontent;
+    }
+
+    public any function getDeserializedContent() {
+        if (structKeyExists(_instance, "prefix") && structKeyExists(_instance.prefix, "deserializedContent"))
+            return _instance.prefix.deserializedContent;
+    }
+
+    public string function getMimeType() {
+        if (structKeyExists(_instance, "prefix") && structKeyExists(_instance.prefix, "mimetype"))
+            return _instance.prefix.mimetype;
+    }
+
+    public string function getErrorDetail() {
+        if (structKeyExists(_instance, "prefix") && structKeyExists(_instance.prefix, "errordetail"))
+            return _instance.prefix.errordetail;
     }
 
     public any function getCookies() {

@@ -26,6 +26,8 @@
  * a response has been received.
  *
  * @cfboom Joel Tobey
+ *
+ * @singleton
  */
 component
     extends="cfboom.lang.Object"
@@ -69,6 +71,7 @@ component
         }
 
         var res = new cfboom.http.message.BasicHttpResponse( httpService.send() );
+        arguments.req.setExecuted( true );
         res.setRequest( arguments.req );
         return res;
     }
