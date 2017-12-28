@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2018 Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,54 +17,59 @@
 /**
  * @author Joel Tobey
  */
-component {
+component
+  output="false"
+{
 
-    // Module Properties
-    this.title              = "cfboom HTTP";
-    this.author             = "Joel Tobey";
-    this.webURL             = "https://github.com/joeltobey/cfboom-http";
-    this.description        = "The cfboom-http module provides solid, consistent HTTP request and response handling.";
-    this.version            = "1.1.0";
-    // If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
-    this.viewParentLookup   = true;
-    // If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
-    this.layoutParentLookup = true;
-    // Module Entry Point
-    this.entryPoint         = "cfboom/http";
-    // Model Namespace
-    this.modelNamespace     = "cfboomHttp";
-    // CF Mapping
-    this.cfmapping          = "cfboom/http";
-    // Auto-map models
-    this.autoMapModels      = false;
-    // Module Dependencies
-    this.dependencies       = [ "cfboom-lang" ];
+  // Module Properties
+  this.title              = "cfboom HTTP";
+  this.author             = "Joel Tobey";
+  this.webURL             = "https://github.com/joeltobey/cfboom-http";
+  this.description        = "The cfboom-http module provides solid, consistent HTTP request and response handling.";
+  this.version            = "1.2.0";
+  // If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
+  this.viewParentLookup   = true;
+  // If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
+  this.layoutParentLookup = true;
+  // Module Entry Point
+  this.entryPoint         = "cfboom/http";
+  // Model Namespace
+  this.modelNamespace     = "cfboomHttp";
+  // CF Mapping
+  this.cfmapping          = "cfboom/http";
+  // Auto-map models
+  this.autoMapModels      = false;
+  // Module Dependencies
+  this.dependencies       = [ "cfboom-lang" ];
 
-    function configure(){
+  function configure() {
 
-        // module settings - stored in modules.name.settings
-        settings = {
-            // The HttpRequestExecutor used by the BasicHttpClient by default
-            "httpRequestExecutor" = "cfboom.http.protocol.BasicHttpRequestExecutor"
-        };
+    // module settings - stored in modules.name.settings
+    settings = {
+      // The HttpRequestExecutor used by the BasicHttpClient by default
+      "httpRequestExecutor" = "cfboom.http.protocol.BasicHttpRequestExecutor"
+    };
 
-        // Binder Mappings
-        binder.map("BasicHttpClient@cfboomHttp").to("cfboom.http.client.BasicHttpClient");
+    // Binder Mappings
+    binder.map("BasicHttpClient@cfboomHttp").to("cfboom.http.client.BasicHttpClient");
 
-        // Need to map cfboom.http.HttpStatus with noInit(). Otherwise, the factory method mapping
-        // will try to autowire it and attempt to do the init() method.
-        binder.map("cfboom.http.HttpStatus").to("cfboom.http.HttpStatus").noInit();
-        binder.map("HttpStatus@cfboomHttp").toFactoryMethod("cfboom.http.HttpStatus", "enum").asSingleton().noInit();
-    }
+    // Need to map cfboom.http.HttpStatus with noInit(). Otherwise, the factory method mapping
+    // will try to autowire it and attempt to do the init() method.
+    binder.map("cfboom.http.HttpStatus").to("cfboom.http.HttpStatus").noInit();
+    binder.map("HttpStatus@cfboomHttp").toFactoryMethod("cfboom.http.HttpStatus", "enum").asSingleton().noInit();
+  }
 
-    /**
-     * Fired when the module is registered and activated.
-     */
-    function onLoad() {}
+  /**
+   * Fired when the module is registered and activated.
+   */
+  function onLoad() {
+    // Init HttpStatus
+    wirebox.getInstance( "HttpStatus@cfboomHttp" );
+  }
 
-    /**
-     * Fired when the module is unregistered and unloaded
-     */
-    function onUnload() {}
+  /**
+   * Fired when the module is unregistered and unloaded
+   */
+  function onUnload() {}
 
 }
