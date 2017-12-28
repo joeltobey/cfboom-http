@@ -61,12 +61,12 @@ component
             if (rp.getType() == "XML") {
                 httpService.addParam(type="XML", value="#rp.getValue()#");
             } else if (rp.getType() == "file") {
-                httpService.addParam(type="file", name="#paramName#", file="#rp.getFile()#", mimetype="#rp.getMimeType()#");
+                httpService.addParam(type="file", name="#rp.getName()#", file="#rp.getFile()#", mimetype="#rp.getMimeType()#");
             } else if (rp.getType() == "CGI") {
-                httpService.addParam(type="CGI", name="#paramName#", value="#rp.getValue()#", encoded="#rp.getEncoded()#");
+                httpService.addParam(type="CGI", name="#rp.getName()#", value="#rp.getValue()#", encoded="#rp.getEncoded()#");
             } else {
                 // cookie is the only type left
-                httpService.addParam(type="cookie", name="#paramName#", value="#rp.getValue()#");
+                httpService.addParam(type="cookie", name="#rp.getName()#", value="#rp.getValue()#");
             }
         }
 
