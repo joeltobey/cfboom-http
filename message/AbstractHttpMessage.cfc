@@ -41,8 +41,12 @@ component
         var arrayToReturn = [];
         if (containsHeader(arguments.name)) {
             var headerArray = _instance.headers[arguments.name];
-            for (var header in headerArray) {
-                arrayAppend(arrayToReturn, header);
+            if (isArray(headerArray)) {
+                for (var header in headerArray) {
+                    arrayAppend(arrayToReturn, header.getValue());
+                }
+            } else {
+                arrayAppend(arrayToReturn, headerArray.getValue());
             }
         }
         return arrayToReturn;
@@ -51,16 +55,24 @@ component
     public string function getFirstHeader(string name) {
         if (containsHeader(arguments.name)) {
             var headerArray = _instance.headers[arguments.name];
-            if (arrayLen(headerArray))
-                return headerArray[1].getValue();
+            if (isArray(headerArray)) {
+              if (arrayLen(headerArray))
+                  return headerArray[1].getValue();
+            } else {
+                return headerArray.getValue();
+            }
         }
     }
 
     public string function getLastHeader(string name) {
         if (containsHeader(arguments.name)) {
             var headerArray = _instance.headers[arguments.name];
-            if (arrayLen(headerArray))
-                return headerArray[arrayLen(headerArray)].getValue();
+            if (isArray(headerArray)) {
+                if (arrayLen(headerArray))
+                    return headerArray[arrayLen(headerArray)].getValue();
+            } else {
+                return headerArray.getValue();
+            }
         }
     }
 
