@@ -43,7 +43,8 @@ component
             var executorMeta = getComponentMetadata( arguments.executor );
             executorName = structKeyExists(executorMeta, "fullname") ? executorMeta.fullname : executorMeta.name;
         }
-        log.info(getComponentName() & " setting executor with [" & executorName & "]");
+        if (!isNull(log))
+          log.info(getComponentName() & " setting executor with [" & executorName & "]");
         _instance['executor'] = arguments.executor;
     }
 
