@@ -247,13 +247,13 @@ component
         return paramArray;
     }
 
-    public string function toJson() {
+    public string function toJson( boolean noHeaders = false ) {
         var returnJson = '{"' & listLast(getComponentName(), ".") & '":{'
             & '"method":"#getMethod()#",'
             & '"URI":"#getURI().toString()#",'
             & '"executed":#_instance.executed#';
 
-        if (!structIsEmpty(_instance.headers)) {
+        if (!structIsEmpty(_instance.headers) && !noHeaders) {
             returnJson &= ',"headers":' & paramsToJson( _instance.headers );
         }
 
