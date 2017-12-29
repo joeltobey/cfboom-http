@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2016 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,22 +22,23 @@
  * @singleton
  */
 component
-    extends="cfboom.http.client.AbstractHttpClient"
-    displayname="Class BasicHttpClient"
-    output="false"
+  extends="cfboom.http.client.AbstractHttpClient"
+  displayname="Class BasicHttpClient"
+  output="false"
 {
-    property name="httpRequestExecutor" inject="coldbox:setting:httpRequestExecutor@cfboom-http";
+  property name="httpRequestExecutor" inject="coldbox:setting:httpRequestExecutor@cfboom-http";
+  property name="wirebox" inject="wirebox";
 
-    public cfboom.http.client.BasicHttpClient function init() {
-        super.init();
-        return this;
-    }
+  public cfboom.http.client.BasicHttpClient function init() {
+    super.init();
+    return this;
+  }
 
-    public void function onDIComplete() {
-        setExecutor( new "#httpRequestExecutor#"() );
-    }
+  public void function onDIComplete() {
+    setExecutor( wirebox.getInstance( httpRequestExecutor ) );
+  }
 
-    public cfboom.http.HttpResponse function execute(cfboom.http.HttpRequest req) {
-        return _instance.executor.execute( arguments.req );
-    }
+  public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
+    return _instance.executor.execute( arguments.req );
+  }
 }

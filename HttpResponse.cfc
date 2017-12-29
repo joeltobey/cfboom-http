@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2002-2016 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,27 +21,27 @@
  * @cfboom Joel Tobey
  */
 interface
-    extends="cfboom.http.HttpMessage"
-    displayname="Interface HttpResponse"
+  extends="cfboom.http.HttpMessage"
+  displayname="Interface HttpResponse"
 {
-    /**
-     * @actualReturnType Integer
-     */
-    public numeric function getCode();
+  /**
+   * @actualReturnType Integer
+   */
+  public numeric function getCode();
 
-    public string function getReasonPhrase();
+  public string function getReasonPhrase();
 
-    public any function getRequest();
+  public any function getRequest();
 
-    public void function setRequest(cfboom.http.HttpRequest req);
+  public void function setRequest(cfboom.http.HttpRequest req);
 
-	public boolean function isInformational();
+  public boolean function isInformational();
 
-	public boolean function isSuccess();
+  public boolean function isSuccess();
 
-	public boolean function isRedirection();
+  public boolean function isRedirection();
 
-	public boolean function isClientError();
+  public boolean function isClientError();
 
-	public boolean function isServerError();
+  public boolean function isServerError();
 }

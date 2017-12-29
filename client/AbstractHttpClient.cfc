@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2016 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,35 +20,36 @@
  * @cfboom Joel Tobey
  */
 component
-    extends="cfboom.lang.Object"
-    implements="cfboom.http.client.HttpClient"
-    displayname="Abstract Class AbstractHttpClient"
-    output="false"
+  extends="cfboom.lang.Object"
+  implements="cfboom.http.client.HttpClient"
+  displayname="Abstract Class AbstractHttpClient"
+  output="false"
 {
-    property name="log" inject="logbox:logger:{this}";
+  property name="log" inject="logbox:logger:{this}";
 
-    public cfboom.http.client.AbstractHttpClient function init() {
-        return this;
-    }
+  public cfboom.http.client.AbstractHttpClient function init() {
+    return this;
+  }
 
-    public cfboom.http.HttpResponse function execute(cfboom.http.HttpRequest req) {
-        throw(object=createObject("java", "java.lang.AbstractMethodError").init("Must override template method 'execute' in subclass."));
-    }
+  public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
+    throw(object=createObject("java", "java.lang.AbstractMethodError").init("Must override template method 'execute' in subclass."));
+  }
 
-    public void function setExecutor(cfboom.http.protocol.HttpRequestExecutor executor) {
-        var executorName = "";
-        if (isInstanceOf(arguments.executor,"cfboom.lang.Object")) {
-            executorName = arguments.executor.getComponentName();
-        } else {
-            var executorMeta = getComponentMetadata( arguments.executor );
-            executorName = structKeyExists(executorMeta, "fullname") ? executorMeta.fullname : executorMeta.name;
-        }
-        log.info(getComponentName() & " setting executor with [" & executorName & "]");
-        _instance['executor'] = arguments.executor;
+  public void function setExecutor( cfboom.http.protocol.HttpRequestExecutor executor ) {
+    var executorName = "";
+    if ( isInstanceOf( arguments.executor,"cfboom.lang.Object" ) ) {
+      executorName = arguments.executor.getComponentName();
+    } else {
+      var executorMeta = getComponentMetadata( arguments.executor );
+      executorName = structKeyExists( executorMeta, "fullname" ) ? executorMeta.fullname : executorMeta.name;
     }
+    if (!isNull(log))
+      log.debug( getComponentName() & " setting executor with [" & executorName & "]") ;
+    _instance['executor'] = arguments.executor;
+  }
 
-    public cfboom.http.HttpResponse function get(string uri) {
-        var req = new cfboom.http.message.BasicHttpRequest("GET", arguments.uri);
-        return execute( req );
-    }
+  public cfboom.http.HttpResponse function get( string uri ) {
+    var req = new cfboom.http.message.BasicHttpRequest( "GET", arguments.uri );
+    return execute( req );
+  }
 }
