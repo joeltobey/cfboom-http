@@ -38,5 +38,8 @@
         "**/.*",
         "tests",
         "*/.md"
-    ]
+    ],
+    "scripts":{
+        "postVersion":"package set location='https://github.com/joeltobey/cfboom-http/releases/download/v`package version`/cfboom-http-v`package version`.zip'"
+    }
 }
