@@ -34,6 +34,14 @@ component
     	trimmedExamplePath = "/" & trimmedExamplePath;
     }
     variables['EXAMPLE_FILE'] = trimmedExamplePath;
+
+    var jsonExamplePath = expandPath("/tests/specs/client/jsonExample.cfm");
+    var trimmedJsonExamplePath = right(jsonExamplePath, len(jsonExamplePath) - len(rootPath));
+    trimmedJsonExamplePath = replace(trimmedJsonExamplePath, "\", "/", "all");
+    if (left(trimmedJsonExamplePath, 1) != "/") {
+      trimmedJsonExamplePath = "/" & trimmedJsonExamplePath;
+    }
+    variables['JSON_EXAMPLE_FILE'] = trimmedJsonExamplePath;
   }
 
   // this will run once after all tests have been run
@@ -56,5 +64,29 @@ component
       .append( EXAMPLE_FILE );
     var res = httpClient.get(sb.toString());
     assertEqualsCase("example text", res.getFileContent());
+  }
+
+  /**
+   * @Test
+   */
+  public void function testJson() {
+    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var sb = createObject("java", "java.lang.StringBuilder").init("http");
+    if (cgi.server_port_secure)
+      sb.append("s");
+    sb.append("://")
+      .append(cgi.http_host)
+      .append(cgi.context_path)
+      .append( JSON_EXAMPLE_FILE );
+    var res = httpClient.get(sb.toString());
+    assertEqualsCase('{"userId":1,"id":1,"title":"sunt aut facere repellat provident occaecati excepturi optio reprehenderit","body":"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}', res.getFileContent());
+    var user = res.getDeserializedContent();
+    assertEquals( 1, user.userId );
+    assertEquals( 1, user.id );
+    assertEqualsCase( "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", user.title );
+    assertEqualsCase( "quia et suscipit
+suscipit recusandae consequuntur expedita et cum
+reprehenderit molestiae ut ut quas totam
+nostrum rerum est autem sunt rem eveniet architecto", user.body );
   }
 }

@@ -29,8 +29,8 @@ component
   public void function testDefaults() {
     var msg = new cfboom.http.message.AbstractHttpMessage();
     assertEquals(-1, msg.getContentLength());
-    this.$assert.null(msg.getContentType());
-    this.$assert.null(msg.getContentEncoding());
+    $assert.null(msg.getContentType());
+    $assert.null(msg.getContentEncoding());
   }
 
   /**

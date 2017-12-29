@@ -55,10 +55,10 @@ component
       _instance['headers'] = _instance.prefix.responseheader;
 
     // Deserialize JSON if needed
-    _instance.prefix['deserializedContent'] = {};
-    if ( isJson( getFileContent() ) )
-      _instance.prefix.deserializedContent = deserializeJson( getFileContent() );
-
+    if ( findNoCase( "json", getMimeType() ) ) {
+      if ( isJson( getFileContent() ) )
+        _instance.prefix['deserializedContent'] = deserializeJson( getFileContent() );
+    }
   }
 
   public void function setStatus( required cfboom.http.HttpStatus status ) {
