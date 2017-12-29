@@ -59,6 +59,12 @@ component
       if ( isJson( getFileContent() ) )
         _instance.prefix['deserializedContent'] = deserializeJson( getFileContent() );
     }
+
+    // Deserialize XML if needed
+    if ( findNoCase( "xml", getMimeType() ) ) {
+      if ( isXml( getFileContent() ) )
+        _instance.prefix['deserializedContent'] = xmlParse( getFileContent() );
+    }
   }
 
   public void function setStatus( required cfboom.http.HttpStatus status ) {

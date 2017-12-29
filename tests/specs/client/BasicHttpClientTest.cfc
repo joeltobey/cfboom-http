@@ -42,11 +42,21 @@ component
       trimmedJsonExamplePath = "/" & trimmedJsonExamplePath;
     }
     variables['JSON_EXAMPLE_FILE'] = trimmedJsonExamplePath;
+
+    var xmlExamplePath = expandPath("/tests/specs/client/xmlExample.cfm");
+    var trimmedXmlExamplePath = right(xmlExamplePath, len(xmlExamplePath) - len(rootPath));
+    trimmedXmlExamplePath = replace(trimmedXmlExamplePath, "\", "/", "all");
+    if (left(trimmedXmlExamplePath, 1) != "/") {
+      trimmedXmlExamplePath = "/" & trimmedXmlExamplePath;
+    }
+    variables['XML_EXAMPLE_FILE'] = trimmedXmlExamplePath;
   }
 
   // this will run once after all tests have been run
   public void function afterTests() {
     structDelete(variables, "EXAMPLE_FILE");
+    structDelete(variables, "JSON_EXAMPLE_FILE");
+    structDelete(variables, "XML_EXAMPLE_FILE");
     super.afterTests();
   }
 
@@ -88,5 +98,27 @@ component
 suscipit recusandae consequuntur expedita et cum
 reprehenderit molestiae ut ut quas totam
 nostrum rerum est autem sunt rem eveniet architecto", user.body );
+  }
+
+  /**
+   * @Test
+   */
+  public void function testXml() {
+    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var sb = createObject("java", "java.lang.StringBuilder").init("http");
+    if (cgi.server_port_secure)
+      sb.append("s");
+    sb.append("://")
+      .append(cgi.http_host)
+      .append(cgi.context_path)
+      .append( XML_EXAMPLE_FILE );
+    var res = httpClient.get(sb.toString());
+    assertEqualsCase('<?xml version="1.0" encoding="UTF-8"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don''t forget me this weekend!</body></note>', res.getFileContent());
+    var doc = res.getDeserializedContent();
+    var note = doc.getElementsByTagName("note").item( 0 );
+    assertEqualsCase( "Tove", note.getElementsByTagName("to").item( 0 ).getTextContent() );
+    assertEqualsCase( "Jani", note.getElementsByTagName("from").item( 0 ).getTextContent() );
+    assertEqualsCase( "Reminder", note.getElementsByTagName("heading").item( 0 ).getTextContent() );
+    assertEqualsCase( "Don't forget me this weekend!", note.getElementsByTagName("body").item( 0 ).getTextContent() );
   }
 }
