@@ -37,6 +37,16 @@ component
   _instance['values'] = {};
 
   public cfboom.http.HttpStatus function enum() {
+
+    // 0 Status Code Unavailable
+
+    /**
+     * {@code 0 Unavailable}.
+     */
+    _instance.enums['UNAVAILABLE'] = new HttpStatus(0, "UNAVAILABLE", "Unavailable");
+    _instance.values[0] = _instance.enums.UNAVAILABLE;
+    this['UNAVAILABLE'] = _instance.enums.UNAVAILABLE;
+
     // 1xx Informational
 
     /**
