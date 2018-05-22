@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>BasicHttpRequestExecutor</title>
-	<meta name="keywords" content="cfboom.http.protocol.concurrent.Callable interface">
+	<title>HttpAccessor</title>
+	<meta name="keywords" content="cfboom.http.client.support.concurrent.Callable interface">
 	<!-- common assets -->
 	
 
@@ -12,13 +12,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel ="stylesheet" type="text/css" href="../../../bootstrap/css/bootstrap.min.css">
-<link rel ="stylesheet" type="text/css" href="../../../stylesheet.css">
+<link rel ="stylesheet" type="text/css" href="../../../../bootstrap/css/bootstrap.min.css">
+<link rel ="stylesheet" type="text/css" href="../../../../stylesheet.css">
 	
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic|Ubuntu+Mono' rel='stylesheet' type='text/css' />
 	
-<script src="../../../bootstrap/js/jquery-2.1.0.min.js" type="text/javascript"></script>
-<script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../../../bootstrap/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="../../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
 <script>
 $(document).ready(function() {
@@ -30,14 +30,14 @@ $(document).ready(function() {
 });
 </script>
 	<!-- syntax highlighter -->
-	<link type="text/css" rel="stylesheet" href="../../../highlighter/styles/shCoreDefault.css">
-	<script src="../../../highlighter/scripts/shCore.js"></script>
-	<script src="../../../highlighter/scripts/shBrushColdFusion.js"></script>
-	<script src="../../../highlighter/scripts/shBrushXml.js"></script>
-	<script src="../../../highlighter/scripts/shBrushSql.js"></script>
-	<script src="../../../highlighter/scripts/shBrushJScript.js"></script>
-	<script src="../../../highlighter/scripts/shBrushJava.js"></script>
-	<script src="../../../highlighter/scripts/shBrushCss.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../highlighter/styles/shCoreDefault.css">
+	<script src="../../../../highlighter/scripts/shCore.js"></script>
+	<script src="../../../../highlighter/scripts/shBrushColdFusion.js"></script>
+	<script src="../../../../highlighter/scripts/shBrushXml.js"></script>
+	<script src="../../../../highlighter/scripts/shBrushSql.js"></script>
+	<script src="../../../../highlighter/scripts/shBrushJScript.js"></script>
+	<script src="../../../../highlighter/scripts/shBrushJava.js"></script>
+	<script src="../../../../highlighter/scripts/shBrushCss.js"></script>
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
 	    	<ul class="nav navbar-nav">
 				
 					
-					<li><a href="../../../overview-summary.html"><i class="glyphicon glyphicon-plane"></i> overview</a></li>
+					<li><a href="../../../../overview-summary.html"><i class="glyphicon glyphicon-plane"></i> overview</a></li>
 					
 				
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	      	</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../../../index.html?cfboom/http/protocol/BasicHttpRequestExecutor.html" target="_top">
+				<li><a href="../../../../index.html?cfboom/http/client/support/HttpAccessor.html" target="_top">
 					<i class="glyphicon glyphicon-fullscreen"></i> Frames
 					</a>
 				</li>
@@ -114,7 +114,7 @@ $(document).ready(function() {
 
 <!-- Package -->
 <div class="pull-right">
-	<a href="package-summary.html" title="Package: cfboom.http.protocol"><span class="label label-success">cfboom.http.protocol</span></a>
+	<a href="package-summary.html" title="Package: cfboom.http.client.support"><span class="label label-success">cfboom.http.client.support</span></a>
 </div>
 
 <h2>
@@ -122,7 +122,7 @@ $(document).ready(function() {
 
 Class
 
- BasicHttpRequestExecutor</h2>
+ HttpAccessor</h2>
 
 
 
@@ -155,44 +155,20 @@ Class
 
 <!-- Inheritance Tree-->
 <pre style="background:white">lucee.Component
-    <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.lang.Object
-      <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.http.protocol.BasicHttpRequestExecutor
+    <img src="../../../../resources/inherit.gif" alt="extended by ">cfboom.lang.Object
+      <img src="../../../../resources/inherit.gif" alt="extended by ">cfboom.http.client.support.HttpAccessor
 </pre>
 
 
 
 	
 	
-		<div class="panel panel-default">
-			<div class="panel-heading"><strong>All Implemented Interfaces:</strong></div>
-  			<div class="panel-body">
-			
-			
-				
-				
-				<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html" title="interface in cfboom.http.protocol">HttpRequestExecutor</a>
-			
-			</div>
-		</div>
-	
 
 
 
 
 
 
-
-<div id="class-hint">
-	<p>{@code HttpRequestExecutor} is a client side HTTP protocol handler based
-on the blocking (classic) I/O model.
-<p>
-{@code HttpRequestExecutor} relies on {@link HttpProcessor} to generate
-mandatory protocol headers for all outgoing messages and apply common,
-cross-cutting message transformations to all incoming and outgoing messages.
-Application specific processing can be implemented outside
-{@code HttpRequestExecutor} once the request has been executed and
-a response has been received.</p>
-</div>
 
 
 <!-- Clas Attributes -->
@@ -201,30 +177,6 @@ a response has been received.</p>
 		<div class="panel-body">
 		
 		
-			
-			
-			<li class="label label-danger label-annotations">
-				cfboom
-				
-				: Joel Tobey
-				
-			</li>
-			&nbsp;
-			
-		
-			
-		
-			
-		
-			
-			
-			<li class="label label-danger label-annotations">
-				singleton
-				
-				: true
-				
-			</li>
-			&nbsp;
 			
 		
 			
@@ -245,7 +197,7 @@ a response has been received.</p>
 			<li class="label label-danger label-annotations">
 				displayname
 				
-				: Class BasicHttpRequestExecutor
+				: Abstract Class HttpAccessor
 				
 			</li>
 			&nbsp;
@@ -260,8 +212,6 @@ a response has been received.</p>
 				
 			</li>
 			&nbsp;
-			
-		
 			
 		
 			
@@ -342,7 +292,7 @@ a response has been received.</p>
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#httpResponse()">httpResponse</A></strong>
+			<strong><a href="HttpAccessor.html#HttpMethod()">HttpMethod</A></strong>
 			<br>
 			
 			<br><br>
@@ -363,7 +313,7 @@ a response has been received.</p>
 				
 			
 				
-				<li class="label label-default label-annotations">inject = coldbox:setting:httpResponse@cfboom-http</li>
+				<li class="label label-default label-annotations">inject = HttpMethod@cfboomHttp</li>
 				
 			
 				
@@ -397,7 +347,7 @@ a response has been received.</p>
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#HttpStatus()">HttpStatus</A></strong>
+			<strong><a href="HttpAccessor.html#log()">log</A></strong>
 			<br>
 			
 			<br><br>
@@ -418,7 +368,7 @@ a response has been received.</p>
 				
 			
 				
-				<li class="label label-default label-annotations">inject = HttpStatus@cfboomHttp</li>
+				<li class="label label-default label-annotations">inject = logbox:logger:{this}</li>
 				
 			
 				
@@ -452,7 +402,7 @@ a response has been received.</p>
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#wirebox()">wirebox</A></strong>
+			<strong><a href="HttpAccessor.html#requestFactory()">requestFactory</A></strong>
 			<br>
 			
 			<br><br>
@@ -473,7 +423,7 @@ a response has been received.</p>
 				
 			
 				
-				<li class="label label-default label-annotations">inject = wirebox</li>
+				<li class="label label-default label-annotations">inject = SimpleClientHttpRequestFactory@cfboomHttp</li>
 				
 			
 				
@@ -519,7 +469,7 @@ a response has been received.</p>
 		<tr>
 			
 			<td>
-				<strong><a href="BasicHttpRequestExecutor.html#init()">init</A></strong>()
+				<strong><a href="HttpAccessor.html#init()">init</A></strong>()
 				<br>
 				
 			</td>
@@ -545,11 +495,28 @@ a response has been received.</p>
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code><a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a></code>
+			<code><a href="../../../../cfboom/http/client/ClientHttpRequest.html" title="interface in cfboom.http.client">ClientHttpRequest</a></code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#execute()">execute</A></strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])
+			<strong><a href="HttpAccessor.html#createRequest()">createRequest</A></strong>(any uri, [<a href="../../../../cfboom/http/HttpMethod.html" title="class in cfboom.http">HttpMethod</a> method])
 			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new {@link ClientHttpRequest} via this template's {@link ClientHttpRequestFactory}.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code><a href="../../../../cfboom/http/client/SimpleClientHttpRequestFactory.html" title="class in cfboom.http.client">SimpleClientHttpRequestFactory</a></code>
+		</td>
+		<td>
+			<strong><a href="HttpAccessor.html#getRequestFactory()">getRequestFactory</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the request factory that this accessor uses for obtaining client request handles.
 			
 		</td>
 	</tr>
@@ -561,21 +528,10 @@ a response has been received.</p>
 			<code>void</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#onDIComplete()">onDIComplete</A></strong>()
+			<strong><a href="HttpAccessor.html#setRequestFactory()">setRequestFactory</A></strong>(<a href="../../../../cfboom/http/client/SimpleClientHttpRequestFactory.html" title="class in cfboom.http.client">SimpleClientHttpRequestFactory</a> requestFactory)
 			<br>
 			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>void</code>
-		</td>
-		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#setHttpResponseClass()">setHttpResponseClass</A></strong>(string httpResponseClass)
-			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the request factory that this accessor uses for obtaining client request handles.
 			
 		</td>
 	</tr>
@@ -670,7 +626,7 @@ a response has been received.</p>
 				
 
 				
-					<a href="../../../cfboom/lang/Object.html#$equals()">$equals</a>, <a href="../../../cfboom/lang/Object.html#getComponentName()">getComponentName</a>, <a href="../../../cfboom/lang/Object.html#getIdentityHashCode()">getIdentityHashCode</a>, <a href="../../../cfboom/lang/Object.html#getIdentityString()">getIdentityString</a>, <a href="../../../cfboom/lang/Object.html#getMeta()">getMeta</a>, <a href="../../../cfboom/lang/Object.html#hashCode()">hashCode</a>, <a href="../../../cfboom/lang/Object.html#toString()">toString</a>
+					<a href="../../../../cfboom/lang/Object.html#$equals()">$equals</a>, <a href="../../../../cfboom/lang/Object.html#getComponentName()">getComponentName</a>, <a href="../../../../cfboom/lang/Object.html#getIdentityHashCode()">getIdentityHashCode</a>, <a href="../../../../cfboom/lang/Object.html#getIdentityString()">getIdentityString</a>, <a href="../../../../cfboom/lang/Object.html#getMeta()">getMeta</a>, <a href="../../../../cfboom/lang/Object.html#hashCode()">hashCode</a>, <a href="../../../../cfboom/lang/Object.html#toString()">toString</a>
 				
 			</td>
 		</tr>
@@ -742,12 +698,12 @@ a response has been received.</p>
 
 	
 		
-		<a name="httpResponse()"><!-- --></a>
-		<h3>httpResponse</h3>
+		<a name="HttpMethod()"><!-- --></a>
+		<h3>HttpMethod</h3>
 
 		<kbd>
 			property any
-			<strong>httpResponse</strong>
+			<strong>HttpMethod</strong>
 			
 		</kbd>
 
@@ -774,7 +730,7 @@ a response has been received.</p>
 			
 		
 			
-			<dd><code>inject</code> - coldbox:setting:httpResponse@cfboom-http</dd>
+			<dd><code>inject</code> - HttpMethod@cfboomHttp</dd>
 			
 		
 			
@@ -790,12 +746,12 @@ a response has been received.</p>
 		<hr>
 	
 		
-		<a name="HttpStatus()"><!-- --></a>
-		<h3>HttpStatus</h3>
+		<a name="log()"><!-- --></a>
+		<h3>log</h3>
 
 		<kbd>
 			property any
-			<strong>HttpStatus</strong>
+			<strong>log</strong>
 			
 		</kbd>
 
@@ -822,7 +778,7 @@ a response has been received.</p>
 			
 		
 			
-			<dd><code>inject</code> - HttpStatus@cfboomHttp</dd>
+			<dd><code>inject</code> - logbox:logger:{this}</dd>
 			
 		
 			
@@ -838,12 +794,12 @@ a response has been received.</p>
 		<hr>
 	
 		
-		<a name="wirebox()"><!-- --></a>
-		<h3>wirebox</h3>
+		<a name="requestFactory()"><!-- --></a>
+		<h3>requestFactory</h3>
 
 		<kbd>
 			property any
-			<strong>wirebox</strong>
+			<strong>requestFactory</strong>
 			
 		</kbd>
 
@@ -870,7 +826,7 @@ a response has been received.</p>
 			
 		
 			
-			<dd><code>inject</code> - wirebox</dd>
+			<dd><code>inject</code> - SimpleClientHttpRequestFactory@cfboomHttp</dd>
 			
 		
 			
@@ -907,34 +863,24 @@ a response has been received.</p>
 
 
 	
-	<a name="execute()"><!-- --></a>
+	<a name="createRequest()"><!-- --></a>
 	<h3>
-		execute
+		createRequest
 		
 	</h3>
 
-	<kbd>public <a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a> <strong>execute</strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])</kbd>
+	<kbd>public <a href="../../../../cfboom/http/client/ClientHttpRequest.html" title="interface in cfboom.http.client">ClientHttpRequest</a> <strong>createRequest</strong>(any uri, [<a href="../../../../cfboom/http/HttpMethod.html" title="class in cfboom.http">HttpMethod</a> method])</kbd>
 
 	<br><br>
 
 	
+		<p>Create a new {@link ClientHttpRequest} via this template's {@link ClientHttpRequestFactory}.</p>
+	
 
 	
 
 	
 		
-		
-			<dl>
-				<dt><strong>Specified by:</strong></dt>
-				<dd>
-				<code>
-				<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html#execute()">execute</a></code>
-				in interface
-				<code>
-					<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html" title="interface in cfboom.http.protocol">HttpRequestExecutor</a>
-				</code>
-				</dd>
-			</dl>
 		
 	
 
@@ -945,12 +891,58 @@ a response has been received.</p>
 		<dl>
 		<dt><strong>Parameters:</strong></dt>
 		
-		<dd><code>req</code></dd>
+		<dd><code>uri</code></dd>
+		
+		<dd><code>method</code></dd>
 		
 		</dl>
 	
 
 	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the created request</dd>
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Throws:</strong></dt>
+			<dd>IOException in case of I/O errors</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getRequestFactory()"><!-- --></a>
+	<h3>
+		getRequestFactory
+		
+	</h3>
+
+	<kbd>public <a href="../../../../cfboom/http/client/SimpleClientHttpRequestFactory.html" title="class in cfboom.http.client">SimpleClientHttpRequestFactory</a> <strong>getRequestFactory</strong>()</kbd>
+
+	<br><br>
+
+	
+		<p>Return the request factory that this accessor uses for obtaining client request handles.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
 
 	
 
@@ -958,48 +950,22 @@ a response has been received.</p>
 	<hr>
 
 	
-	<a name="onDIComplete()"><!-- --></a>
+	<a name="setRequestFactory()"><!-- --></a>
 	<h3>
-		onDIComplete
+		setRequestFactory
 		
 	</h3>
 
-	<kbd>public void <strong>onDIComplete</strong>()</kbd>
+	<kbd>public void <strong>setRequestFactory</strong>(<a href="../../../../cfboom/http/client/SimpleClientHttpRequestFactory.html" title="class in cfboom.http.client">SimpleClientHttpRequestFactory</a> requestFactory)</kbd>
 
 	<br><br>
 
 	
-
-	
-
-	
-		
-		
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="setHttpResponseClass()"><!-- --></a>
-	<h3>
-		setHttpResponseClass
-		
-	</h3>
-
-	<kbd>public void <strong>setHttpResponseClass</strong>(string httpResponseClass)</kbd>
-
-	<br><br>
-
+		<p>Set the request factory that this accessor uses for obtaining client request handles.
+<p>The default is a {@link SimpleClientHttpRequestFactory} based on the JDK's own
+HTTP libraries ({@link java.net.HttpURLConnection}).
+<p><b>Note that the standard JDK HTTP library does not support the HTTP PATCH method.
+Configure the Apache HttpComponents or OkHttp request factory to enable PATCH.</b></p>
 	
 
 	
@@ -1016,7 +982,7 @@ a response has been received.</p>
 		<dl>
 		<dt><strong>Parameters:</strong></dt>
 		
-		<dd><code>httpResponseClass</code></dd>
+		<dd><code>requestFactory</code></dd>
 		
 		</dl>
 	

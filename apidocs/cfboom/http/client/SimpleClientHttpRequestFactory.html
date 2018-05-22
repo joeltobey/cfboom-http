@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>BasicHttpRequestExecutor</title>
-	<meta name="keywords" content="cfboom.http.protocol.concurrent.Callable interface">
+	<title>SimpleClientHttpRequestFactory</title>
+	<meta name="keywords" content="cfboom.http.client.concurrent.Callable interface">
 	<!-- common assets -->
 	
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	      	</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../../../index.html?cfboom/http/protocol/BasicHttpRequestExecutor.html" target="_top">
+				<li><a href="../../../index.html?cfboom/http/client/SimpleClientHttpRequestFactory.html" target="_top">
 					<i class="glyphicon glyphicon-fullscreen"></i> Frames
 					</a>
 				</li>
@@ -114,7 +114,7 @@ $(document).ready(function() {
 
 <!-- Package -->
 <div class="pull-right">
-	<a href="package-summary.html" title="Package: cfboom.http.protocol"><span class="label label-success">cfboom.http.protocol</span></a>
+	<a href="package-summary.html" title="Package: cfboom.http.client"><span class="label label-success">cfboom.http.client</span></a>
 </div>
 
 <h2>
@@ -122,7 +122,7 @@ $(document).ready(function() {
 
 Class
 
- BasicHttpRequestExecutor</h2>
+ SimpleClientHttpRequestFactory</h2>
 
 
 
@@ -156,7 +156,7 @@ Class
 <!-- Inheritance Tree-->
 <pre style="background:white">lucee.Component
     <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.lang.Object
-      <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.http.protocol.BasicHttpRequestExecutor
+      <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.http.client.SimpleClientHttpRequestFactory
 </pre>
 
 
@@ -170,7 +170,7 @@ Class
 			
 				
 				
-				<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html" title="interface in cfboom.http.protocol">HttpRequestExecutor</a>
+				<a href="../../../cfboom/http/client/ClientHttpRequestFactory.html" title="interface in cfboom.http.client">ClientHttpRequestFactory</a>
 			
 			</div>
 		</div>
@@ -183,15 +183,7 @@ Class
 
 
 <div id="class-hint">
-	<p>{@code HttpRequestExecutor} is a client side HTTP protocol handler based
-on the blocking (classic) I/O model.
-<p>
-{@code HttpRequestExecutor} relies on {@link HttpProcessor} to generate
-mandatory protocol headers for all outgoing messages and apply common,
-cross-cutting message transformations to all incoming and outgoing messages.
-Application specific processing can be implemented outside
-{@code HttpRequestExecutor} once the request has been executed and
-a response has been received.</p>
+	<p>{@link ClientHttpRequestFactory} implementation that uses standard JDK facilities.</p>
 </div>
 
 
@@ -202,17 +194,6 @@ a response has been received.</p>
 		
 		
 			
-			
-			<li class="label label-danger label-annotations">
-				cfboom
-				
-				: Joel Tobey
-				
-			</li>
-			&nbsp;
-			
-		
-			
 		
 			
 		
@@ -220,8 +201,6 @@ a response has been received.</p>
 			
 			<li class="label label-danger label-annotations">
 				singleton
-				
-				: true
 				
 			</li>
 			&nbsp;
@@ -245,7 +224,7 @@ a response has been received.</p>
 			<li class="label label-danger label-annotations">
 				displayname
 				
-				: Class BasicHttpRequestExecutor
+				: Class SimpleClientHttpRequestFactory
 				
 			</li>
 			&nbsp;
@@ -262,6 +241,17 @@ a response has been received.</p>
 			&nbsp;
 			
 		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				see
+				
+				: HttpComponentsClientHttpRequestFactory
+				
+			</li>
+			&nbsp;
 			
 		
 			
@@ -291,6 +281,28 @@ a response has been received.</p>
 				persistent
 				
 				: false
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				since
+				
+				: 3.0
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				author
+				
+				: Juergen Hoeller
 				
 			</li>
 			&nbsp;
@@ -342,7 +354,7 @@ a response has been received.</p>
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#httpResponse()">httpResponse</A></strong>
+			<strong><a href="SimpleClientHttpRequestFactory.html#HttpMethod()">HttpMethod</A></strong>
 			<br>
 			
 			<br><br>
@@ -363,7 +375,7 @@ a response has been received.</p>
 				
 			
 				
-				<li class="label label-default label-annotations">inject = coldbox:setting:httpResponse@cfboom-http</li>
+				<li class="label label-default label-annotations">inject = HttpMethod@cfboomHttp</li>
 				
 			
 				
@@ -397,62 +409,7 @@ a response has been received.</p>
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#HttpStatus()">HttpStatus</A></strong>
-			<br>
-			
-			<br><br>
-			<ul>
-			
-				
-			
-				
-				<li class="label label-default label-annotations">access = public</li>
-				
-			
-				
-			
-				
-			
-				
-				<li class="label label-default label-annotations">returntype = any</li>
-				
-			
-				
-				<li class="label label-default label-annotations">inject = HttpStatus@cfboomHttp</li>
-				
-			
-				
-			
-				
-			
-				
-			
-			</ul>
-
-		</td>
-		<td align="right" valign="top" width="1%">
-			
-		</td>
-		<td align="right" valign="top" width="1%">
-			<code>
-				true
-			</code>
-		</td>
-		<td align="right" valign="top" width="1%">
-			<code>
-				false
-			</code>
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>any</code>
-		</td>
-		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#wirebox()">wirebox</A></strong>
+			<strong><a href="SimpleClientHttpRequestFactory.html#wirebox()">wirebox</A></strong>
 			<br>
 			
 			<br><br>
@@ -519,7 +476,7 @@ a response has been received.</p>
 		<tr>
 			
 			<td>
-				<strong><a href="BasicHttpRequestExecutor.html#init()">init</A></strong>()
+				<strong><a href="SimpleClientHttpRequestFactory.html#init()">init</A></strong>()
 				<br>
 				
 			</td>
@@ -545,11 +502,26 @@ a response has been received.</p>
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code><a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a></code>
+			<code><a href="../../../cfboom/http/client/ClientHttpRequest.html" title="interface in cfboom.http.client">ClientHttpRequest</a></code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#execute()">execute</A></strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])
+			<strong><a href="SimpleClientHttpRequestFactory.html#createRequest()">createRequest</A></strong>(any uri, [<a href="../../../cfboom/http/HttpMethod.html" title="class in cfboom.http">HttpMethod</a> httpMethod])
 			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="SimpleClientHttpRequestFactory.html#openConnection()">openConnection</A></strong>(any theUrl)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Opens and returns a connection to the given URL.
 			
 		</td>
 	</tr>
@@ -561,8 +533,10 @@ a response has been received.</p>
 			<code>void</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#onDIComplete()">onDIComplete</A></strong>()
+			<strong><a href="SimpleClientHttpRequestFactory.html#prepareConnection()">prepareConnection</A></strong>(any connection, string httpMethod)
 			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Template method for preparing the given {@link HttpURLConnection}.
 			
 		</td>
 	</tr>
@@ -574,8 +548,85 @@ a response has been received.</p>
 			<code>void</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#setHttpResponseClass()">setHttpResponseClass</A></strong>(string httpResponseClass)
+			<strong><a href="SimpleClientHttpRequestFactory.html#setBufferRequestBody()">setBufferRequestBody</A></strong>(boolean bufferRequestBody)
 			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicate whether this request factory should buffer the.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="SimpleClientHttpRequestFactory.html#setChunkSize()">setChunkSize</A></strong>(numeric chunkSize)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the number of bytes to write in each chunk when not buffering request.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="SimpleClientHttpRequestFactory.html#setConnectTimeout()">setConnectTimeout</A></strong>(numeric connectTimeout)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the underlying URLConnection's connect timeout (in milliseconds).
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="SimpleClientHttpRequestFactory.html#setOutputStreaming()">setOutputStreaming</A></strong>(boolean outputStreaming)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set if the underlying URLConnection can be set to 'output streaming' mode.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="SimpleClientHttpRequestFactory.html#setReadTimeout()">setReadTimeout</A></strong>(numeric readTimeout)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the underlying URLConnection's read timeout (in milliseconds).
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="SimpleClientHttpRequestFactory.html#setStandardRequestBody()">setStandardRequestBody</A></strong>(boolean standardRequestBody)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicate whether this request factory should use ColdFusion HTTP.
 			
 		</td>
 	</tr>
@@ -742,12 +793,12 @@ a response has been received.</p>
 
 	
 		
-		<a name="httpResponse()"><!-- --></a>
-		<h3>httpResponse</h3>
+		<a name="HttpMethod()"><!-- --></a>
+		<h3>HttpMethod</h3>
 
 		<kbd>
 			property any
-			<strong>httpResponse</strong>
+			<strong>HttpMethod</strong>
 			
 		</kbd>
 
@@ -774,55 +825,7 @@ a response has been received.</p>
 			
 		
 			
-			<dd><code>inject</code> - coldbox:setting:httpResponse@cfboom-http</dd>
-			
-		
-			
-		
-			
-		
-			
-			<dd><code>serializable</code> - true</dd>
-			
-		
-		</dl>
-
-		<hr>
-	
-		
-		<a name="HttpStatus()"><!-- --></a>
-		<h3>HttpStatus</h3>
-
-		<kbd>
-			property any
-			<strong>HttpStatus</strong>
-			
-		</kbd>
-
-		<br><br>
-		
-
-		<dl>
-		<dt><strong>Attributes:</strong></dt>
-		
-			
-		
-			
-			<dd><code>access</code> - public</dd>
-			
-		
-			
-			<dd><code>required</code> - false</dd>
-			
-		
-			
-		
-			
-			<dd><code>returntype</code> - any</dd>
-			
-		
-			
-			<dd><code>inject</code> - HttpStatus@cfboomHttp</dd>
+			<dd><code>inject</code> - HttpMethod@cfboomHttp</dd>
 			
 		
 			
@@ -907,13 +910,13 @@ a response has been received.</p>
 
 
 	
-	<a name="execute()"><!-- --></a>
+	<a name="createRequest()"><!-- --></a>
 	<h3>
-		execute
+		createRequest
 		
 	</h3>
 
-	<kbd>public <a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a> <strong>execute</strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])</kbd>
+	<kbd>public <a href="../../../cfboom/http/client/ClientHttpRequest.html" title="interface in cfboom.http.client">ClientHttpRequest</a> <strong>createRequest</strong>(any uri, [<a href="../../../cfboom/http/HttpMethod.html" title="class in cfboom.http">HttpMethod</a> httpMethod])</kbd>
 
 	<br><br>
 
@@ -928,10 +931,10 @@ a response has been received.</p>
 				<dt><strong>Specified by:</strong></dt>
 				<dd>
 				<code>
-				<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html#execute()">execute</a></code>
+				<a href="../../../cfboom/http/client/ClientHttpRequestFactory.html#createRequest()">createRequest</a></code>
 				in interface
 				<code>
-					<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html" title="interface in cfboom.http.protocol">HttpRequestExecutor</a>
+					<a href="../../../cfboom/http/client/ClientHttpRequestFactory.html" title="interface in cfboom.http.client">ClientHttpRequestFactory</a>
 				</code>
 				</dd>
 			</dl>
@@ -945,7 +948,9 @@ a response has been received.</p>
 		<dl>
 		<dt><strong>Parameters:</strong></dt>
 		
-		<dd><code>req</code></dd>
+		<dd><code>uri</code></dd>
+		
+		<dd><code>httpMethod</code></dd>
 		
 		</dl>
 	
@@ -958,48 +963,20 @@ a response has been received.</p>
 	<hr>
 
 	
-	<a name="onDIComplete()"><!-- --></a>
+	<a name="openConnection()"><!-- --></a>
 	<h3>
-		onDIComplete
+		openConnection
 		
 	</h3>
 
-	<kbd>public void <strong>onDIComplete</strong>()</kbd>
+	<kbd>public any <strong>openConnection</strong>(any theUrl)</kbd>
 
 	<br><br>
 
 	
-
-	
-
-	
-		
-		
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="setHttpResponseClass()"><!-- --></a>
-	<h3>
-		setHttpResponseClass
-		
-	</h3>
-
-	<kbd>public void <strong>setHttpResponseClass</strong>(string httpResponseClass)</kbd>
-
-	<br><br>
-
+		<p>Opens and returns a connection to the given URL.
+<p>The default implementation uses the given {@linkplain #setProxy(java.net.Proxy) proxy} -
+if any - to open a connection.</p>
 	
 
 	
@@ -1016,7 +993,334 @@ a response has been received.</p>
 		<dl>
 		<dt><strong>Parameters:</strong></dt>
 		
-		<dd><code>httpResponseClass</code></dd>
+		<dd><code>theUrl</code></dd>
+		
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the opened connection</dd>
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Throws:</strong></dt>
+			<dd>IOException in case of I/O errors</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="prepareConnection()"><!-- --></a>
+	<h3>
+		prepareConnection
+		
+	</h3>
+
+	<kbd>public void <strong>prepareConnection</strong>(any connection, string httpMethod)</kbd>
+
+	<br><br>
+
+	
+		<p>Template method for preparing the given {@link HttpURLConnection}.
+<p>The default implementation prepares the connection for input and output, and sets the HTTP method.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>connection</code></dd>
+		
+		<dd><code>httpMethod</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+		<dl>
+			<dt><strong>Throws:</strong></dt>
+			<dd>IOException in case of I/O errors</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setBufferRequestBody()"><!-- --></a>
+	<h3>
+		setBufferRequestBody
+		
+	</h3>
+
+	<kbd>public void <strong>setBufferRequestBody</strong>(boolean bufferRequestBody)</kbd>
+
+	<br><br>
+
+	
+		<p>Indicate whether this request factory should buffer the
+{@linkplain ClientHttpRequest#getBody() request body} internally.
+<p>Default is {@code true}. When sending large amounts of data via POST or PUT,
+it is recommended to change this property to {@code false}, so as not to run
+out of memory. This will result in a {@link ClientHttpRequest} that either
+streams directly to the underlying {@link HttpURLConnection} (if the
+{@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
+is known in advance), or that will use "Chunked transfer encoding"
+(if the {@code Content-Length} is not known in advance).</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>bufferRequestBody</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setChunkSize()"><!-- --></a>
+	<h3>
+		setChunkSize
+		
+	</h3>
+
+	<kbd>public void <strong>setChunkSize</strong>(numeric chunkSize)</kbd>
+
+	<br><br>
+
+	
+		<p>Set the number of bytes to write in each chunk when not buffering request
+bodies locally.
+<p>Note that this parameter is only used when
+{@link #setBufferRequestBody(boolean) bufferRequestBody} is set to {@code false},
+and the {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
+is not known in advance.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>chunkSize</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setConnectTimeout()"><!-- --></a>
+	<h3>
+		setConnectTimeout
+		
+	</h3>
+
+	<kbd>public void <strong>setConnectTimeout</strong>(numeric connectTimeout)</kbd>
+
+	<br><br>
+
+	
+		<p>Set the underlying URLConnection's connect timeout (in milliseconds).
+A timeout value of 0 specifies an infinite timeout.
+<p>Default is the system's default timeout.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>connectTimeout</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setOutputStreaming()"><!-- --></a>
+	<h3>
+		setOutputStreaming
+		
+	</h3>
+
+	<kbd>public void <strong>setOutputStreaming</strong>(boolean outputStreaming)</kbd>
+
+	<br><br>
+
+	
+		<p>Set if the underlying URLConnection can be set to 'output streaming' mode.
+Default is {@code true}.
+<p>When output streaming is enabled, authentication and redirection cannot be handled automatically.
+If output streaming is disabled, the {@link HttpURLConnection#setFixedLengthStreamingMode} and
+{@link HttpURLConnection#setChunkedStreamingMode} methods of the underlying connection will never
+be called.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>outputStreaming</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setReadTimeout()"><!-- --></a>
+	<h3>
+		setReadTimeout
+		
+	</h3>
+
+	<kbd>public void <strong>setReadTimeout</strong>(numeric readTimeout)</kbd>
+
+	<br><br>
+
+	
+		<p>Set the underlying URLConnection's read timeout (in milliseconds).
+A timeout value of 0 specifies an infinite timeout.
+<p>Default is the system's default timeout.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>readTimeout</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setStandardRequestBody()"><!-- --></a>
+	<h3>
+		setStandardRequestBody
+		
+	</h3>
+
+	<kbd>public void <strong>setStandardRequestBody</strong>(boolean standardRequestBody)</kbd>
+
+	<br><br>
+
+	
+		<p>Indicate whether this request factory should use ColdFusion HTTP.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>standardRequestBody</code></dd>
 		
 		</dl>
 	

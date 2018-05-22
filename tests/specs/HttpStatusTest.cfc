@@ -28,6 +28,8 @@ component
     super.beforeTests();
 
     variables['statusCodes'] = {};
+    statusCodes.put(javaCast("int", 0), "UNAVAILABLE");
+
     statusCodes.put(javaCast("int", 100), "CONTINUE");
     statusCodes.put(javaCast("int", 101), "SWITCHING_PROTOCOLS");
     statusCodes.put(javaCast("int", 102), "PROCESSING");

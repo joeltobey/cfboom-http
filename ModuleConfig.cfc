@@ -20,7 +20,6 @@
 component
   output="false"
 {
-
   // Module Properties
   this.title              = "cfboom HTTP";
   this.author             = "Joel Tobey";
@@ -47,24 +46,34 @@ component
     // module settings - stored in modules.name.settings
     settings = {
       // The HttpRequestExecutor used by the BasicHttpClient by default
-      "httpRequestExecutor" = "cfboom.http.protocol.BasicHttpRequestExecutor"
+      "httpRequestExecutor" = "cfboom.http.protocol.BasicHttpRequestExecutor",
+
+      // The default HttpResponse
+      "httpResponse" = "cfboom.http.message.BasicHttpResponse"
     };
 
     // Binder Mappings
     binder.map("BasicHttpClient@cfboomHttp").to("cfboom.http.client.BasicHttpClient");
+    binder.map("SimpleClientHttpRequestFactory@cfboomHttp").to("cfboom.http.client.SimpleClientHttpRequestFactory");
+    binder.map("SimpleClientHttpRequest@cfboomHttp").to("cfboom.http.client.SimpleClientHttpRequest");
+    binder.map("SimpleBufferingClientHttpRequest@cfboomHttp").to("cfboom.http.client.SimpleBufferingClientHttpRequest");
 
     // Need to map cfboom.http.HttpStatus with noInit(). Otherwise, the factory method mapping
     // will try to autowire it and attempt to do the init() method.
     binder.map("cfboom.http.HttpStatus").to("cfboom.http.HttpStatus").noInit();
     binder.map("HttpStatus@cfboomHttp").toFactoryMethod("cfboom.http.HttpStatus", "enum").asSingleton().noInit();
+
+    binder.map("cfboom.http.HttpMethod").to("cfboom.http.HttpMethod").noInit();
+    binder.map("HttpMethod@cfboomHttp").toFactoryMethod("cfboom.http.HttpMethod", "enum").asSingleton().noInit();
   }
 
   /**
    * Fired when the module is registered and activated.
    */
   function onLoad() {
-    // Init HttpStatus
+    // Init Enums
     wirebox.getInstance( "HttpStatus@cfboomHttp" );
+    wirebox.getInstance( "HttpMethod@cfboomHttp" );
   }
 
   /**

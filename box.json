@@ -1,6 +1,6 @@
 {
     "name":"<cfboom/> HTTP",
-    "version":"1.2.1",
+    "version":"1.3.0",
     "author":"Joel Tobey <joeltobey@gmail.com>",
     "slug":"cfboom-http",
     "type":"modules",
@@ -10,7 +10,7 @@
         "type":"git",
         "url":"https://github.com/joeltobey/cfboom-http"
     },
-    "location":"https://github.com/joeltobey/cfboom-http/releases/download/v1.2.1/cfboom-http-v1.2.1.zip",
+    "location":"https://github.com/joeltobey/cfboom-http/releases/download/v1.3.0/cfboom-http-v1.3.0.zip",
     "shortDescription":"The cfboom-http module provides solid, consistent HTTP request and response handling.",
     "license":[
         {

@@ -15,33 +15,24 @@
  */
 
 /**
- * After receiving and interpreting a request message, a server responds
- * with an HTTP response message.
+ * Represents a client-side HTTP request.
+ * Created via an implementation of the {@link ClientHttpRequestFactory}.
  *
+ * <p>A {@code ClientHttpRequest} can be {@linkplain #execute() executed},
+ * receiving a {@link ClientHttpResponse} which can be read from.
+ *
+ * @author Arjen Poutsma
+ * @since 3.0
+ * @see ClientHttpRequestFactory#createRequest(java.net.URI, HttpMethod)
  * @cfboom Joel Tobey
  */
 interface
-  extends="cfboom.http.HttpMessage"
-  displayname="Interface HttpResponse"
+  displayname="Interface ClientHttpRequest"
 {
   /**
-   * @actualReturnType Integer
+   * Execute this request, resulting in a {@link ClientHttpResponse} that can be read.
+   * @return the response result of the execution
+   * @throws IOException in case of I/O errors
    */
-  public numeric function getCode();
-
-  public string function getReasonPhrase();
-
-  public any function getRequest();
-
-  public void function setRequest( cfboom.http.HttpRequest req );
-
-  public boolean function isInformational();
-
-  public boolean function isSuccess();
-
-  public boolean function isRedirection();
-
-  public boolean function isClientError();
-
-  public boolean function isServerError();
+  public cfboom.http.client.ClientHttpResponse function execute();
 }

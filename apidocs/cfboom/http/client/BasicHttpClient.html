@@ -205,9 +205,9 @@ Class
 			
 			
 			<li class="label label-danger label-annotations">
-				cfboom 
+				cfboom
 				
-				: Joel Tobey		
+				: Joel Tobey
 				
 			</li>
 			&nbsp;
@@ -220,33 +220,9 @@ Class
 			
 			
 			<li class="label label-danger label-annotations">
-				singleton 
+				singleton
 				
-				: true		
-				
-			</li>
-			&nbsp;
-			
-		
-			
-			
-			<li class="label label-danger label-annotations">
-				output 
-				
-				: false		
-				
-			</li>
-			&nbsp;
-			
-		
-			
-		
-			
-			
-			<li class="label label-danger label-annotations">
-				displayname 
-				
-				: Class BasicHttpClient		
+				: true
 				
 			</li>
 			&nbsp;
@@ -255,30 +231,9 @@ Class
 			
 			
 			<li class="label label-danger label-annotations">
-				synchronized 
+				output
 				
-				: false		
-				
-			</li>
-			&nbsp;
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-			
-			<li class="label label-danger label-annotations">
-				accessors 
-				
-				: false		
+				: false
 				
 			</li>
 			&nbsp;
@@ -289,9 +244,54 @@ Class
 			
 			
 			<li class="label label-danger label-annotations">
-				persistent 
+				displayname
 				
-				: false		
+				: Class BasicHttpClient
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				synchronized
+				
+				: false
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				accessors
+				
+				: false
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				persistent
+				
+				: false
 				
 			</li>
 			&nbsp;
@@ -343,7 +343,7 @@ Class
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpClient.html#httpRequestExecutor()">httpRequestExecutor</A></strong> 
+			<strong><a href="BasicHttpClient.html#httpRequestExecutor()">httpRequestExecutor</A></strong>
 			<br>
 			
 			<br><br>
@@ -398,7 +398,7 @@ Class
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpClient.html#wirebox()">wirebox</A></strong> 
+			<strong><a href="BasicHttpClient.html#wirebox()">wirebox</A></strong>
 			<br>
 			
 			<br><br>
@@ -513,6 +513,19 @@ Class
 		</td>
 	</tr>
 	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="BasicHttpClient.html#setHttpResponseClass()">setHttpResponseClass</A></strong>(string httpResponseClass)
+			<br>
+			
+		</td>
+	</tr>
+	
 </table>
 
 
@@ -559,7 +572,7 @@ Class
 					
 					
 				
-				
+
 				
 					<a href="../../../cfboom/http/client/AbstractHttpClient.html#get()">get</a>, <a href="../../../cfboom/http/client/AbstractHttpClient.html#setExecutor()">setExecutor</a>
 				
@@ -648,7 +661,7 @@ Class
 					
 					
 				
-				
+
 				
 					<a href="../../../cfboom/lang/Object.html#$equals()">$equals</a>, <a href="../../../cfboom/lang/Object.html#getComponentName()">getComponentName</a>, <a href="../../../cfboom/lang/Object.html#getIdentityHashCode()">getIdentityHashCode</a>, <a href="../../../cfboom/lang/Object.html#getIdentityString()">getIdentityString</a>, <a href="../../../cfboom/lang/Object.html#getMeta()">getMeta</a>, <a href="../../../cfboom/lang/Object.html#hashCode()">hashCode</a>, <a href="../../../cfboom/lang/Object.html#toString()">toString</a>
 				
@@ -673,7 +686,7 @@ Class
 				
 				
 				
-				
+
 				
 					<span class="label label-warning"><em>None</em></span>
 				
@@ -726,7 +739,7 @@ Class
 		<h3>httpRequestExecutor</h3>
 
 		<kbd>
-			property any 
+			property any
 			<strong>httpRequestExecutor</strong>
 			
 		</kbd>
@@ -774,7 +787,7 @@ Class
 		<h3>wirebox</h3>
 
 		<kbd>
-			property any 
+			property any
 			<strong>wirebox</strong>
 			
 		</kbd>
@@ -840,11 +853,16 @@ Class
 
 	
 	<a name="execute()"><!-- --></a>
-	<h3>execute</h3>
-	
+	<h3>
+		execute
+		
+	</h3>
+
 	<kbd>public <a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a> <strong>execute</strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])</kbd>
-	
+
 	<br><br>
+
+	
 
 	
 
@@ -879,25 +897,73 @@ Class
 
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="onDIComplete()"><!-- --></a>
-	<h3>onDIComplete</h3>
-	
+	<h3>
+		onDIComplete
+		
+	</h3>
+
 	<kbd>public void <strong>onDIComplete</strong>()</kbd>
-	
+
 	<br><br>
 
 	
 
 	
+
+	
 		
 		
 	
 
 	
+	
+
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setHttpResponseClass()"><!-- --></a>
+	<h3>
+		setHttpResponseClass
+		
+	</h3>
+
+	<kbd>public void <strong>setHttpResponseClass</strong>(string httpResponseClass)</kbd>
+
+	<br><br>
+
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>httpResponseClass</code></dd>
+		
+		</dl>
 	
 
 	

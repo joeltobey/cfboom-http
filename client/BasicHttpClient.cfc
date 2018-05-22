@@ -38,6 +38,10 @@ component
     setExecutor( wirebox.getInstance( httpRequestExecutor ) );
   }
 
+  public void function setHttpResponseClass( required string httpResponseClass ) {
+    _instance.executor.setHttpResponseClass( arguments.httpResponseClass );
+  }
+
   public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
     return _instance.executor.execute( arguments.req );
   }

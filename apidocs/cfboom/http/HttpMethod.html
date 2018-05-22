@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>HttpResponse</title>
+	<title>HttpMethod</title>
 	<meta name="keywords" content="cfboom.http.concurrent.Callable interface">
 	<!-- common assets -->
 	
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	      	</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../../index.html?cfboom/http/HttpResponse.html" target="_top">
+				<li><a href="../../index.html?cfboom/http/HttpMethod.html" target="_top">
 					<i class="glyphicon glyphicon-fullscreen"></i> Frames
 					</a>
 				</li>
@@ -120,9 +120,9 @@ $(document).ready(function() {
 <h2>
 
 
-Interface
+Class
 
- HttpResponse</h2>
+ HttpMethod</h2>
 
 
 
@@ -132,6 +132,14 @@ Interface
 
 
 	
+		
+	
+	
+
+	
+		
+		
+			
 		
 	
 	
@@ -146,49 +154,24 @@ Interface
 
 
 <!-- Inheritance Tree-->
-<pre style="background:white">cfboom.http.HttpMessage
-    <img src="../../resources/inherit.gif" alt="extended by ">cfboom.http.HttpResponse
+<pre style="background:white">lucee.Component
+    <img src="../../resources/inherit.gif" alt="extended by ">cfboom.lang.Object
+      <img src="../../resources/inherit.gif" alt="extended by ">cfboom.http.HttpMethod
 </pre>
 
 
 
 	
-	<div class="panel panel-default">
-		<div class="panel-heading"><strong>All Known Implementing Classes:</strong></div>
-  		<div class="panel-body">
-		
-			
-			<a href="../../cfboom/http/client/AbstractClientHttpResponse.html" title="class in cfboom.http.client">AbstractClientHttpResponse</a>
-		
-			,
-			<a href="../../cfboom/http/client/SimpleClientHttpResponse.html" title="class in cfboom.http.client">SimpleClientHttpResponse</a>
-		
-			,
-			<a href="../../cfboom/http/message/BasicHttpResponse.html" title="class in cfboom.http.message">BasicHttpResponse</a>
-		
-		</div>
-	</div>
 	
 
 
-
-<div class="panel panel-default">
-	<div class="panel-heading"><strong>All Known Subinterfaces:</strong></div>
-  	<div class="panel-body">
-	
-		
-		<a href="../../cfboom/http/client/ClientHttpResponse.html" title="class in cfboom.http">ClientHttpResponse</a>
-	
-	</div>
-</div>
 
 
 
 
 
 <div id="class-hint">
-	<p>After receiving and interpreting a request message, a server responds
-with an HTTP response message.</p>
+	<p>Enumeration of HTTP request methods.</p>
 </div>
 
 
@@ -199,16 +182,18 @@ with an HTTP response message.</p>
 		
 		
 			
+		
+			
+		
+			
 			
 			<li class="label label-danger label-annotations">
-				cfboom
+				output
 				
-				: Joel Tobey
+				: false
 				
 			</li>
 			&nbsp;
-			
-		
 			
 		
 			
@@ -218,7 +203,18 @@ with an HTTP response message.</p>
 			<li class="label label-danger label-annotations">
 				displayname
 				
-				: Interface HttpResponse
+				: Enum HttpMethod
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				synchronized
+				
+				: false
 				
 			</li>
 			&nbsp;
@@ -228,6 +224,32 @@ with an HTTP response message.</p>
 		
 			
 		
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				accessors
+				
+				: false
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				persistent
+				
+				: false
+				
+			</li>
+			&nbsp;
 			
 		
 			
@@ -242,6 +264,29 @@ with an HTTP response message.</p>
 
 
 
+
+	
+	
+	<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+	<a name="constructor_summary"><!-- --></a>
+	<table class="table table-bordered table-hover">
+		<tr class="info">
+			<th align="left" colspan="2">
+				<strong>Constructor Summary</strong>
+			</th>
+		</tr>
+		<tr>
+			
+			<td>
+				<strong><a href="HttpMethod.html#init()">init</A></strong>(string value)
+				<br>
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Internally used during HttpMethod.
+				
+			</td>
+		</tr>
+	</table>
 
 
 
@@ -262,10 +307,53 @@ with an HTTP response message.</p>
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code>numeric</code>
+			<code><a href="../../cfboom/http/HttpMethod.html" title="class in cfboom.http">HttpMethod</a></code>
 		</td>
 		<td>
-			<strong><a href="HttpResponse.html#getCode()">getCode</A></strong>()
+			<strong><a href="HttpMethod.html#enum()">enum</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>boolean</code>
+		</td>
+		<td>
+			<strong><a href="HttpMethod.html#matches()">matches</A></strong>(string method)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determine whether this {@code HttpMethod} matches the given.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="HttpMethod.html#resolve()">resolve</A></strong>(string method)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Resolve the given method value to an {@code HttpMethod}.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="HttpMethod.html#toString()">toString</A></strong>()
 			<br>
 			
 		</td>
@@ -278,7 +366,7 @@ with an HTTP response message.</p>
 			<code>string</code>
 		</td>
 		<td>
-			<strong><a href="HttpResponse.html#getReasonPhrase()">getReasonPhrase</A></strong>()
+			<strong><a href="HttpMethod.html#value()">value</A></strong>()
 			<br>
 			
 		</td>
@@ -288,89 +376,13 @@ with an HTTP response message.</p>
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code>any</code>
+			<code>struct</code>
 		</td>
 		<td>
-			<strong><a href="HttpResponse.html#getRequest()">getRequest</A></strong>()
+			<strong><a href="HttpMethod.html#values()">values</A></strong>()
 			<br>
 			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isClientError()">isClientError</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isInformational()">isInformational</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isRedirection()">isRedirection</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isServerError()">isServerError</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isSuccess()">isSuccess</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>void</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#setRequest()">setRequest</A></strong>([<a href="../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])
-			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the enum values.
 			
 		</td>
 	</tr>
@@ -387,11 +399,11 @@ with an HTTP response message.</p>
 	
 
 	&nbsp;
-	<a name="methods_inherited_from_class_cfboom.http.HttpMessage"><!-- --></a>
+	<a name="methods_inherited_from_class_cfboom.lang.Object"><!-- --></a>
 	<table class="table table-hover table-bordered">
 		<tr class="info">
 			<th align="left">
-				<strong>Methods inherited from class <kbd><a href="../../cfboom/http/HttpMessage.html" title="interface in cfboom.http">cfboom.http.HttpMessage</a></kbd></strong>
+				<strong>Methods inherited from class <kbd>cfboom.lang.Object</kbd></strong>
 			</th>
 		</tr>
 		<tr>
@@ -453,61 +465,38 @@ with an HTTP response message.</p>
 				
 					
 					
-					
-						
-					
-					
-					
-					
 				
-					
-					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
 					
 					
 				
 
 				
-					<a href="../../cfboom/http/HttpMessage.html#addHeader()">addHeader</a>, <a href="../../cfboom/http/HttpMessage.html#containsHeader()">containsHeader</a>, <a href="../../cfboom/http/HttpMessage.html#getAllHeaders()">getAllHeaders</a>, <a href="../../cfboom/http/HttpMessage.html#getContentEncoding()">getContentEncoding</a>, <a href="../../cfboom/http/HttpMessage.html#getContentLength()">getContentLength</a>, <a href="../../cfboom/http/HttpMessage.html#getContentType()">getContentType</a>, <a href="../../cfboom/http/HttpMessage.html#getFirstHeader()">getFirstHeader</a>, <a href="../../cfboom/http/HttpMessage.html#getHeaders()">getHeaders</a>, <a href="../../cfboom/http/HttpMessage.html#getLastHeader()">getLastHeader</a>, <a href="../../cfboom/http/HttpMessage.html#removeHeaders()">removeHeaders</a>, <a href="../../cfboom/http/HttpMessage.html#setHeader()">setHeader</a>, <a href="../../cfboom/http/HttpMessage.html#setHeaders()">setHeaders</a>
+					<a href="../../cfboom/lang/Object.html#$equals()">$equals</a>, <a href="../../cfboom/lang/Object.html#getComponentName()">getComponentName</a>, <a href="../../cfboom/lang/Object.html#getIdentityHashCode()">getIdentityHashCode</a>, <a href="../../cfboom/lang/Object.html#getIdentityString()">getIdentityString</a>, <a href="../../cfboom/lang/Object.html#getMeta()">getMeta</a>, <a href="../../cfboom/lang/Object.html#hashCode()">hashCode</a>
+				
+			</td>
+		</tr>
+	</table>
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_lucee.Component"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd>lucee.Component</kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+
+				
+					<span class="label label-warning"><em>None</em></span>
 				
 			</td>
 		</tr>
@@ -517,6 +506,35 @@ with an HTTP response message.</p>
 <hr>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+	<a name="constructor_detail"><!-- --></a>
+	<table class="table table-bordered">
+		<tr class="info">
+			<th colspan="1" align="left">
+				<strong>Constructor Detail</strong>
+			</th>
+		</tr>
+	</table>
+
+	<a name="init()"><!-- --></a><h3>
+	init</h3>
+	<kbd>public <strong>init</strong>(string value)</kbd>
+
+	<br><br>
+
+	
+	<p>Internally used during HttpMethod.enum().</p>
+	
+
+	
+	<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+			<dd><code>value</code></dd>
+		
+	</dl>
+	
+	<hr>
 
 
 <!-- ============ PROPERTY DETAIL ========== -->
@@ -542,13 +560,13 @@ with an HTTP response message.</p>
 
 
 	
-	<a name="getCode()"><!-- --></a>
+	<a name="enum()"><!-- --></a>
 	<h3>
-		getCode
+		enum
 		
 	</h3>
 
-	<kbd>public numeric <strong>getCode</strong>()</kbd>
+	<kbd>public <a href="../../cfboom/http/HttpMethod.html" title="class in cfboom.http">HttpMethod</a> <strong>enum</strong>()</kbd>
 
 	<br><br>
 
@@ -556,6 +574,9 @@ with an HTTP response message.</p>
 
 	
 
+	
+		
+		
 	
 
 	
@@ -571,223 +592,26 @@ with an HTTP response message.</p>
 	<hr>
 
 	
-	<a name="getReasonPhrase()"><!-- --></a>
+	<a name="matches()"><!-- --></a>
 	<h3>
-		getReasonPhrase
+		matches
 		
 	</h3>
 
-	<kbd>public string <strong>getReasonPhrase</strong>()</kbd>
+	<kbd>public boolean <strong>matches</strong>(string method)</kbd>
 
 	<br><br>
 
 	
-
+		<p>Determine whether this {@code HttpMethod} matches the given
+method value.</p>
 	
 
 	
 
 	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="getRequest()"><!-- --></a>
-	<h3>
-		getRequest
 		
-	</h3>
-
-	<kbd>public any <strong>getRequest</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isClientError()"><!-- --></a>
-	<h3>
-		isClientError
 		
-	</h3>
-
-	<kbd>public boolean <strong>isClientError</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isInformational()"><!-- --></a>
-	<h3>
-		isInformational
-		
-	</h3>
-
-	<kbd>public boolean <strong>isInformational</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isRedirection()"><!-- --></a>
-	<h3>
-		isRedirection
-		
-	</h3>
-
-	<kbd>public boolean <strong>isRedirection</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isServerError()"><!-- --></a>
-	<h3>
-		isServerError
-		
-	</h3>
-
-	<kbd>public boolean <strong>isServerError</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isSuccess()"><!-- --></a>
-	<h3>
-		isSuccess
-		
-	</h3>
-
-	<kbd>public boolean <strong>isSuccess</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="setRequest()"><!-- --></a>
-	<h3>
-		setRequest
-		
-	</h3>
-
-	<kbd>public void <strong>setRequest</strong>([<a href="../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])</kbd>
-
-	<br><br>
-
-	
-
-	
-
 	
 
 	
@@ -797,9 +621,170 @@ with an HTTP response message.</p>
 		<dl>
 		<dt><strong>Parameters:</strong></dt>
 		
-		<dd><code>req</code></dd>
+		<dd><code>method</code></dd>
 		
 		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>{@code true} if it matches, {@code false} otherwise</dd>
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="resolve()"><!-- --></a>
+	<h3>
+		resolve
+		
+	</h3>
+
+	<kbd>public any <strong>resolve</strong>(string method)</kbd>
+
+	<br><br>
+
+	
+		<p>Resolve the given method value to an {@code HttpMethod}.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>method</code></dd>
+		
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the corresponding {@code HttpMethod}, or {@code null} if not found</dd>
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="toString()"><!-- --></a>
+	<h3>
+		toString
+		
+	</h3>
+
+	<kbd>public string <strong>toString</strong>()</kbd>
+
+	<br><br>
+
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+		<dl>
+			<dt><strong>Overrides:</strong></dt>
+			<dd>
+			<code>
+			<a href="../../cfboom/lang/Object.html#toString()">toString</a></code>
+			in class
+			<code>
+				cfboom.lang.Object
+			</code>
+			</dd>
+		</dl>
+	
+
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="value()"><!-- --></a>
+	<h3>
+		value
+		
+	</h3>
+
+	<kbd>public string <strong>value</strong>()</kbd>
+
+	<br><br>
+
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="values()"><!-- --></a>
+	<h3>
+		values
+		
+	</h3>
+
+	<kbd>public struct <strong>values</strong>()</kbd>
+
+	<br><br>
+
+	
+		<p>Return the enum values.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
 	
 
 	
