@@ -149,6 +149,15 @@ Interface
   		<div class="panel-body">
 		
 			
+			<a href="../../cfboom/http/client/AbstractClientHttpResponse.html" title="class in cfboom.http.client">AbstractClientHttpResponse</a>
+		
+			,
+			<a href="../../cfboom/http/client/SimpleClientHttpRequest.html" title="class in cfboom.http.client">SimpleClientHttpRequest</a>
+		
+			,
+			<a href="../../cfboom/http/client/SimpleClientHttpResponse.html" title="class in cfboom.http.client">SimpleClientHttpResponse</a>
+		
+			,
 			<a href="../../cfboom/http/message/AbstractHttpMessage.html" title="class in cfboom.http.message">AbstractHttpMessage</a>
 		
 			,
@@ -173,6 +182,9 @@ Interface
 		,
 		<a href="../../cfboom/http/HttpResponse.html" title="class in cfboom.http">HttpResponse</a>
 	
+		,
+		<a href="../../cfboom/http/client/ClientHttpResponse.html" title="class in cfboom.http">ClientHttpResponse</a>
+	
 	</div>
 </div>
 
@@ -194,9 +206,9 @@ Interface
 			
 			
 			<li class="label label-danger label-annotations">
-				cfboom 
+				cfboom
 				
-				: Joel Tobey		
+				: Joel Tobey
 				
 			</li>
 			&nbsp;
@@ -209,9 +221,9 @@ Interface
 			
 			
 			<li class="label label-danger label-annotations">
-				displayname 
+				displayname
 				
-				: Interface HttpMessage		
+				: Interface HttpMessage
 				
 			</li>
 			&nbsp;
@@ -466,15 +478,20 @@ Interface
 
 	
 	<a name="addHeader()"><!-- --></a>
-	<h3>addHeader</h3>
-	
+	<h3>
+		addHeader
+		
+	</h3>
+
 	<kbd>public void <strong>addHeader</strong>([string name], [string value])</kbd>
-	
+
 	<br><br>
 
 	
 		<p>Adds a header to this message. The header will be appended to the end of
 the list.</p>
+	
+
 	
 
 	
@@ -495,20 +512,27 @@ the list.</p>
 
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="containsHeader()"><!-- --></a>
-	<h3>containsHeader</h3>
-	
+	<h3>
+		containsHeader
+		
+	</h3>
+
 	<kbd>public boolean <strong>containsHeader</strong>([string name])</kbd>
-	
+
 	<br><br>
 
 	
 		<p>Checks if a certain header is present in this message. Header values are
 ignored.</p>
+	
+
 	
 
 	
@@ -532,20 +556,27 @@ ignored.</p>
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="getAllHeaders()"><!-- --></a>
-	<h3>getAllHeaders</h3>
-	
+	<h3>
+		getAllHeaders
+		
+	</h3>
+
 	<kbd>public array <strong>getAllHeaders</strong>()</kbd>
-	
+
 	<br><br>
 
 	
 		<p>Returns all the headers of this message. Headers are orderd in the sequence
 they will be sent over a connection.</p>
+	
+
 	
 
 	
@@ -562,15 +593,20 @@ they will be sent over a connection.</p>
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="getContentEncoding()"><!-- --></a>
-	<h3>getContentEncoding</h3>
-	
+	<h3>
+		getContentEncoding
+		
+	</h3>
+
 	<kbd>public string <strong>getContentEncoding</strong>()</kbd>
-	
+
 	<br><br>
 
 	
@@ -580,6 +616,8 @@ or the one that was received with the entity.
 Wrapping entities that modify the content encoding should
 adjust this header accordingly.
 {@code null} if the content encoding is unknown</p>
+	
+
 	
 
 	
@@ -596,15 +634,20 @@ adjust this header accordingly.
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="getContentLength()"><!-- --></a>
-	<h3>getContentLength</h3>
-	
+	<h3>
+		getContentLength
+		
+	</h3>
+
 	<kbd>public numeric <strong>getContentLength</strong>()</kbd>
-	
+
 	<br><br>
 
 	
@@ -612,6 +655,8 @@ adjust this header accordingly.
 a negative number if unknown. If the content length is known
 but exceeds {@link java.lang.Long#MAX_VALUE Long.MAX_VALUE},
 a negative number is returned.</p>
+	
+
 	
 
 	
@@ -628,15 +673,20 @@ a negative number is returned.</p>
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="getContentType()"><!-- --></a>
-	<h3>getContentType</h3>
-	
+	<h3>
+		getContentType
+		
+	</h3>
+
 	<kbd>public string <strong>getContentType</strong>()</kbd>
-	
+
 	<br><br>
 
 	
@@ -645,6 +695,8 @@ This is the header that should be used when sending the entity,
 or the one that was received with the entity. It can include a
 charset attribute.
 {@code null} if the content type is unknown</p>
+	
+
 	
 
 	
@@ -661,15 +713,20 @@ charset attribute.
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="getFirstHeader()"><!-- --></a>
-	<h3>getFirstHeader</h3>
-	
+	<h3>
+		getFirstHeader
+		
+	</h3>
+
 	<kbd>public string <strong>getFirstHeader</strong>([string name])</kbd>
-	
+
 	<br><br>
 
 	
@@ -679,6 +736,8 @@ message the first element of {@link #getHeaders(String)} is returned.
 If there is no matching header in the message {@code null} is
 returned.
 or {@code null} if no such header could be found.</p>
+	
+
 	
 
 	
@@ -702,21 +761,28 @@ or {@code null} if no such header could be found.</p>
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="getHeaders()"><!-- --></a>
-	<h3>getHeaders</h3>
-	
+	<h3>
+		getHeaders
+		
+	</h3>
+
 	<kbd>public array <strong>getHeaders</strong>([string name])</kbd>
-	
+
 	<br><br>
 
 	
 		<p>Returns all the headers with a specified name of this message. Header values
 are ignored. Headers are orderd in the sequence they will be sent over a
 connection.</p>
+	
+
 	
 
 	
@@ -740,15 +806,20 @@ connection.</p>
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="getLastHeader()"><!-- --></a>
-	<h3>getLastHeader</h3>
-	
+	<h3>
+		getLastHeader
+		
+	</h3>
+
 	<kbd>public string <strong>getLastHeader</strong>([string name])</kbd>
-	
+
 	<br><br>
 
 	
@@ -757,6 +828,8 @@ are ignored. If there is more than one matching header in the message the
 last element of {@link #getHeaders(String)} is returned. If there is no
 matching header in the message {@code null} is returned.
 or {@code null} if no such header could be found.</p>
+	
+
 	
 
 	
@@ -780,19 +853,26 @@ or {@code null} if no such header could be found.</p>
 		</dl>
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="removeHeaders()"><!-- --></a>
-	<h3>removeHeaders</h3>
-	
+	<h3>
+		removeHeaders
+		
+	</h3>
+
 	<kbd>public void <strong>removeHeaders</strong>([string name])</kbd>
-	
+
 	<br><br>
 
 	
 		<p>Removes all headers with a certain name from this message.</p>
+	
+
 	
 
 	
@@ -811,20 +891,27 @@ or {@code null} if no such header could be found.</p>
 
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="setHeader()"><!-- --></a>
-	<h3>setHeader</h3>
-	
+	<h3>
+		setHeader
+		
+	</h3>
+
 	<kbd>public void <strong>setHeader</strong>([string name], [string value])</kbd>
-	
+
 	<br><br>
 
 	
 		<p>Overwrites the first header with the same name. The new header will be appended to
 the end of the list, if no header with the given name can be found.</p>
+	
+
 	
 
 	
@@ -845,19 +932,26 @@ the end of the list, if no header with the given name can be found.</p>
 
 	
 
+	
+
 	</dl>
 	<hr>
 
 	
 	<a name="setHeaders()"><!-- --></a>
-	<h3>setHeaders</h3>
-	
+	<h3>
+		setHeaders
+		
+	</h3>
+
 	<kbd>public void <strong>setHeaders</strong>([array headers])</kbd>
-	
+
 	<br><br>
 
 	
 		<p>Overwrites all the headers in the message.</p>
+	
+
 	
 
 	
@@ -872,6 +966,8 @@ the end of the list, if no header with the given name can be found.</p>
 		<dd><code>headers</code> - the array of headers to set.</dd>
 		
 		</dl>
+	
+
 	
 
 	

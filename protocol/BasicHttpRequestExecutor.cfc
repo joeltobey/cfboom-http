@@ -35,10 +35,20 @@ component
   displayname="Class BasicHttpRequestExecutor"
   output=false
 {
+  property name="httpResponse" inject="coldbox:setting:httpResponse@cfboom-http";
   property name="HttpStatus" inject="HttpStatus@cfboomHttp";
+  property name="wirebox" inject="wirebox";
 
   public cfboom.http.protocol.BasicHttpRequestExecutor function init() {
     return this;
+  }
+
+  public void function onDIComplete() {
+    _instance['httpResponseClass'] = httpResponse;
+  }
+
+  public void function setHttpResponseClass( required string httpResponseClass ) {
+    _instance['httpResponseClass'] = arguments.httpResponseClass;
   }
 
   public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
@@ -72,7 +82,7 @@ component
       }
     }
 
-    var res = new cfboom.http.message.BasicHttpResponse( httpService.send() );
+    var res = wirebox.getInstance( name=_instance.httpResponseClass, initArguments={ result= httpService.send() } );
     arguments.req.setExecuted( true );
     res.setStatus( HttpStatus.valueOf( res.getCode() ) );
     res.setRequest( arguments.req );

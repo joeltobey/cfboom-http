@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>BasicHttpRequestExecutor</title>
-	<meta name="keywords" content="cfboom.http.protocol.concurrent.Callable interface">
+	<title>SimpleBufferingClientHttpRequest</title>
+	<meta name="keywords" content="cfboom.http.client.concurrent.Callable interface">
 	<!-- common assets -->
 	
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	      	</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../../../index.html?cfboom/http/protocol/BasicHttpRequestExecutor.html" target="_top">
+				<li><a href="../../../index.html?cfboom/http/client/SimpleBufferingClientHttpRequest.html" target="_top">
 					<i class="glyphicon glyphicon-fullscreen"></i> Frames
 					</a>
 				</li>
@@ -114,7 +114,7 @@ $(document).ready(function() {
 
 <!-- Package -->
 <div class="pull-right">
-	<a href="package-summary.html" title="Package: cfboom.http.protocol"><span class="label label-success">cfboom.http.protocol</span></a>
+	<a href="package-summary.html" title="Package: cfboom.http.client"><span class="label label-success">cfboom.http.client</span></a>
 </div>
 
 <h2>
@@ -122,7 +122,7 @@ $(document).ready(function() {
 
 Class
 
- BasicHttpRequestExecutor</h2>
+ SimpleBufferingClientHttpRequest</h2>
 
 
 
@@ -132,6 +132,22 @@ Class
 
 
 	
+		
+	
+	
+
+	
+		
+		
+			
+		
+	
+	
+
+	
+		
+		
+			
 		
 	
 	
@@ -156,7 +172,9 @@ Class
 <!-- Inheritance Tree-->
 <pre style="background:white">lucee.Component
     <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.lang.Object
-      <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.http.protocol.BasicHttpRequestExecutor
+      <img src="../../../resources/inherit.gif" alt="extended by "><a href="../../../cfboom/http/client/AbstractClientHttpRequest.html" title="class in cfboom.http.client">cfboom.http.client.AbstractClientHttpRequest</a>
+        <img src="../../../resources/inherit.gif" alt="extended by "><a href="../../../cfboom/http/client/AbstractBufferingClientHttpRequest.html" title="class in cfboom.http.client">cfboom.http.client.AbstractBufferingClientHttpRequest</a>
+          <img src="../../../resources/inherit.gif" alt="extended by ">cfboom.http.client.SimpleBufferingClientHttpRequest
 </pre>
 
 
@@ -170,7 +188,7 @@ Class
 			
 				
 				
-				<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html" title="interface in cfboom.http.protocol">HttpRequestExecutor</a>
+				<a href="../../../cfboom/http/client/ClientHttpRequest.html" title="interface in cfboom.http.client">ClientHttpRequest</a>
 			
 			</div>
 		</div>
@@ -182,18 +200,6 @@ Class
 
 
 
-<div id="class-hint">
-	<p>{@code HttpRequestExecutor} is a client side HTTP protocol handler based
-on the blocking (classic) I/O model.
-<p>
-{@code HttpRequestExecutor} relies on {@link HttpProcessor} to generate
-mandatory protocol headers for all outgoing messages and apply common,
-cross-cutting message transformations to all incoming and outgoing messages.
-Application specific processing can be implemented outside
-{@code HttpRequestExecutor} once the request has been executed and
-a response has been received.</p>
-</div>
-
 
 <!-- Clas Attributes -->
 <div class="panel panel-info">
@@ -201,30 +207,6 @@ a response has been received.</p>
 		<div class="panel-body">
 		
 		
-			
-			
-			<li class="label label-danger label-annotations">
-				cfboom
-				
-				: Joel Tobey
-				
-			</li>
-			&nbsp;
-			
-		
-			
-		
-			
-		
-			
-			
-			<li class="label label-danger label-annotations">
-				singleton
-				
-				: true
-				
-			</li>
-			&nbsp;
 			
 		
 			
@@ -245,7 +227,7 @@ a response has been received.</p>
 			<li class="label label-danger label-annotations">
 				displayname
 				
-				: Class BasicHttpRequestExecutor
+				: Class SimpleBufferingClientHttpRequest
 				
 			</li>
 			&nbsp;
@@ -342,7 +324,7 @@ a response has been received.</p>
 			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#httpResponse()">httpResponse</A></strong>
+			<strong><a href="SimpleBufferingClientHttpRequest.html#HttpMethod()">HttpMethod</A></strong>
 			<br>
 			
 			<br><br>
@@ -363,117 +345,7 @@ a response has been received.</p>
 				
 			
 				
-				<li class="label label-default label-annotations">inject = coldbox:setting:httpResponse@cfboom-http</li>
-				
-			
-				
-			
-				
-			
-				
-			
-			</ul>
-
-		</td>
-		<td align="right" valign="top" width="1%">
-			
-		</td>
-		<td align="right" valign="top" width="1%">
-			<code>
-				true
-			</code>
-		</td>
-		<td align="right" valign="top" width="1%">
-			<code>
-				false
-			</code>
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>any</code>
-		</td>
-		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#HttpStatus()">HttpStatus</A></strong>
-			<br>
-			
-			<br><br>
-			<ul>
-			
-				
-			
-				
-				<li class="label label-default label-annotations">access = public</li>
-				
-			
-				
-			
-				
-			
-				
-				<li class="label label-default label-annotations">returntype = any</li>
-				
-			
-				
-				<li class="label label-default label-annotations">inject = HttpStatus@cfboomHttp</li>
-				
-			
-				
-			
-				
-			
-				
-			
-			</ul>
-
-		</td>
-		<td align="right" valign="top" width="1%">
-			
-		</td>
-		<td align="right" valign="top" width="1%">
-			<code>
-				true
-			</code>
-		</td>
-		<td align="right" valign="top" width="1%">
-			<code>
-				false
-			</code>
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>any</code>
-		</td>
-		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#wirebox()">wirebox</A></strong>
-			<br>
-			
-			<br><br>
-			<ul>
-			
-				
-			
-				
-				<li class="label label-default label-annotations">access = public</li>
-				
-			
-				
-			
-				
-			
-				
-				<li class="label label-default label-annotations">returntype = any</li>
-				
-			
-				
-				<li class="label label-default label-annotations">inject = wirebox</li>
+				<li class="label label-default label-annotations">inject = HttpMethod@cfboomHttp</li>
 				
 			
 				
@@ -519,7 +391,7 @@ a response has been received.</p>
 		<tr>
 			
 			<td>
-				<strong><a href="BasicHttpRequestExecutor.html#init()">init</A></strong>()
+				<strong><a href="SimpleBufferingClientHttpRequest.html#init()">init</A></strong>(any connection, [boolean outputStreaming='false'])
 				<br>
 				
 			</td>
@@ -545,10 +417,25 @@ a response has been received.</p>
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code><a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a></code>
+			<code>void</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#execute()">execute</A></strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])
+			<strong><a href="SimpleBufferingClientHttpRequest.html#addHeaders()">addHeaders</A></strong>(any connection, [<a href="../../../cfboom/http/HttpHeaders.html" title="class in cfboom.http">HttpHeaders</a> headers])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add the given headers to the given HTTP connection.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code><a href="../../../cfboom/http/client/ClientHttpResponse.html" title="interface in cfboom.http.client">ClientHttpResponse</a></code>
+		</td>
+		<td>
+			<strong><a href="SimpleBufferingClientHttpRequest.html#doExecuteInternal()">doExecuteInternal</A></strong>([<a href="../../../cfboom/http/HttpHeaders.html" title="class in cfboom.http">HttpHeaders</a> headers], [any bufferedOutput])
 			<br>
 			
 		</td>
@@ -558,10 +445,10 @@ a response has been received.</p>
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code>void</code>
+			<code>any</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#onDIComplete()">onDIComplete</A></strong>()
+			<strong><a href="SimpleBufferingClientHttpRequest.html#getMethod()">getMethod</A></strong>()
 			<br>
 			
 		</td>
@@ -571,10 +458,23 @@ a response has been received.</p>
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code>void</code>
+			<code>string</code>
 		</td>
 		<td>
-			<strong><a href="BasicHttpRequestExecutor.html#setHttpResponseClass()">setHttpResponseClass</A></strong>(string httpResponseClass)
+			<strong><a href="SimpleBufferingClientHttpRequest.html#getMethodValue()">getMethodValue</A></strong>()
+			<br>
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="SimpleBufferingClientHttpRequest.html#getURI()">getURI</A></strong>()
 			<br>
 			
 		</td>
@@ -586,6 +486,121 @@ a response has been received.</p>
 
 <a name="inherited_methods"><!-- --></a>
 
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_cfboom.http.client.AbstractBufferingClientHttpRequest"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd><a href="../../../cfboom/http/client/AbstractBufferingClientHttpRequest.html" title="class in cfboom.http.client">cfboom.http.client.AbstractBufferingClientHttpRequest</a></kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+					
+					
+				
+					
+					
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+				
+
+				
+					<a href="../../../cfboom/http/client/AbstractBufferingClientHttpRequest.html#executeInternal()">executeInternal</a>, <a href="../../../cfboom/http/client/AbstractBufferingClientHttpRequest.html#getBodyInternal()">getBodyInternal</a>
+				
+			</td>
+		</tr>
+	</table>
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_cfboom.http.client.AbstractClientHttpRequest"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd><a href="../../../cfboom/http/client/AbstractClientHttpRequest.html" title="class in cfboom.http.client">cfboom.http.client.AbstractClientHttpRequest</a></kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+					
+					
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+				
+
+				
+					<a href="../../../cfboom/http/client/AbstractClientHttpRequest.html#assertNotExecuted()">assertNotExecuted</a>, <a href="../../../cfboom/http/client/AbstractClientHttpRequest.html#execute()">execute</a>, <a href="../../../cfboom/http/client/AbstractClientHttpRequest.html#getBody()">getBody</a>, <a href="../../../cfboom/http/client/AbstractClientHttpRequest.html#getHeaders()">getHeaders</a>
+				
+			</td>
+		</tr>
+	</table>
 
 	
 
@@ -717,7 +732,7 @@ a response has been received.</p>
 
 	<a name="init()"><!-- --></a><h3>
 	init</h3>
-	<kbd>public <strong>init</strong>()</kbd>
+	<kbd>public <strong>init</strong>(any connection, [boolean outputStreaming='false'])</kbd>
 
 	<br><br>
 
@@ -725,6 +740,15 @@ a response has been received.</p>
 	<p></p>
 	
 
+	
+	<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+			<dd><code>connection</code> - java.net.HttpURLConnection</dd>
+		
+			<dd><code>outputStreaming</code></dd>
+		
+	</dl>
 	
 	<hr>
 
@@ -742,12 +766,12 @@ a response has been received.</p>
 
 	
 		
-		<a name="httpResponse()"><!-- --></a>
-		<h3>httpResponse</h3>
+		<a name="HttpMethod()"><!-- --></a>
+		<h3>HttpMethod</h3>
 
 		<kbd>
 			property any
-			<strong>httpResponse</strong>
+			<strong>HttpMethod</strong>
 			
 		</kbd>
 
@@ -774,103 +798,7 @@ a response has been received.</p>
 			
 		
 			
-			<dd><code>inject</code> - coldbox:setting:httpResponse@cfboom-http</dd>
-			
-		
-			
-		
-			
-		
-			
-			<dd><code>serializable</code> - true</dd>
-			
-		
-		</dl>
-
-		<hr>
-	
-		
-		<a name="HttpStatus()"><!-- --></a>
-		<h3>HttpStatus</h3>
-
-		<kbd>
-			property any
-			<strong>HttpStatus</strong>
-			
-		</kbd>
-
-		<br><br>
-		
-
-		<dl>
-		<dt><strong>Attributes:</strong></dt>
-		
-			
-		
-			
-			<dd><code>access</code> - public</dd>
-			
-		
-			
-			<dd><code>required</code> - false</dd>
-			
-		
-			
-		
-			
-			<dd><code>returntype</code> - any</dd>
-			
-		
-			
-			<dd><code>inject</code> - HttpStatus@cfboomHttp</dd>
-			
-		
-			
-		
-			
-		
-			
-			<dd><code>serializable</code> - true</dd>
-			
-		
-		</dl>
-
-		<hr>
-	
-		
-		<a name="wirebox()"><!-- --></a>
-		<h3>wirebox</h3>
-
-		<kbd>
-			property any
-			<strong>wirebox</strong>
-			
-		</kbd>
-
-		<br><br>
-		
-
-		<dl>
-		<dt><strong>Attributes:</strong></dt>
-		
-			
-		
-			
-			<dd><code>access</code> - public</dd>
-			
-		
-			
-			<dd><code>required</code> - false</dd>
-			
-		
-			
-		
-			
-			<dd><code>returntype</code> - any</dd>
-			
-		
-			
-			<dd><code>inject</code> - wirebox</dd>
+			<dd><code>inject</code> - HttpMethod@cfboomHttp</dd>
 			
 		
 			
@@ -907,99 +835,18 @@ a response has been received.</p>
 
 
 	
-	<a name="execute()"><!-- --></a>
+	<a name="addHeaders()"><!-- --></a>
 	<h3>
-		execute
+		addHeaders
 		
 	</h3>
 
-	<kbd>public <a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a> <strong>execute</strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])</kbd>
+	<kbd>public void <strong>addHeaders</strong>(any connection, [<a href="../../../cfboom/http/HttpHeaders.html" title="class in cfboom.http">HttpHeaders</a> headers])</kbd>
 
 	<br><br>
 
 	
-
-	
-
-	
-		
-		
-			<dl>
-				<dt><strong>Specified by:</strong></dt>
-				<dd>
-				<code>
-				<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html#execute()">execute</a></code>
-				in interface
-				<code>
-					<a href="../../../cfboom/http/protocol/HttpRequestExecutor.html" title="interface in cfboom.http.protocol">HttpRequestExecutor</a>
-				</code>
-				</dd>
-			</dl>
-		
-	
-
-	
-	
-
-	
-		<dl>
-		<dt><strong>Parameters:</strong></dt>
-		
-		<dd><code>req</code></dd>
-		
-		</dl>
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="onDIComplete()"><!-- --></a>
-	<h3>
-		onDIComplete
-		
-	</h3>
-
-	<kbd>public void <strong>onDIComplete</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-		
-		
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="setHttpResponseClass()"><!-- --></a>
-	<h3>
-		setHttpResponseClass
-		
-	</h3>
-
-	<kbd>public void <strong>setHttpResponseClass</strong>(string httpResponseClass)</kbd>
-
-	<br><br>
-
+		<p>Add the given headers to the given HTTP connection.</p>
 	
 
 	
@@ -1016,9 +863,160 @@ a response has been received.</p>
 		<dl>
 		<dt><strong>Parameters:</strong></dt>
 		
-		<dd><code>httpResponseClass</code></dd>
+		<dd><code>connection</code></dd>
+		
+		<dd><code>headers</code></dd>
 		
 		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="doExecuteInternal()"><!-- --></a>
+	<h3>
+		doExecuteInternal
+		
+	</h3>
+
+	<kbd>public <a href="../../../cfboom/http/client/ClientHttpResponse.html" title="interface in cfboom.http.client">ClientHttpResponse</a> <strong>doExecuteInternal</strong>([<a href="../../../cfboom/http/HttpHeaders.html" title="class in cfboom.http">HttpHeaders</a> headers], [any bufferedOutput])</kbd>
+
+	<br><br>
+
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+		<dl>
+			<dt><strong>Overrides:</strong></dt>
+			<dd>
+			<code>
+			<a href="../../../cfboom/http/client/AbstractBufferingClientHttpRequest.html#doExecuteInternal()">doExecuteInternal</a></code>
+			in class
+			<code>
+				<a href="../../../cfboom/http/client/AbstractBufferingClientHttpRequest.html" title="class in cfboom.http.client">AbstractBufferingClientHttpRequest</a>
+			</code>
+			</dd>
+		</dl>
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>headers</code></dd>
+		
+		<dd><code>bufferedOutput</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getMethod()"><!-- --></a>
+	<h3>
+		getMethod
+		
+	</h3>
+
+	<kbd>public any <strong>getMethod</strong>()</kbd>
+
+	<br><br>
+
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getMethodValue()"><!-- --></a>
+	<h3>
+		getMethodValue
+		
+	</h3>
+
+	<kbd>public string <strong>getMethodValue</strong>()</kbd>
+
+	<br><br>
+
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getURI()"><!-- --></a>
+	<h3>
+		getURI
+		
+	</h3>
+
+	<kbd>public any <strong>getURI</strong>()</kbd>
+
+	<br><br>
+
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
 	
 
 	

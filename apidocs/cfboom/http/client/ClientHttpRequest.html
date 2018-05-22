@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>HttpRequestExecutor</title>
-	<meta name="keywords" content="cfboom.http.protocol.concurrent.Callable interface">
+	<title>ClientHttpRequest</title>
+	<meta name="keywords" content="cfboom.http.client.concurrent.Callable interface">
 	<!-- common assets -->
 	
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	      	</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../../../index.html?cfboom/http/protocol/HttpRequestExecutor.html" target="_top">
+				<li><a href="../../../index.html?cfboom/http/client/ClientHttpRequest.html" target="_top">
 					<i class="glyphicon glyphicon-fullscreen"></i> Frames
 					</a>
 				</li>
@@ -114,7 +114,7 @@ $(document).ready(function() {
 
 <!-- Package -->
 <div class="pull-right">
-	<a href="package-summary.html" title="Package: cfboom.http.protocol"><span class="label label-success">cfboom.http.protocol</span></a>
+	<a href="package-summary.html" title="Package: cfboom.http.client"><span class="label label-success">cfboom.http.client</span></a>
 </div>
 
 <h2>
@@ -122,7 +122,7 @@ $(document).ready(function() {
 
 Interface
 
- HttpRequestExecutor</h2>
+ ClientHttpRequest</h2>
 
 
 
@@ -138,7 +138,7 @@ Interface
 
 
 <!-- Inheritance Tree-->
-<pre style="background:white">cfboom.http.protocol.HttpRequestExecutor
+<pre style="background:white">cfboom.http.client.ClientHttpRequest
 </pre>
 
 
@@ -149,7 +149,16 @@ Interface
   		<div class="panel-body">
 		
 			
-			<a href="../../../cfboom/http/protocol/BasicHttpRequestExecutor.html" title="class in cfboom.http.protocol">BasicHttpRequestExecutor</a>
+			<a href="../../../cfboom/http/client/AbstractBufferingClientHttpRequest.html" title="class in cfboom.http.client">AbstractBufferingClientHttpRequest</a>
+		
+			,
+			<a href="../../../cfboom/http/client/AbstractClientHttpRequest.html" title="class in cfboom.http.client">AbstractClientHttpRequest</a>
+		
+			,
+			<a href="../../../cfboom/http/client/SimpleBufferingClientHttpRequest.html" title="class in cfboom.http.client">SimpleBufferingClientHttpRequest</a>
+		
+			,
+			<a href="../../../cfboom/http/client/SimpleClientHttpRequest.html" title="class in cfboom.http.client">SimpleClientHttpRequest</a>
 		
 		</div>
 	</div>
@@ -162,7 +171,10 @@ Interface
 
 
 <div id="class-hint">
-	<p>The main HttpRequest executor that produces an HttpResponse</p>
+	<p>Represents a client-side HTTP request.
+Created via an implementation of the {@link ClientHttpRequestFactory}.
+<p>A {@code ClientHttpRequest} can be {@linkplain #execute() executed},
+receiving a {@link ClientHttpResponse} which can be read from.</p>
 </div>
 
 
@@ -192,7 +204,20 @@ Interface
 			<li class="label label-danger label-annotations">
 				displayname
 				
-				: Interface HttpRequestExecutor
+				: Interface ClientHttpRequest
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				see
+				
+				: ClientHttpRequestFactory#createRequest(java.net.URI, HttpMethod)
 				
 			</li>
 			&nbsp;
@@ -202,6 +227,26 @@ Interface
 		
 			
 		
+			
+			
+			<li class="label label-danger label-annotations">
+				author
+				
+				: Arjen Poutsma
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				since
+				
+				: 3.0
+				
+			</li>
+			&nbsp;
 			
 		
 			
@@ -234,13 +279,13 @@ Interface
 	
 	<tr>
 		<td align="right" valign="top" width="1%">
-			<code><a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a></code>
+			<code><a href="../../../cfboom/http/client/ClientHttpResponse.html" title="interface in cfboom.http.client">ClientHttpResponse</a></code>
 		</td>
 		<td>
-			<strong><a href="HttpRequestExecutor.html#execute()">execute</A></strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])
+			<strong><a href="ClientHttpRequest.html#execute()">execute</A></strong>()
 			<br>
 			
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Executes HTTP request using the default context.
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Execute this request, resulting in a {@link ClientHttpResponse} that can be read.
 			
 		</td>
 	</tr>
@@ -287,16 +332,12 @@ Interface
 		
 	</h3>
 
-	<kbd>public <a href="../../../cfboom/http/HttpResponse.html" title="interface in cfboom.http">HttpResponse</a> <strong>execute</strong>([<a href="../../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])</kbd>
+	<kbd>public <a href="../../../cfboom/http/client/ClientHttpResponse.html" title="interface in cfboom.http.client">ClientHttpResponse</a> <strong>execute</strong>()</kbd>
 
 	<br><br>
 
 	
-		<p>Executes HTTP request using the default context.
-never an intermediate response with an 1xx status code.
-Whether redirects or authentication challenges will be returned
-or handled automatically depends on the implementation and
-configuration of this client.</p>
+		<p>Execute this request, resulting in a {@link ClientHttpResponse} that can be read.</p>
 	
 
 	
@@ -306,22 +347,20 @@ configuration of this client.</p>
 	
 	
 
-	
-		<dl>
-		<dt><strong>Parameters:</strong></dt>
-		
-		<dd><code>req</code></dd>
-		
-		</dl>
 	
 
 	
 		<dl>
 			<dt><strong>Returns:</strong></dt>
-			<dd>the response to the request. This is always a final response,</dd>
+			<dd>the response result of the execution</dd>
 		</dl>
 	
 
+	
+		<dl>
+			<dt><strong>Throws:</strong></dt>
+			<dd>IOException in case of I/O errors</dd>
+		</dl>
 	
 
 	</dl>

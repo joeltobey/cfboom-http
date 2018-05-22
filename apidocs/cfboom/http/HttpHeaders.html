@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>HttpResponse</title>
+	<title>HttpHeaders</title>
 	<meta name="keywords" content="cfboom.http.concurrent.Callable interface">
 	<!-- common assets -->
 	
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	      	</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../../index.html?cfboom/http/HttpResponse.html" target="_top">
+				<li><a href="../../index.html?cfboom/http/HttpHeaders.html" target="_top">
 					<i class="glyphicon glyphicon-fullscreen"></i> Frames
 					</a>
 				</li>
@@ -120,9 +120,9 @@ $(document).ready(function() {
 <h2>
 
 
-Interface
+Class
 
- HttpResponse</h2>
+ HttpHeaders</h2>
 
 
 
@@ -132,6 +132,14 @@ Interface
 
 
 	
+		
+	
+	
+
+	
+		
+		
+			
 		
 	
 	
@@ -146,50 +154,21 @@ Interface
 
 
 <!-- Inheritance Tree-->
-<pre style="background:white">cfboom.http.HttpMessage
-    <img src="../../resources/inherit.gif" alt="extended by ">cfboom.http.HttpResponse
+<pre style="background:white">lucee.Component
+    <img src="../../resources/inherit.gif" alt="extended by ">cfboom.lang.Object
+      <img src="../../resources/inherit.gif" alt="extended by ">cfboom.http.HttpHeaders
 </pre>
 
 
 
 	
-	<div class="panel panel-default">
-		<div class="panel-heading"><strong>All Known Implementing Classes:</strong></div>
-  		<div class="panel-body">
-		
-			
-			<a href="../../cfboom/http/client/AbstractClientHttpResponse.html" title="class in cfboom.http.client">AbstractClientHttpResponse</a>
-		
-			,
-			<a href="../../cfboom/http/client/SimpleClientHttpResponse.html" title="class in cfboom.http.client">SimpleClientHttpResponse</a>
-		
-			,
-			<a href="../../cfboom/http/message/BasicHttpResponse.html" title="class in cfboom.http.message">BasicHttpResponse</a>
-		
-		</div>
-	</div>
 	
 
 
 
-<div class="panel panel-default">
-	<div class="panel-heading"><strong>All Known Subinterfaces:</strong></div>
-  	<div class="panel-body">
-	
-		
-		<a href="../../cfboom/http/client/ClientHttpResponse.html" title="class in cfboom.http">ClientHttpResponse</a>
-	
-	</div>
-</div>
 
 
 
-
-
-<div id="class-hint">
-	<p>After receiving and interpreting a request message, a server responds
-with an HTTP response message.</p>
-</div>
 
 
 <!-- Clas Attributes -->
@@ -199,16 +178,16 @@ with an HTTP response message.</p>
 		
 		
 			
+		
+			
 			
 			<li class="label label-danger label-annotations">
-				cfboom
+				output
 				
-				: Joel Tobey
+				: false
 				
 			</li>
 			&nbsp;
-			
-		
 			
 		
 			
@@ -218,7 +197,18 @@ with an HTTP response message.</p>
 			<li class="label label-danger label-annotations">
 				displayname
 				
-				: Interface HttpResponse
+				: Class HttpHeaders
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				synchronized
+				
+				: false
 				
 			</li>
 			&nbsp;
@@ -228,6 +218,32 @@ with an HTTP response message.</p>
 		
 			
 		
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				accessors
+				
+				: false
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				persistent
+				
+				: false
+				
+			</li>
+			&nbsp;
 			
 		
 			
@@ -242,6 +258,27 @@ with an HTTP response message.</p>
 
 
 
+
+	
+	
+	<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+	<a name="constructor_summary"><!-- --></a>
+	<table class="table table-bordered table-hover">
+		<tr class="info">
+			<th align="left" colspan="2">
+				<strong>Constructor Summary</strong>
+			</th>
+		</tr>
+		<tr>
+			
+			<td>
+				<strong><a href="HttpHeaders.html#init()">init</A></strong>()
+				<br>
+				
+			</td>
+		</tr>
+	</table>
 
 
 
@@ -265,8 +302,10 @@ with an HTTP response message.</p>
 			<code>numeric</code>
 		</td>
 		<td>
-			<strong><a href="HttpResponse.html#getCode()">getCode</A></strong>()
+			<strong><a href="HttpHeaders.html#getContentLength()">getContentLength</A></strong>()
 			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the length of the body in bytes, as specified by the.
 			
 		</td>
 	</tr>
@@ -278,86 +317,10 @@ with an HTTP response message.</p>
 			<code>string</code>
 		</td>
 		<td>
-			<strong><a href="HttpResponse.html#getReasonPhrase()">getReasonPhrase</A></strong>()
+			<strong><a href="HttpHeaders.html#getFirst()">getFirst</A></strong>(string headerName)
 			<br>
 			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>any</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#getRequest()">getRequest</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isClientError()">isClientError</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isInformational()">isInformational</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isRedirection()">isRedirection</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isServerError()">isServerError</A></strong>()
-			<br>
-			
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td align="right" valign="top" width="1%">
-			<code>boolean</code>
-		</td>
-		<td>
-			<strong><a href="HttpResponse.html#isSuccess()">isSuccess</A></strong>()
-			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the first header value for the given header name, if any.
 			
 		</td>
 	</tr>
@@ -369,8 +332,25 @@ with an HTTP response message.</p>
 			<code>void</code>
 		</td>
 		<td>
-			<strong><a href="HttpResponse.html#setRequest()">setRequest</A></strong>([<a href="../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])
+			<strong><a href="HttpHeaders.html#set()">set</A></strong>(string headerName, string headerValue)
 			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the given, single header value under the given name.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="HttpHeaders.html#setContentLength()">setContentLength</A></strong>(numeric contentLength)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the length of the body in bytes, as specified by the.
 			
 		</td>
 	</tr>
@@ -387,11 +367,11 @@ with an HTTP response message.</p>
 	
 
 	&nbsp;
-	<a name="methods_inherited_from_class_cfboom.http.HttpMessage"><!-- --></a>
+	<a name="methods_inherited_from_class_cfboom.lang.Object"><!-- --></a>
 	<table class="table table-hover table-bordered">
 		<tr class="info">
 			<th align="left">
-				<strong>Methods inherited from class <kbd><a href="../../cfboom/http/HttpMessage.html" title="interface in cfboom.http">cfboom.http.HttpMessage</a></kbd></strong>
+				<strong>Methods inherited from class <kbd>cfboom.lang.Object</kbd></strong>
 			</th>
 		</tr>
 		<tr>
@@ -453,48 +433,6 @@ with an HTTP response message.</p>
 				
 					
 					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
-					
-					
-				
-					
-					
-					
-						
-					
-					
-					
-					
 				
 					
 					
@@ -507,7 +445,32 @@ with an HTTP response message.</p>
 				
 
 				
-					<a href="../../cfboom/http/HttpMessage.html#addHeader()">addHeader</a>, <a href="../../cfboom/http/HttpMessage.html#containsHeader()">containsHeader</a>, <a href="../../cfboom/http/HttpMessage.html#getAllHeaders()">getAllHeaders</a>, <a href="../../cfboom/http/HttpMessage.html#getContentEncoding()">getContentEncoding</a>, <a href="../../cfboom/http/HttpMessage.html#getContentLength()">getContentLength</a>, <a href="../../cfboom/http/HttpMessage.html#getContentType()">getContentType</a>, <a href="../../cfboom/http/HttpMessage.html#getFirstHeader()">getFirstHeader</a>, <a href="../../cfboom/http/HttpMessage.html#getHeaders()">getHeaders</a>, <a href="../../cfboom/http/HttpMessage.html#getLastHeader()">getLastHeader</a>, <a href="../../cfboom/http/HttpMessage.html#removeHeaders()">removeHeaders</a>, <a href="../../cfboom/http/HttpMessage.html#setHeader()">setHeader</a>, <a href="../../cfboom/http/HttpMessage.html#setHeaders()">setHeaders</a>
+					<a href="../../cfboom/lang/Object.html#$equals()">$equals</a>, <a href="../../cfboom/lang/Object.html#getComponentName()">getComponentName</a>, <a href="../../cfboom/lang/Object.html#getIdentityHashCode()">getIdentityHashCode</a>, <a href="../../cfboom/lang/Object.html#getIdentityString()">getIdentityString</a>, <a href="../../cfboom/lang/Object.html#getMeta()">getMeta</a>, <a href="../../cfboom/lang/Object.html#hashCode()">hashCode</a>, <a href="../../cfboom/lang/Object.html#toString()">toString</a>
+				
+			</td>
+		</tr>
+	</table>
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_lucee.Component"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd>lucee.Component</kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+
+				
+					<span class="label label-warning"><em>None</em></span>
 				
 			</td>
 		</tr>
@@ -517,6 +480,28 @@ with an HTTP response message.</p>
 <hr>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+	<a name="constructor_detail"><!-- --></a>
+	<table class="table table-bordered">
+		<tr class="info">
+			<th colspan="1" align="left">
+				<strong>Constructor Detail</strong>
+			</th>
+		</tr>
+	</table>
+
+	<a name="init()"><!-- --></a><h3>
+	init</h3>
+	<kbd>public <strong>init</strong>()</kbd>
+
+	<br><br>
+
+	
+	<p></p>
+	
+
+	
+	<hr>
 
 
 <!-- ============ PROPERTY DETAIL ========== -->
@@ -542,20 +527,27 @@ with an HTTP response message.</p>
 
 
 	
-	<a name="getCode()"><!-- --></a>
+	<a name="getContentLength()"><!-- --></a>
 	<h3>
-		getCode
+		getContentLength
 		
 	</h3>
 
-	<kbd>public numeric <strong>getCode</strong>()</kbd>
+	<kbd>public numeric <strong>getContentLength</strong>()</kbd>
 
 	<br><br>
 
 	
+		<p>Return the length of the body in bytes, as specified by the
+{@code Content-Length} header.
+<p>Returns -1 when the content-length is unknown.</p>
+	
 
 	
 
+	
+		
+		
 	
 
 	
@@ -571,223 +563,25 @@ with an HTTP response message.</p>
 	<hr>
 
 	
-	<a name="getReasonPhrase()"><!-- --></a>
+	<a name="getFirst()"><!-- --></a>
 	<h3>
-		getReasonPhrase
+		getFirst
 		
 	</h3>
 
-	<kbd>public string <strong>getReasonPhrase</strong>()</kbd>
+	<kbd>public string <strong>getFirst</strong>(string headerName)</kbd>
 
 	<br><br>
 
 	
-
+		<p>Return the first header value for the given header name, if any.</p>
 	
 
 	
 
 	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="getRequest()"><!-- --></a>
-	<h3>
-		getRequest
 		
-	</h3>
-
-	<kbd>public any <strong>getRequest</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isClientError()"><!-- --></a>
-	<h3>
-		isClientError
 		
-	</h3>
-
-	<kbd>public boolean <strong>isClientError</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isInformational()"><!-- --></a>
-	<h3>
-		isInformational
-		
-	</h3>
-
-	<kbd>public boolean <strong>isInformational</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isRedirection()"><!-- --></a>
-	<h3>
-		isRedirection
-		
-	</h3>
-
-	<kbd>public boolean <strong>isRedirection</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isServerError()"><!-- --></a>
-	<h3>
-		isServerError
-		
-	</h3>
-
-	<kbd>public boolean <strong>isServerError</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="isSuccess()"><!-- --></a>
-	<h3>
-		isSuccess
-		
-	</h3>
-
-	<kbd>public boolean <strong>isSuccess</strong>()</kbd>
-
-	<br><br>
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	</dl>
-	<hr>
-
-	
-	<a name="setRequest()"><!-- --></a>
-	<h3>
-		setRequest
-		
-	</h3>
-
-	<kbd>public void <strong>setRequest</strong>([<a href="../../cfboom/http/HttpRequest.html" title="interface in cfboom.http">HttpRequest</a> req])</kbd>
-
-	<br><br>
-
-	
-
-	
-
 	
 
 	
@@ -797,7 +591,102 @@ with an HTTP response message.</p>
 		<dl>
 		<dt><strong>Parameters:</strong></dt>
 		
-		<dd><code>req</code></dd>
+		<dd><code>headerName</code></dd>
+		
+		</dl>
+	
+
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>the first header value, or {@code null} if none</dd>
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="set()"><!-- --></a>
+	<h3>
+		set
+		
+	</h3>
+
+	<kbd>public void <strong>set</strong>(string headerName, string headerValue)</kbd>
+
+	<br><br>
+
+	
+		<p>Set the given, single header value under the given name.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>headerName</code></dd>
+		
+		<dd><code>headerValue</code></dd>
+		
+		</dl>
+	
+
+	
+
+	
+		<dl>
+			<dt><strong>Throws:</strong></dt>
+			<dd>UnsupportedOperationException if adding headers is not supported</dd>
+		</dl>
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setContentLength()"><!-- --></a>
+	<h3>
+		setContentLength
+		
+	</h3>
+
+	<kbd>public void <strong>setContentLength</strong>(numeric contentLength)</kbd>
+
+	<br><br>
+
+	
+		<p>Set the length of the body in bytes, as specified by the
+{@code Content-Length} header.</p>
+	
+
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>contentLength</code></dd>
 		
 		</dl>
 	
