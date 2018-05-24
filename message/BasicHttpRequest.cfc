@@ -250,7 +250,7 @@ component
   public string function toJson( boolean noHeaders = false ) {
     var returnJson = '{"' & listLast(getComponentName(), ".") & '":{'
       & '"method":"#getMethod()#",'
-      & '"URI":"#getURI().toString()#",'
+      & '"URI":"#getURI().toURL().toString()#",'
       & '"executed":#_instance.executed#';
 
     if (!structIsEmpty(_instance.headers) && !noHeaders) {
@@ -282,10 +282,10 @@ component
     return returnJson;
   }
 
-	private string function paramsToJson(required struct params, boolean addType = false) {
-		var returnJson = "[";
-		var rpKeyArray = structKeyArray(arguments.params);
-    arraySort(rpKeyArray, "textnocase");
+  private string function paramsToJson(required struct params, boolean addType = false) {
+    var returnJson = "[";
+    var rpKeyArray = structKeyArray( arguments.params );
+    arraySort( rpKeyArray, "textnocase" );
     var counter = 0;
     for (var key in rpKeyArray) {
       var rpArray = arguments.params[key];
@@ -302,9 +302,9 @@ component
     }
     returnJson &= ']';
     return returnJson;
-	}
+  }
 
   public string function toString() {
-    return listLast(getComponentName(), ".") & ": " & _instance.method & " " & _instance.uri.toString();
+    return listLast(getComponentName(), ".") & ": " & _instance.method & " " & _instance.uri.toURL().toString();
   }
 }

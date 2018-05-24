@@ -15,23 +15,26 @@
  */
 
 /**
- * Factory for {@link ClientHttpRequest} objects.
- * Requests are created by the {@link #createRequest(URI, HttpMethod)} method.
+ * Generic callback interface used by {@link RestTemplate}'s retrieval methods
+ * Implementations of this interface perform the actual work of extracting data
+ * from a {@link ClientHttpResponse}, but don't need to worry about exception
+ * handling or closing resources.
+ *
+ * <p>Used internally by the {@link RestTemplate}, but also useful for application code.
  *
  * @author Arjen Poutsma
  * @since 3.0
+ * @see RestTemplate#execute
  */
 interface
-  displayname="Interface ClientHttpRequestFactory"
+  displayname="Interface ResponseExtractor"
 {
   /**
-   * Create a new {@link ClientHttpRequest} for the specified URI and HTTP method.
-   * <p>The returned request can be written to, and then executed by calling
-   * {@link ClientHttpRequest#execute()}.
-   * @param uri the URI to create a request for
-   * @param httpMethod the HTTP method to execute
-   * @return the created request
+   * Extract data from the given {@code ClientHttpResponse} and return it.
+   * @param response the HTTP response
+   * @return the extracted data
    * @throws IOException in case of I/O errors
    */
-  public cfboom.http.client.ClientHttpRequest function createRequest( required any uri, cfboom.http.HttpMethod httpMethod );
+  public any function extractData( required cfboom.http.client.ClientHttpResponse response );
+
 }

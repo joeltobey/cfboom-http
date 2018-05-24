@@ -15,25 +15,19 @@
  */
 
 /**
- * {@link ClientHttpResponse} implementation that uses standard JDK facilities.
- * Obtained via {@link SimpleBufferingClientHttpRequest#execute()} and
- * {@link SimpleStreamingClientHttpRequest#execute()}.
- *
- * @author Arjen Poutsma
- * @author Brian Clozel
- * @since 3.0
+ * Request callback implementation that prepares the request's accept headers.
  */
-component
-  extends="cfboom.http.client.AbstractClientHttpResponse"
-  displayname="Class SimpleClientHttpResponse"
+component singleton
+  extends="cfboom.lang.Object"
+  implements="cfboom.http.web.client.RequestCallback"
+  displayname="Class AcceptHeaderRequestCallback"
   output="false"
 {
-  public cfboom.http.client.SimpleClientHttpResponse function init( any result ) {
-    if (isInstanceOf(arguments.result, "java.net.HttpURLConnection")) {
-      _instance['connection'] = arguments.result;
-    } else {
-      super.init( arguments.result );
-    }
+  public cfboom.http.web.client.AcceptHeaderRequestCallback function init() {
     return this;
+  }
+
+  public void function doWithRequest( required cfboom.http.client.ClientHttpRequest httpRequest ) {
+    // Do something
   }
 }

@@ -53,7 +53,7 @@ component
 
   public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
     var httpService = new http();
-    httpService.setUrl( arguments.req.getURI().toString() );
+    httpService.setUrl( arguments.req.getURI().toURL().toString() );
     httpService.setMethod( arguments.req.getMethod() );
     if ( !isNull( arguments.req.getName() ) )
       httpService.setName( arguments.req.getName() );

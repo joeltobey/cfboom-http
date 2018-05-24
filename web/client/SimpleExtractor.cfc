@@ -15,25 +15,19 @@
  */
 
 /**
- * {@link ClientHttpResponse} implementation that uses standard JDK facilities.
- * Obtained via {@link SimpleBufferingClientHttpRequest#execute()} and
- * {@link SimpleStreamingClientHttpRequest#execute()}.
- *
- * @author Arjen Poutsma
- * @author Brian Clozel
- * @since 3.0
+ * Response extractor that returns the response.
  */
-component
-  extends="cfboom.http.client.AbstractClientHttpResponse"
-  displayname="Class SimpleClientHttpResponse"
+component singleton
+  extends="cfboom.lang.Object"
+  implements="cfboom.http.web.client.ResponseExtractor"
+  displayname="Class SimpleExtractor"
   output="false"
 {
-  public cfboom.http.client.SimpleClientHttpResponse function init( any result ) {
-    if (isInstanceOf(arguments.result, "java.net.HttpURLConnection")) {
-      _instance['connection'] = arguments.result;
-    } else {
-      super.init( arguments.result );
-    }
+  public cfboom.http.web.client.SimpleExtractor function init() {
     return this;
+  }
+
+  public any function extractData( required cfboom.http.client.ClientHttpResponse response ) {
+    return arguments.response;
   }
 }

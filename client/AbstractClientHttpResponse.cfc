@@ -1,3 +1,22 @@
+/*
+ * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ *
+ */
 component
   extends="cfboom.http.message.BasicHttpResponse"
   implements="cfboom.http.client.ClientHttpResponse"
@@ -76,8 +95,10 @@ component
   }
 
   public any function getInputStream() {
-    local['errorStream'] = _instance.connection.getErrorStream();
-    _instance['responseStream'] = (structKeyExists(local, "errorStream") ? local.errorStream : _instance.connection.getInputStream());
-    return _instance.responseStream;
+    if (structKeyExists(_instance,"connection")) {
+      local['errorStream'] = _instance.connection.getErrorStream();
+      _instance['responseStream'] = (structKeyExists(local, "errorStream") ? local.errorStream : _instance.connection.getInputStream());
+      return _instance.responseStream;
+    }
   }
 }

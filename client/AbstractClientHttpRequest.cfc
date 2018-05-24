@@ -1,3 +1,22 @@
+/*
+ * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ *
+ */
 component
   extends="cfboom.lang.Object"
   implements="cfboom.http.client.ClientHttpRequest"
@@ -14,6 +33,11 @@ component
 
   public cfboom.http.HttpHeaders function getHeaders() {
     return _instance.headers;
+  }
+
+  public void function addBody( string body ) {
+    if ( structKeyExists( arguments, "body" ) )
+      _instance['body'] = arguments.body;
   }
 
   public any function getBody() {
@@ -53,5 +77,18 @@ component
    */
   public cfboom.http.client.ClientHttpResponse function executeInternal( required cfboom.http.HttpHeaders headers ) {
     throw(object=createObject("java", "java.lang.AbstractMethodError").init("Must override template method 'executeInternal' in subclass."));
+  }
+
+  public string function toJson( boolean noHeaders = false ) {
+    var returnJson = '{"' & listLast(getComponentName(), ".") & '":{'
+      & '"method":"#getMethod().name()#",'
+      & '"URI":"#getURI().toURL().toString()#",'
+      & '"executed":#_instance.executed#';
+    returnJson &= '}}';
+    return returnJson;
+  }
+
+  public string function toString() {
+    return listLast(getComponentName(), ".") & ": " & getMethod().name() & " " & getURI().toURL().toString();
   }
 }

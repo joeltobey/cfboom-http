@@ -83,6 +83,10 @@ component
     return _instance.reasonPhrase;
   }
 
+  public boolean function hasRequest() {
+    return structKeyExists( _instance, "request" );
+  }
+
   public any function getRequest() {
     if ( structKeyExists( _instance, "request" ) )
       return _instance.request;
@@ -120,6 +124,10 @@ component
   public any function getResult() {
     if ( structKeyExists( _instance, "source" ) )
       return _instance.source.getResult();
+  }
+
+  public boolean function hasPrefix() {
+    return structKeyExists( _instance, "prefix" );
   }
 
   public any function getPrefix() {

@@ -57,6 +57,7 @@ component
     binder.map("SimpleClientHttpRequestFactory@cfboomHttp").to("cfboom.http.client.SimpleClientHttpRequestFactory");
     binder.map("SimpleClientHttpRequest@cfboomHttp").to("cfboom.http.client.SimpleClientHttpRequest");
     binder.map("SimpleBufferingClientHttpRequest@cfboomHttp").to("cfboom.http.client.SimpleBufferingClientHttpRequest");
+    binder.map("RestTemplate@cfboomHttp").to("cfboom.http.web.client.RestTemplate");
 
     // Need to map cfboom.http.HttpStatus with noInit(). Otherwise, the factory method mapping
     // will try to autowire it and attempt to do the init() method.

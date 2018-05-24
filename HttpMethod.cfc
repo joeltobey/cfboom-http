@@ -67,6 +67,10 @@ component
     return _instance.value;
   }
 
+  public string function name() {
+    return _instance.value;
+  }
+
   /**
    * Return the enum values.
    */

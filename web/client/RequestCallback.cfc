@@ -15,23 +15,25 @@
  */
 
 /**
- * Factory for {@link ClientHttpRequest} objects.
- * Requests are created by the {@link #createRequest(URI, HttpMethod)} method.
+ * Callback interface for code that operates on a {@link ClientHttpRequest}. Allows to manipulate the request
+ * headers, and write to the request body.
+ *
+ * <p>Used internally by the {@link RestTemplate}, but also useful for application code.
  *
  * @author Arjen Poutsma
+ * @see RestTemplate#execute
  * @since 3.0
  */
 interface
-  displayname="Interface ClientHttpRequestFactory"
+  displayname="Interface RequestCallback"
 {
   /**
-   * Create a new {@link ClientHttpRequest} for the specified URI and HTTP method.
-   * <p>The returned request can be written to, and then executed by calling
-   * {@link ClientHttpRequest#execute()}.
-   * @param uri the URI to create a request for
-   * @param httpMethod the HTTP method to execute
-   * @return the created request
+   * Gets called by {@link RestTemplate#execute} with an opened {@code ClientHttpRequest}.
+   * Does not need to care about closing the request or about handling errors:
+   * this will all be handled by the {@code RestTemplate}.
+   * @param request the active HTTP request
    * @throws IOException in case of I/O errors
    */
-  public cfboom.http.client.ClientHttpRequest function createRequest( required any uri, cfboom.http.HttpMethod httpMethod );
+  public void function doWithRequest( required cfboom.http.client.ClientHttpRequest httpRequest );
+
 }
