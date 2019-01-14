@@ -43,6 +43,15 @@ component
     assertEqualsCase( "example text", httpResponse.getBody() );
   }
 
+  /**
+   * @Test
+   */
+  public void function testHeadForHeaders() {
+    var headers = RestTemplate.headForHeaders( buildURL("/tests/resources/headForHeaders.cfm") );
+writeDump(headers);abort;
+    assertEqualsCase( "example text", headers.getBody() );
+  }
+
   private string function buildURL( required string path ) {
     var sb = createObject("java", "java.lang.StringBuilder").init("http");
     if (cgi.server_port_secure)

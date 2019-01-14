@@ -66,6 +66,11 @@ component
 
     binder.map("cfboom.http.HttpMethod").to("cfboom.http.HttpMethod").noInit();
     binder.map("HttpMethod@cfboomHttp").toFactoryMethod("cfboom.http.HttpMethod", "enum").asSingleton().noInit();
+
+    binder.map("HttpHeadersSingleton@cfboomHttp").to("cfboom.http.HttpHeaders").asSingleton();
+
+    binder.map("cfboom.http.MediaType").to("cfboom.http.MediaType").noInit();
+    binder.map("MediaType@cfboomHttp").toFactoryMethod("cfboom.http.MediaType", "enum").asSingleton().noInit();
   }
 
   /**
@@ -75,6 +80,7 @@ component
     // Init Enums
     wirebox.getInstance( "HttpStatus@cfboomHttp" );
     wirebox.getInstance( "HttpMethod@cfboomHttp" );
+    wirebox.getInstance( "HttpHeadersSingleton@cfboomHttp" );
   }
 
   /**

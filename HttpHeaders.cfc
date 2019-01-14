@@ -376,9 +376,15 @@ component
    */
   variables.ETAG_HEADER_VALUE_PATTERN = createObject("java","java.util.regex.Pattern").compile('\\*|\\s*((W\\/)?(\"[^\"]*\"))\\s*,?');
 
-  variables.DECIMAL_FORMAT_SYMBOLS = createObject("java","java.text.DecimalFormatSymbols").init(createObject("java","java.util.Locale").ENGLISH);
+  variables.DECIMAL_FORMAT_SYMBOLS = createObject("java","java.text.DecimalFormatSymbols").init( createObject("java","java.util.Locale").ENGLISH );
 
   variables.GMT = createObject("java","java.util.TimeZone").getTimeZone("GMT");
+
+  variables.ALLOWED_METHODS = "GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS,TRACE";
+
+  variables['Locale'] = createObject("java","java.util.Locale");
+  variables['StandardCharsets'] = createObject("java","java.nio.charset.StandardCharsets");
+  variables['Charset'] = createObject("java","java.nio.charset.Charset");
 
   _instance['headers'] = {};
 
@@ -386,31 +392,46 @@ component
     return this;
   }
 
-	/**
-	 * Set the list of acceptable {@linkplain MediaType media types},
-	 * as specified by the {@code Accept} header.
-	 * /
-	public void setAccept(List<MediaType> acceptableMediaTypes) {
-		set(ACCEPT, MediaType.toString(acceptableMediaTypes));
-	}
-*/
-/**
-* Return the list of acceptable {@linkplain MediaType media types},
-* as specified by the {@code Accept} header.
-* <p>Returns an empty list when the acceptable media types are unspecified.
-* /
-	public List<MediaType> getAccept() {
-		return MediaType.parseMediaTypes(get(ACCEPT));
-	}
-*/
-/**
- * Set the acceptable language ranges, as specified by the
- * {@literal Accept-Language} header.
- * @since 5.0
- * /
-	public void setAcceptLanguage(List<Locale.LanguageRange> languages) {
-		Assert.notNull(languages, "'languages' must not be null");
-		DecimalFormat decimal = new DecimalFormat("0.0", DECIMAL_FORMAT_SYMBOLS);
+  /**
+   * Set the list of acceptable {@linkplain MediaType media types},
+   * as specified by the {@code Accept} header.
+   */
+  public void function setAccept( any acceptableMediaTypes ) {
+    if ( structKeyExists( arguments, "acceptableMediaTypes" ) ) {
+      if ( !isArray( arguments.acceptableMediaTypes ) )
+        arguments.acceptableMediaTypes = [ arguments.acceptableMediaTypes ];
+      set( ACCEPT, toCommaDelimitedString( arguments.acceptableMediaTypes ) );
+    }
+  }
+
+  /**
+   * Return the list of acceptable {@linkplain MediaType media types},
+   * as specified by the {@code Accept} header.
+   * <p>Returns an empty list when the acceptable media types are unspecified.
+   */
+  public array function getAccept() {
+	local['results'] = [];
+    local['mediaTypes'] = get(ACCEPT);
+    if ( structKeyExists( local, "mediaTypes" ) ) {
+      for ( var mediaType in local.mediaTypes ) {
+        local['acceptTypes'] = listToArray( mediaType );
+        for ( var acceptType in local.acceptTypes ) {
+          arrayAppend( local.results, trim(acceptType) );
+        }
+      }
+    }
+    return local.results;
+  }
+
+  /**
+   * Set the acceptable language ranges, as specified by the
+   * {@literal Accept-Language} header.
+   * @since 5.0
+   */
+  public void function setAcceptLanguage( required any languages ) {
+    local['decimal'] = createObject("java","java.text.DecimalFormat").init("0.0", DECIMAL_FORMAT_SYMBOLS);
+// TODO: Figure out how to do this.
+/*
 		List<String> values = languages.stream()
 				.map(range ->
 						range.getWeight() == Locale.LanguageRange.MAX_WEIGHT ?
@@ -418,21 +439,23 @@ component
 								range.getRange() + ";q=" + decimal.format(range.getWeight()))
 				.collect(Collectors.toList());
 		set(ACCEPT_LANGUAGE, toCommaDelimitedString(values));
-	}
 */
-/**
-* Return the language ranges from the {@literal "Accept-Language"} header.
-* <p>If you only need sorted, preferred locales only use
-* {@link getAcceptLanguageAsLocales()} or if you need to filter based on
-* a list of supported locales you can pass the returned list to
-* {@link Localefilter(List, Collection)}.
-* @since 5.0
-* /
-	public List<Locale.LanguageRange> getAcceptLanguage() {
-		String value = getFirst(ACCEPT_LANGUAGE);
-		return StringUtils.hasText(value) ? Locale.LanguageRange.parse(value) : Collections.emptyList();
-	}
-*/
+  }
+
+  /**
+   * Return the language ranges from the {@literal "Accept-Language"} header.
+   * <p>If you only need sorted, preferred locales only use
+   * {@link getAcceptLanguageAsLocales()} or if you need to filter based on
+   * a list of supported locales you can pass the returned list to
+   * {@link Localefilter(List, Collection)}.
+   * @since 5.0
+   */
+  public any function getAcceptLanguage() {
+    variables['Collections'] = createObject("java", "java.util.Collections");
+    local['value'] = getFirst(ACCEPT_LANGUAGE);
+    return structKeyExists( local, "value" ) && len( local.value ) ? createObject("java","java.util.Locale").LanguageRange.parse(local.value) : Collections.emptyList();
+  }
+
 /**
 * Variant of {@link setAcceptLanguage(List)} using {@link Locale}'s.
 * @since 5.0
@@ -460,330 +483,325 @@ return ranges.stream()
 .collect(Collectors.toList());
 }
 */
-/**
- * Set the (new) value of the {@code Access-Control-Allow-Credentials} response header.
- * /
-public void setAccessControlAllowCredentials(boolean allowCredentials) {
-set(ACCESS_CONTROL_ALLOW_CREDENTIALS, Boolean.toString(allowCredentials));
-}
+  /**
+   * Set the (new) value of the {@code Access-Control-Allow-Credentials} response header.
+   */
+  public void function setAccessControlAllowCredentials( boolean allowCredentials ) {
+    set( ACCESS_CONTROL_ALLOW_CREDENTIALS, Boolean.toString( arguments.allowCredentials ) );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Allow-Credentials} response header.
+   */
+  public boolean function getAccessControlAllowCredentials() {
+    return Boolean.parseBoolean( getFirst( ACCESS_CONTROL_ALLOW_CREDENTIALS ) );
+  }
+
+  /**
+   * Set the (new) value of the {@code Access-Control-Allow-Headers} response header.
+   */
+  public void function setAccessControlAllowHeaders( array allowedHeaders ) {
+    set( ACCESS_CONTROL_ALLOW_HEADERS, toCommaDelimitedString( arguments.allowedHeaders ) );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Allow-Headers} response header.
+   */
+  public any function getAccessControlAllowHeaders() {
+    return getValuesAsList( ACCESS_CONTROL_ALLOW_HEADERS );
+  }
+
+  /**
+   * Set the (new) value of the {@code Access-Control-Allow-Methods} response header.
+   */
+  public void function setAccessControlAllowMethods( required arry allowedMethods ) {
+    set( ACCESS_CONTROL_ALLOW_METHODS, arrayToList( arguments.allowedMethods ) );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Allow-Methods} response header.
+   */
+  public any function getAccessControlAllowMethods() {
+    local['result'] = createObject("java","java.util.ArrayList").init();
+    local['value'] = getFirst( ACCESS_CONTROL_ALLOW_METHODS );
+    if ( structKeyExists( local, "value" ) ) {
+      local['tokens'] = listToArray( local.value );
+      for ( var token in local.tokens ) {
+        local['resolved'] = HttpMethod.resolve(token);
+        if ( structKeyExists( local, "resolved" ) ) {
+          local.result.add( local.resolved );
+        }
+      }
+    }
+    return local.result;
+  }
+
+  /**
+   * Set the (new) value of the {@code Access-Control-Allow-Origin} response header.
+   */
+  public void function setAccessControlAllowOrigin( required string allowedOrigin ) {
+    set( ACCESS_CONTROL_ALLOW_ORIGIN, arguments.allowedOrigin );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Allow-Origin} response header.
+   */
+  public string function getAccessControlAllowOrigin() {
+    return getFieldValues( ACCESS_CONTROL_ALLOW_ORIGIN );
+  }
+
+  /**
+   * Set the (new) value of the {@code Access-Control-Expose-Headers} response header.
+   */
+  public void function setAccessControlExposeHeaders( required array exposedHeaders ) {
+    set( ACCESS_CONTROL_EXPOSE_HEADERS, toCommaDelimitedString( arguments.exposedHeaders ) );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Expose-Headers} response header.
+   */
+  public any function getAccessControlExposeHeaders() {
+    return getValuesAsList( ACCESS_CONTROL_EXPOSE_HEADERS );
+  }
+
+  /**
+   * Set the (new) value of the {@code Access-Control-Max-Age} response header.
+   */
+  public void function setAccessControlMaxAge( required numeric maxAge ) {
+    set( ACCESS_CONTROL_MAX_AGE, Long.toString( javaCast( "long", arguments.maxAge ) ) );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Max-Age} response header.
+   * <p>Returns -1 when the max age is unknown.
+   */
+  public numeric function getAccessControlMaxAge() {
+    local['value'] = getFirst( ACCESS_CONTROL_MAX_AGE );
+    return ( structKeyExists( local, "value" ) ? Long.parseLong( local.value ) : javaCast("long",-1));
+  }
+
+  /**
+   * Set the (new) value of the {@code Access-Control-Request-Headers} request header.
+   */
+  public void function setAccessControlRequestHeaders( required array requestHeaders ) {
+    set( ACCESS_CONTROL_REQUEST_HEADERS, toCommaDelimitedString( arguments.requestHeaders ) );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Request-Headers} request header.
+   */
+  public any function getAccessControlRequestHeaders() {
+    return getValuesAsList( ACCESS_CONTROL_REQUEST_HEADERS );
+  }
+
+  /**
+   * Set the (new) value of the {@code Access-Control-Request-Method} request header.
+   */
+  public void function setAccessControlRequestMethod( required cfboom.http.HttpMethod requestMethod ) {
+    set( ACCESS_CONTROL_REQUEST_METHOD, arguments.requestMethod.name() );
+  }
+
+  /**
+   * Return the value of the {@code Access-Control-Request-Method} request header.
+   */
+  public any function getAccessControlRequestMethod() {
+    return HttpMethod.resolve( getFirst( ACCESS_CONTROL_REQUEST_METHOD ) );
+  }
+
+  /**
+   * Set the list of acceptable {@linkplain Charset charsets},
+   * as specified by the {@code Accept-Charset} header.
+   */
+  public void function setAcceptCharset( required any acceptableCharsets ) {
+    if ( !isArray( arguments.acceptableCharsets ) )
+      arguments.acceptableCharsets = [ arguments.acceptableCharsets ];
+    local['charsets'] = [];
+    for ( var acceptableCharset in arguments.acceptableCharsets ) {
+      arrayAppend( local.charsets, Charset.forName( trim( acceptableCharset ) ) );
+    }
+    local['values'] = [];
+    for ( var charset in local.charsets ) {
+      arrayAppend( local.values, charset.name().toLowerCase( Locale.ENGLISH ) );
+    }
+    set( ACCEPT_CHARSET, arrayToList( local.values ) );
+  }
+
+  /**
+   * Return the list of acceptable {@linkplain Charset charsets},
+   * as specified by the {@code Accept-Charset} header.
+   */
+  public array function getAcceptCharset() {
+    local['value'] = getFirst( ACCEPT_CHARSET );
+    if ( structKeyExists( local, "value" ) ) {
+      local['tokens'] = listToArray( local.value );
+      local['tokenArr'] = [];
+      for ( var token in local.tokens ) {
+        arrayAppend( local.tokenArr, lCase( trim( token ) ) );
+      }
+      arraySort( local.tokenArr, qualityValueCompare );
+
+      local['result'] = [];
+      for ( var token in local.tokenArr ) {
+        local['paramIdx'] = token.indexOf(';');
+        if ( local.paramIdx == -1 ) {
+          local['charsetName'] = token;
+        }
+        else {
+          local['charsetName'] = token.substring( javaCast("int", 0), local.paramIdx );
+        }
+        if ( !local.charsetName.equals("*") ) {
+          arrayAppend( local.result, Charset.forName( local.charsetName ) );
+        }
+      }
+      return local.result;
+    }
+    else {
+      return [];
+    }
+  }
+
+  /**
+   * Set the set of allowed {@link HttpMethod HTTP methods},
+   * as specified by the {@code Allow} header.
+   */
+  public void function setAllow( required any allowedMethods ) {
+    local['headerValues'] = [];
+    if ( !isArray( arguments.allowedMethods ) )
+      arguments.allowedMethods = [ arguments.allowedMethods ];
+    for ( var allowedMethod in arguments.allowedMethods ) {
+      if ( listFindNoCase( ALLOWED_METHODS, allowedMethod ) )
+        arrayAppend( local.headerValues, uCase( trim( allowedMethod ) ) );
+    }
+    set( ALLOW, arrayToList( local.headerValues ) );
+  }
+
+  /**
+   * Return the set of allowed {@link HttpMethod HTTP methods},
+   * as specified by the {@code Allow} header.
+   * <p>Returns an empty set when the allowed methods are unspecified.
+   */
+  public array function getAllow() {
+    local['value'] = getFirst( ALLOW );
+    if ( structKeyExists( local, "value" ) && len( local.value ) ) {
+      local['tokens'] = listToArray( local.value );
+      local['result'] = [];
+      for ( var token in local.tokens ) {
+        if ( listFindNoCase( ALLOWED_METHODS, token ) )
+          arrayAppend( local.result, new cfboom.http.HttpMethod( UCase( trim( token ) ) ) );
+      }
+      return local.result;
+    } else {
+      return [];
+    }
+  }
+
+  /**
+   * Set the (new) value of the {@code Cache-Control} header.
+   */
+  public void function setCacheControl( required string cacheControl ) {
+    set( CACHE_CONTROL, arguments.cacheControl );
+  }
+
+  /**
+   * Return the value of the {@code Cache-Control} header.
+   */
+  public string function getCacheControl() {
+    return getFieldValues( CACHE_CONTROL );
+  }
+
+  /**
+   * Set the (new) value of the {@code Connection} header.
+   */
+  public void function setConnection( required any connection ) {
+    set( CONNECTION, toCommaDelimitedString( arguments.connection ) );
+  }
+
+  /**
+   * Return the value of the {@code Connection} header.
+   */
+  public any function getConnection() {
+    return getValuesAsList( CONNECTION );
+  }
+
+  /**
+   * Set the (new) value of the {@code Content-Disposition} header
+   * for {@code form-data}, optionally encoding the filename using the RFC 5987.
+   * <p>Only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported.
+   * @param name the control name
+   * @param filename the filename (may be {@code null})
+   * @param charset the charset used for the filename (may be {@code null})
+   * @since 4.3.3
+   * @see #setContentDisposition(ContentDisposition)
+   * @see #getContentDisposition()
+   * @see <a href="https://tools.ietf.org/html/rfc7230#section-3.2.4">RFC 7230 Section 3.2.4</a>
+   */
+  public void function setContentDispositionFormData( required string name, string filename, any charset ) {
+// TODO: Implement
+/*
+    ContentDisposition disposition = ContentDisposition.builder("form-data")
+    .name(name).filename(filename, charset).build();
+    setContentDisposition(disposition);
 */
-/**
- * Return the value of the {@code Access-Control-Allow-Credentials} response header.
- * /
-public boolean getAccessControlAllowCredentials() {
-return Boolean.parseBoolean(getFirst(ACCESS_CONTROL_ALLOW_CREDENTIALS));
-}
+  }
+
+  /**
+   * Set the (new) value of the {@literal Content-Disposition} header. Supports the
+   * disposition type and {@literal filename}, {@literal filename*} (encoded according
+   * to RFC 5987, only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported),
+   * {@literal name}, {@literal size} parameters.
+   * @since 5.0
+   * @see #getContentDisposition()
+   */
+  public void function setContentDisposition( ContentDisposition contentDisposition ) {
+    set( CONTENT_DISPOSITION, contentDisposition.toString() );
+  }
+
+  /**
+   * Return the {@literal Content-Disposition} header parsed as a {@link ContentDisposition}
+   * instance. Supports the disposition type and {@literal filename}, {@literal filename*}
+   * (encoded according to RFC 5987, only the US-ASCII, UTF-8 and ISO-8859-1 charsets are
+   * supported), {@literal name}, {@literal size} parameters.
+   * @since 5.0
+   * @see #setContentDisposition(ContentDisposition)
+   */
+  public ContentDisposition function getContentDisposition() {
+    local['contentDisposition'] = getFirst(CONTENT_DISPOSITION);
+    if ( structKeyExists( local, "contentDisposition" ) ) {
+      return ContentDisposition.parse( local.contentDisposition );
+    }
+    return ContentDisposition.empty();
+  }
+
+  /**
+   * Set the {@link Locale} of the content language,
+   * as specified by the {@literal Content-Language} header.
+   * <p>Use {@code set(CONTENT_LANGUAGE, ...)} if you need
+   * to set multiple content languages.</p>
+   * @since 5.0
+   */
+  public void function setContentLanguage( required any locale ) {
+    set( CONTENT_LANGUAGE, arguments.locale.toLanguageTag() );
+  }
+
+  /**
+   * Return the first {@link Locale} of the content languages,
+   * as specified by the {@literal Content-Language} header.
+   * <p>Returns {@code null} when the content language is unknown.
+   * <p>Use {@code getValuesAsList(CONTENT_LANGUAGE)} if you need
+   * to get multiple content languages.</p>
+   * @since 5.0
+   */
+  public any function getContentLanguage() {
+// TODO: Implement this
+/*
+    return getValuesAsList( CONTENT_LANGUAGE )
+      .stream()
+      .findFirst()
+      .map(Locale::forLanguageTag)
+      .orElse(null);
 */
-/**
- * Set the (new) value of the {@code Access-Control-Allow-Headers} response header.
- * /
-public void setAccessControlAllowHeaders(List<String> allowedHeaders) {
-set(ACCESS_CONTROL_ALLOW_HEADERS, toCommaDelimitedString(allowedHeaders));
-}
-*/
-/**
- * Return the value of the {@code Access-Control-Allow-Headers} response header.
- * /
-public List<String> getAccessControlAllowHeaders() {
-return getValuesAsList(ACCESS_CONTROL_ALLOW_HEADERS);
-}
-*/
-/**
- * Set the (new) value of the {@code Access-Control-Allow-Methods} response header.
- * /
-public void setAccessControlAllowMethods(List<HttpMethod> allowedMethods) {
-set(ACCESS_CONTROL_ALLOW_METHODS, StringUtils.collectionToCommaDelimitedString(allowedMethods));
-}
-*/
-/**
- * Return the value of the {@code Access-Control-Allow-Methods} response header.
- * /
-public List<HttpMethod> getAccessControlAllowMethods() {
-List<HttpMethod> result = new ArrayList<>();
-String value = getFirst(ACCESS_CONTROL_ALLOW_METHODS);
-if (value != null) {
-String[] tokens = StringUtils.tokenizeToStringArray(value, ",");
-for (String token : tokens) {
-HttpMethod resolved = HttpMethod.resolve(token);
-if (resolved != null) {
-result.add(resolved);
-}
-}
-}
-return result;
-}
-*/
-/**
- * Set the (new) value of the {@code Access-Control-Allow-Origin} response header.
- * /
-public void setAccessControlAllowOrigin(String allowedOrigin) {
-set(ACCESS_CONTROL_ALLOW_ORIGIN, allowedOrigin);
-}
-*/
-/**
- * Return the value of the {@code Access-Control-Allow-Origin} response header.
- * /
-public String getAccessControlAllowOrigin() {
-return getFieldValues(ACCESS_CONTROL_ALLOW_ORIGIN);
-}
-*/
-/**
- * Set the (new) value of the {@code Access-Control-Expose-Headers} response header.
- * /
-public void setAccessControlExposeHeaders(List<String> exposedHeaders) {
-set(ACCESS_CONTROL_EXPOSE_HEADERS, toCommaDelimitedString(exposedHeaders));
-}
-*/
-/**
- * Return the value of the {@code Access-Control-Expose-Headers} response header.
- * /
-public List<String> getAccessControlExposeHeaders() {
-return getValuesAsList(ACCESS_CONTROL_EXPOSE_HEADERS);
-}
-*/
-/**
- * Set the (new) value of the {@code Access-Control-Max-Age} response header.
- * /
-public void setAccessControlMaxAge(long maxAge) {
-set(ACCESS_CONTROL_MAX_AGE, Long.toString(maxAge));
-}
-*/
-/**
- * Return the value of the {@code Access-Control-Max-Age} response header.
- * <p>Returns -1 when the max age is unknown.
- * /
-public long getAccessControlMaxAge() {
-String value = getFirst(ACCESS_CONTROL_MAX_AGE);
-return (value != null ? Long.parseLong(value) : -1);
-}
-*/
-/**
- * Set the (new) value of the {@code Access-Control-Request-Headers} request header.
- * /
-public void setAccessControlRequestHeaders(List<String> requestHeaders) {
-set(ACCESS_CONTROL_REQUEST_HEADERS, toCommaDelimitedString(requestHeaders));
-}
-*/
-/**
- * Return the value of the {@code Access-Control-Request-Headers} request header.
- * /
-public List<String> getAccessControlRequestHeaders() {
-return getValuesAsList(ACCESS_CONTROL_REQUEST_HEADERS);
-}
-*/
-/**
- * Set the (new) value of the {@code Access-Control-Request-Method} request header.
- * /
-public void setAccessControlRequestMethod(HttpMethod requestMethod) {
-set(ACCESS_CONTROL_REQUEST_METHOD, requestMethod.name());
-}
-*/
-/**
- * Return the value of the {@code Access-Control-Request-Method} request header.
- * /
-public HttpMethod getAccessControlRequestMethod() {
-return HttpMethod.resolve(getFirst(ACCESS_CONTROL_REQUEST_METHOD));
-}
-*/
-/**
- * Set the list of acceptable {@linkplain Charset charsets},
- * as specified by the {@code Accept-Charset} header.
- * /
-public void setAcceptCharset(List<Charset> acceptableCharsets) {
-StringBuilder builder = new StringBuilder();
-for (Iterator<Charset> iterator = acceptableCharsets.iterator(); iterator.hasNext();) {
-Charset charset = iterator.next();
-builder.append(charset.name().toLowerCase(Locale.ENGLISH));
-if (iterator.hasNext()) {
-builder.append(", ");
-}
-}
-set(ACCEPT_CHARSET, builder.toString());
-}
-*/
-/**
- * Return the list of acceptable {@linkplain Charset charsets},
- * as specified by the {@code Accept-Charset} header.
- * /
-public List<Charset> getAcceptCharset() {
-String value = getFirst(ACCEPT_CHARSET);
-if (value != null) {
-String[] tokens = StringUtils.tokenizeToStringArray(value, ",");
-List<Charset> result = new ArrayList<>(tokens.length);
-for (String token : tokens) {
-int paramIdx = token.indexOf(';');
-String charsetName;
-if (paramIdx == -1) {
-charsetName = token;
-}
-else {
-charsetName = token.substring(0, paramIdx);
-}
-if (!charsetName.equals("*")) {
-result.add(Charset.forName(charsetName));
-}
-}
-return result;
-}
-else {
-return Collections.emptyList();
-}
-}
-*/
-/**
- * Set the set of allowed {@link HttpMethod HTTP methods},
- * as specified by the {@code Allow} header.
- * /
-public void setAllow(Set<HttpMethod> allowedMethods) {
-set(ALLOW, StringUtils.collectionToCommaDelimitedString(allowedMethods));
-}
-*/
-/**
- * Return the set of allowed {@link HttpMethod HTTP methods},
- * as specified by the {@code Allow} header.
- * <p>Returns an empty set when the allowed methods are unspecified.
- * /
-public Set<HttpMethod> getAllow() {
-String value = getFirst(ALLOW);
-if (!StringUtils.isEmpty(value)) {
-String[] tokens = StringUtils.tokenizeToStringArray(value, ",");
-List<HttpMethod> result = new ArrayList<>(tokens.length);
-for (String token : tokens) {
-HttpMethod resolved = HttpMethod.resolve(token);
-if (resolved != null) {
-result.add(resolved);
-}
-}
-return EnumSet.copyOf(result);
-}
-else {
-return EnumSet.noneOf(HttpMethod.class);
-}
-}
-*/
-/**
- * Set the (new) value of the {@code Cache-Control} header.
- * /
-public void setCacheControl(String cacheControl) {
-set(CACHE_CONTROL, cacheControl);
-}
-*/
-/**
- * Return the value of the {@code Cache-Control} header.
- * /
-public String getCacheControl() {
-return getFieldValues(CACHE_CONTROL);
-}
-*/
-/**
- * Set the (new) value of the {@code Connection} header.
- * /
-public void setConnection(String connection) {
-set(CONNECTION, connection);
-}
-*/
-/**
- * Set the (new) value of the {@code Connection} header.
- * /
-public void setConnection(List<String> connection) {
-set(CONNECTION, toCommaDelimitedString(connection));
-}
-*/
-/**
- * Return the value of the {@code Connection} header.
- * /
-public List<String> getConnection() {
-return getValuesAsList(CONNECTION);
-}
-*/
-/**
- * Set the (new) value of the {@code Content-Disposition} header
- * for {@code form-data}.
- * @param name the control name
- * @param filename the filename (may be {@code null})
- * @see #setContentDisposition(ContentDisposition)
- * @see #getContentDisposition()
- * /
-public void setContentDispositionFormData(String name, @Nullable String filename) {
-setContentDispositionFormData(name, filename, null);
-}
-*/
-/**
- * Set the (new) value of the {@code Content-Disposition} header
- * for {@code form-data}, optionally encoding the filename using the RFC 5987.
- * <p>Only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported.
- * @param name the control name
- * @param filename the filename (may be {@code null})
- * @param charset the charset used for the filename (may be {@code null})
- * @since 4.3.3
- * @see #setContentDisposition(ContentDisposition)
- * @see #getContentDisposition()
- * @see <a href="https://tools.ietf.org/html/rfc7230#section-3.2.4">RFC 7230 Section 3.2.4</a>
- * /
-public void setContentDispositionFormData(String name, @Nullable String filename, @Nullable Charset charset) {
-Assert.notNull(name, "'name' must not be null");
-ContentDisposition disposition = ContentDisposition.builder("form-data")
-.name(name).filename(filename, charset).build();
-setContentDisposition(disposition);
-}
-*/
-/**
- * Set the (new) value of the {@literal Content-Disposition} header. Supports the
- * disposition type and {@literal filename}, {@literal filename*} (encoded according
- * to RFC 5987, only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported),
- * {@literal name}, {@literal size} parameters.
- * @since 5.0
- * @see #getContentDisposition()
- * /
-public void setContentDisposition(ContentDisposition contentDisposition) {
-set(CONTENT_DISPOSITION, contentDisposition.toString());
-}
-*/
-/**
- * Return the {@literal Content-Disposition} header parsed as a {@link ContentDisposition}
- * instance. Supports the disposition type and {@literal filename}, {@literal filename*}
- * (encoded according to RFC 5987, only the US-ASCII, UTF-8 and ISO-8859-1 charsets are
- * supported), {@literal name}, {@literal size} parameters.
- * @since 5.0
- * @see #setContentDisposition(ContentDisposition)
- * /
-public ContentDisposition getContentDisposition() {
-String contentDisposition = getFirst(CONTENT_DISPOSITION);
-if (contentDisposition != null) {
-return ContentDisposition.parse(contentDisposition);
-}
-return ContentDisposition.empty();
-}
-*/
-/**
- * Set the {@link Locale} of the content language,
- * as specified by the {@literal Content-Language} header.
- * <p>Use {@code set(CONTENT_LANGUAGE, ...)} if you need
- * to set multiple content languages.</p>
- * @since 5.0
- * /
-public void setContentLanguage(Locale locale) {
-Assert.notNull(locale, "'locale' must not be null");
-set(CONTENT_LANGUAGE, locale.toLanguageTag());
-}
-*/
-/**
- * Return the first {@link Locale} of the content languages,
- * as specified by the {@literal Content-Language} header.
- * <p>Returns {@code null} when the content language is unknown.
- * <p>Use {@code getValuesAsList(CONTENT_LANGUAGE)} if you need
- * to get multiple content languages.</p>
- * @since 5.0
- * /
-@Nullable
-public Locale getContentLanguage() {
-return getValuesAsList(CONTENT_LANGUAGE)
-.stream()
-.findFirst()
-.map(Locale::forLanguageTag)
-.orElse(null);
-}
-*/
+  }
+
   /**
    * Set the length of the body in bytes, as specified by the
    * {@code Content-Length} header.
@@ -802,478 +820,494 @@ return getValuesAsList(CONTENT_LANGUAGE)
     return ( structKeyExists(local, "value") ? createObject("java","java.lang.Long").parseLong(local.value) : javaCast("long",-1));
   }
 
-/**
- * Set the {@linkplain MediaType media type} of the body,
- * as specified by the {@code Content-Type} header.
- * /
-public void setContentType(MediaType mediaType) {
-Assert.isTrue(!mediaType.isWildcardType(), "'Content-Type' cannot contain wildcard type '*'");
-Assert.isTrue(!mediaType.isWildcardSubtype(), "'Content-Type' cannot contain wildcard subtype '*'");
-set(CONTENT_TYPE, mediaType.toString());
-}
-*/
-/**
- * Return the {@linkplain MediaType media type} of the body, as specified
- * by the {@code Content-Type} header.
- * <p>Returns {@code null} when the content-type is unknown.
- * /
-@Nullable
-public MediaType getContentType() {
-String value = getFirst(CONTENT_TYPE);
-return (StringUtils.hasLength(value) ? MediaType.parseMediaType(value) : null);
-}
-*/
-/**
- * Set the date and time at which the message was created, as specified
- * by the {@code Date} header.
- * <p>The date should be specified as the number of milliseconds since
- * January 1, 1970 GMT.
- * /
-public void setDate(long date) {
-setDate(DATE, date);
-}
-*/
-/**
- * Return the date and time at which the message was created, as specified
- * by the {@code Date} header.
- * <p>The date is returned as the number of milliseconds since
- * January 1, 1970 GMT. Returns -1 when the date is unknown.
- * @throws IllegalArgumentException if the value can't be converted to a date
- * /
-public long getDate() {
-return getFirstDate(DATE);
-}
-*/
-/**
- * Set the (new) entity tag of the body, as specified by the {@code ETag} header.
- * /
-public void setETag(String eTag) {
-if (eTag != null) {
-Assert.isTrue(eTag.startsWith("\"") || eTag.startsWith("W/"),
-					"Invalid eTag, does not start with W/ or \"");
-Assert.isTrue(eTag.endsWith("\""), "Invalid eTag, does not end with \"");
-}
-set(ETAG, eTag);
-}
-*/
-/**
- * Return the entity tag of the body, as specified by the {@code ETag} header.
- * /
-public String getETag() {
-return getFirst(ETAG);
-}
-*/
-/**
- * Set the date and time at which the message is no longer valid,
- * as specified by the {@code Expires} header.
- * <p>The date should be specified as the number of milliseconds since
- * January 1, 1970 GMT.
- * /
-public void setExpires(long expires) {
-setDate(EXPIRES, expires);
-}
-*/
-/**
- * Return the date and time at which the message is no longer valid,
- * as specified by the {@code Expires} header.
- * <p>The date is returned as the number of milliseconds since
- * January 1, 1970 GMT. Returns -1 when the date is unknown.
- * /
-public long getExpires() {
-return getFirstDate(EXPIRES, false);
-}
-*/
-/**
- * Set the (new) value of the {@code Host} header.
- * <p>If the given {@linkplain InetSocketAddress#getPort() port} is {@code 0},
- * the host header will only contain the
- * {@linkplain InetSocketAddress#getHostString() hostname}.
- * @since 5.0
- * /
-public void setHost(InetSocketAddress host) {
-String value = (host.getPort() != 0 ?
-String.format("%s:%d", host.getHostString(), host.getPort()) : host.getHostString());
-set(HOST, value);
-}
-*/
-/**
- * Return the value of the required {@code Host} header.
- * <p>If the header value does not contain a port, the returned
- * {@linkplain InetSocketAddress#getPort() port} will be {@code 0}.
- * @since 5.0
- * /
-@Nullable
-public InetSocketAddress getHost() {
-String value = getFirst(HOST);
-if (value == null) {
-return null;
-}
-int idx = value.lastIndexOf(':');
-String hostname = null;
-int port = 0;
-if (idx != -1 && idx < value.length() - 1) {
-hostname = value.substring(0, idx);
-String portString = value.substring(idx + 1);
-try {
-port = Integer.parseInt(portString);
-}
-catch (NumberFormatException ex) {
-// ignored
-}
-}
-if (hostname == null) {
-hostname = value;
-}
-return InetSocketAddress.createUnresolved(hostname, port);
-}
-*/
-/**
- * Set the (new) value of the {@code If-Match} header.
- * @since 4.3
- * /
-public void setIfMatch(String ifMatch) {
-set(IF_MATCH, ifMatch);
-}
-*/
-/**
- * Set the (new) value of the {@code If-Match} header.
- * @since 4.3
- * /
-public void setIfMatch(List<String> ifMatchList) {
-set(IF_MATCH, toCommaDelimitedString(ifMatchList));
-}
-*/
-/**
- * Return the value of the {@code If-Match} header.
- * @since 4.3
- * /
-public List<String> getIfMatch() {
-return getETagValuesAsList(IF_MATCH);
-}
-*/
-/**
- * Set the (new) value of the {@code If-Modified-Since} header.
- * <p>The date should be specified as the number of milliseconds since
- * January 1, 1970 GMT.
- * /
-public void setIfModifiedSince(long ifModifiedSince) {
-setDate(IF_MODIFIED_SINCE, ifModifiedSince);
-}
-*/
-/**
- * Return the value of the {@code If-Modified-Since} header.
- * <p>The date is returned as the number of milliseconds since
- * January 1, 1970 GMT. Returns -1 when the date is unknown.
- * /
-public long getIfModifiedSince() {
-return getFirstDate(IF_MODIFIED_SINCE, false);
-}
-*/
-/**
- * Set the (new) value of the {@code If-None-Match} header.
- * /
-public void setIfNoneMatch(String ifNoneMatch) {
-set(IF_NONE_MATCH, ifNoneMatch);
-}
-*/
-/**
- * Set the (new) values of the {@code If-None-Match} header.
- * /
-public void setIfNoneMatch(List<String> ifNoneMatchList) {
-set(IF_NONE_MATCH, toCommaDelimitedString(ifNoneMatchList));
-}
-*/
-/**
- * Return the value of the {@code If-None-Match} header.
- * /
-public List<String> getIfNoneMatch() {
-return getETagValuesAsList(IF_NONE_MATCH);
-}
-*/
-/**
- * Set the (new) value of the {@code If-Unmodified-Since} header.
- * <p>The date should be specified as the number of milliseconds since
- * January 1, 1970 GMT.
- * @since 4.3
- * /
-public void setIfUnmodifiedSince(long ifUnmodifiedSince) {
-setDate(IF_UNMODIFIED_SINCE, ifUnmodifiedSince);
-}
-*/
-/**
- * Return the value of the {@code If-Unmodified-Since} header.
- * <p>The date is returned as the number of milliseconds since
- * January 1, 1970 GMT. Returns -1 when the date is unknown.
- * @since 4.3
- * /
-public long getIfUnmodifiedSince() {
-return getFirstDate(IF_UNMODIFIED_SINCE, false);
-}
-*/
-/**
- * Set the time the resource was last changed, as specified by the
- * {@code Last-Modified} header.
- * <p>The date should be specified as the number of milliseconds since
- * January 1, 1970 GMT.
- * /
-public void setLastModified(long lastModified) {
-setDate(LAST_MODIFIED, lastModified);
-}
-*/
-/**
- * Return the time the resource was last changed, as specified by the
- * {@code Last-Modified} header.
- * <p>The date is returned as the number of milliseconds since
- * January 1, 1970 GMT. Returns -1 when the date is unknown.
- * /
-public long getLastModified() {
-return getFirstDate(LAST_MODIFIED, false);
-}
-*/
-/**
- * Set the (new) location of a resource,
- * as specified by the {@code Location} header.
- * /
-public void setLocation(URI location) {
-set(LOCATION, location.toASCIIString());
-}
-*/
-/**
- * Return the (new) location of a resource
- * as specified by the {@code Location} header.
- * <p>Returns {@code null} when the location is unknown.
- * /
-@Nullable
-public URI getLocation() {
-String value = getFirst(LOCATION);
-return (value != null ? URI.create(value) : null);
-}
-*/
-/**
- * Set the (new) value of the {@code Origin} header.
- * /
-public void setOrigin(String origin) {
-set(ORIGIN, origin);
-}
-*/
-/**
- * Return the value of the {@code Origin} header.
- * /
-public String getOrigin() {
-return getFirst(ORIGIN);
-}
-*/
-/**
- * Set the (new) value of the {@code Pragma} header.
- * /
-public void setPragma(String pragma) {
-set(PRAGMA, pragma);
-}
-*/
-/**
- * Return the value of the {@code Pragma} header.
- * /
-public String getPragma() {
-return getFirst(PRAGMA);
-}
-*/
-/**
- * Sets the (new) value of the {@code Range} header.
- * /
-public void setRange(List<HttpRange> ranges) {
-String value = HttpRange.toString(ranges);
-set(RANGE, value);
-}
-*/
-/**
- * Return the value of the {@code Range} header.
- * <p>Returns an empty list when the range is unknown.
- * /
-public List<HttpRange> getRange() {
-String value = getFirst(RANGE);
-return HttpRange.parseRanges(value);
-}
-*/
-/**
- * Set the (new) value of the {@code Upgrade} header.
- * /
-public void setUpgrade(String upgrade) {
-set(UPGRADE, upgrade);
-}
-*/
-/**
- * Return the value of the {@code Upgrade} header.
- * /
-public String getUpgrade() {
-return getFirst(UPGRADE);
-}
-*/
-/**
- * Set the request header names (e.g. "Accept-Language") for which the
- * response is subject to content negotiation and variances based on the
- * value of those request headers.
- * @param requestHeaders the request header names
- * @since 4.3
- * /
-public void setVary(List<String> requestHeaders) {
-set(VARY, toCommaDelimitedString(requestHeaders));
-}
-*/
-/**
- * Return the request header names subject to content negotiation.
- * @since 4.3
- * /
-public List<String> getVary() {
-return getValuesAsList(VARY);
-}
-*/
-/**
- * Set the given date under the given header name after formatting it as a string
- * using the pattern {@code "EEE, dd MMM yyyy HH:mm:ss zzz"}. The equivalent of
- * {@link #set(String, String)} but for date headers.
- * @since 3.2.4
- * /
-public void setDate(String headerName, long date) {
-SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMATS[0], Locale.US);
-dateFormat.setTimeZone(GMT);
-set(headerName, dateFormat.format(new Date(date)));
-}
-*/
-/**
- * Parse the first header value for the given header name as a date,
- * return -1 if there is no value, or raise {@link IllegalArgumentException}
- * if the value cannot be parsed as a date.
- * @param headerName the header name
- * @return the parsed date header, or -1 if none
- * @since 3.2.4
- * /
-public long getFirstDate(String headerName) {
-return getFirstDate(headerName, true);
-}
-*/
-/**
- * Parse the first header value for the given header name as a date,
- * return -1 if there is no value or also in case of an invalid value
- * (if {@code rejectInvalid=false}), or raise {@link IllegalArgumentException}
- * if the value cannot be parsed as a date.
- * @param headerName the header name
- * @param rejectInvalid whether to reject invalid values with an
- * {@link IllegalArgumentException} ({@code true}) or rather return -1
- * in that case ({@code false})
- * @return the parsed date header, or -1 if none (or invalid)
-  * /
-private long getFirstDate(String headerName, boolean rejectInvalid) {
-String headerValue = getFirst(headerName);
-if (headerValue == null) {
-// No header value sent at all
-return -1;
-}
-if (headerValue.length() >= 3) {
-// Short "0" or "-1" like values are never valid HTTP date headers...
-// Let's only bother with SimpleDateFormat parsing for long enough values.
-for (String dateFormat : DATE_FORMATS) {
-SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.US);
-simpleDateFormat.setTimeZone(GMT);
-try {
-return simpleDateFormat.parse(headerValue).getTime();
-}
-catch (ParseException ex) {
-// ignore
-}
-}
-}
-if (rejectInvalid) {
-throw new IllegalArgumentException("Cannot parse date value \"" + headerValue +
-					"\" for \"" + headerName + "\" header");
-}
-return -1;
-}
-*/
-/**
- * Return all values of a given header name,
- * even if this header is set multiple times.
- * @param headerName the header name
- * @return all associated values
- * @since 4.3
- * /
-public List<String> getValuesAsList(String headerName) {
-List<String> values = get(headerName);
-if (values != null) {
-List<String> result = new ArrayList<>();
-for (String value : values) {
-if (value != null) {
-String[] tokens = StringUtils.tokenizeToStringArray(value, ",");
-for (String token : tokens) {
-result.add(token);
-}
-}
-}
-return result;
-}
-return Collections.emptyList();
-}
-*/
-/**
- * Retrieve a combined result from the field values of the ETag header.
- * @param headerName the header name
- * @return the combined result
- * @since 4.3
- * /
-protected List<String> getETagValuesAsList(String headerName) {
-List<String> values = get(headerName);
-if (values != null) {
-List<String> result = new ArrayList<>();
-for (String value : values) {
-if (value != null) {
-Matcher matcher = ETAG_HEADER_VALUE_PATTERN.matcher(value);
-while (matcher.find()) {
-if ("*".equals(matcher.group())) {
-result.add(matcher.group());
-}
-else {
-result.add(matcher.group(1));
-}
-}
-if (result.isEmpty()) {
-throw new IllegalArgumentException(
-"Could not parse header '" + headerName + "' with value '" + value + "'");
-}
-}
-}
-return result;
-}
-return Collections.emptyList();
-}
-*/
-/**
- * Retrieve a combined result from the field values of multi-valued headers.
- * @param headerName the header name
- * @return the combined result
- * @since 4.3
- * /
-protected String getFieldValues(String headerName) {
-List<String> headerValues = get(headerName);
-return (headerValues != null ? toCommaDelimitedString(headerValues) : null);
-}
-*/
+  /**
+   * Set the {@linkplain MediaType media type} of the body,
+   * as specified by the {@code Content-Type} header.
+   */
+  public void function setContentType( required cfboom.http.MediaType mediaType ) {
+    Assert.isTrue( !arguments.mediaType.isWildcardType(), "'Content-Type' cannot contain wildcard type '*'" );
+    Assert.isTrue( !arguments.mediaType.isWildcardSubtype(), "'Content-Type' cannot contain wildcard subtype '*'" );
+    set( CONTENT_TYPE, mediaType.toString() );
+  }
 
-/**
- * Turn the given list of header values into a comma-delimited result.
- * @param headerValues the list of header values
- * @return a combined result with comma delimitation
- * /
-protected String toCommaDelimitedString(List<String> headerValues) {
-StringBuilder builder = new StringBuilder();
-for (Iterator<String> it = headerValues.iterator(); it.hasNext(); ) {
-String val = it.next();
-builder.append(val);
-if (it.hasNext()) {
-builder.append(", ");
-}
-}
-return builder.toString();
-}
+  /**
+   * Return the {@linkplain MediaType media type} of the body, as specified
+   * by the {@code Content-Type} header.
+   * <p>Returns {@code null} when the content-type is unknown.
+   */
+  public any function getContentType() {
+    local['value'] = getFirst( CONTENT_TYPE );
+    if ( structKeyExists( local, "value" ) && len( local.value ) )
+      return MediaType.parseMediaType( local.value );
+  }
+
+  /**
+   * Set the date and time at which the message was created, as specified
+   * by the {@code Date} header.
+   * <p>The date should be specified as the number of milliseconds since
+   * January 1, 1970 GMT.
+   */
+  public void function setDate( required numeric date ) {
+    setDate( variables.DATE, arguments.date );
+  }
+
+  /**
+   * Return the date and time at which the message was created, as specified
+   * by the {@code Date} header.
+   * <p>The date is returned as the number of milliseconds since
+   * January 1, 1970 GMT. Returns -1 when the date is unknown.
+   * @throws IllegalArgumentException if the value can't be converted to a date
+   */
+  public numeric function getDate() {
+    return getFirstDate( DATE );
+  }
+
+  /**
+   * Set the (new) entity tag of the body, as specified by the {@code ETag} header.
+   */
+  public void function setETag( string eTag ) {
+// TODO: Implement this
+/*
+    if (eTag != null) {
+    Assert.isTrue(eTag.startsWith("\"") || eTag.startsWith("W/"),
+                        "Invalid eTag, does not start with W/ or \"");
+    Assert.isTrue(eTag.endsWith("\""), "Invalid eTag, does not end with \"");
+    }
+    set(ETAG, eTag);
 */
+  }
+
+  /**
+   * Return the entity tag of the body, as specified by the {@code ETag} header.
+   */
+  public string function getETag() {
+    return getFirst( ETAG );
+  }
+
+  /**
+   * Set the date and time at which the message is no longer valid,
+   * as specified by the {@code Expires} header.
+   * <p>The date should be specified as the number of milliseconds since
+   * January 1, 1970 GMT.
+   */
+  public void function setExpires( required numeric expires ) {
+    setDate( EXPIRES, arguments.expires );
+  }
+
+  /**
+   * Return the date and time at which the message is no longer valid,
+   * as specified by the {@code Expires} header.
+   * <p>The date is returned as the number of milliseconds since
+   * January 1, 1970 GMT. Returns -1 when the date is unknown.
+   */
+  public numeric function getExpires() {
+    return getFirstDate( EXPIRES, false );
+  }
+
+  /**
+   * Set the (new) value of the {@code Host} header.
+   * <p>If the given {@linkplain InetSocketAddress#getPort() port} is {@code 0},
+   * the host header will only contain the
+   * {@linkplain InetSocketAddress#getHostString() hostname}.
+   * @since 5.0
+   */
+  public void function setHost( required any host ) {
+    local['value'] = ( arguments.host.getPort() != 0 ? String.format("%s:%d", arguments.host.getHostString(), arguments.host.getPort()) : arguments.host.getHostString() );
+    set( HOST, local.value );
+  }
+
+  /**
+   * Return the value of the required {@code Host} header.
+   * <p>If the header value does not contain a port, the returned
+   * {@linkplain InetSocketAddress#getPort() port} will be {@code 0}.
+   * @since 5.0
+   */
+  public any function getHost() {
+    local['value'] = getFirst( HOST );
+    if ( !structKeyExists( local, "value" ) ) {
+      return;
+    }
+    local['idx'] = local.value.lastIndexOf(':');
+    local['port'] = 0;
+    if ( local.idx != -1 && local.idx < local.value.length() - 1 ) {
+      local['hostname'] = local.value.substring( javaCast("int",0), local.idx );
+      local['portString'] = local.value.substring( javaCast("int",local.idx + 1) );
+      try {
+        local.port = Integer.parseInt( local.portString );
+      }
+      catch ( java.lang.NumberFormatException ex ) {
+        // ignored
+      }
+    }
+    if ( !structKeyExists( local, "hostname" ) ) {
+      local['hostname'] = local.value;
+    }
+    return InetSocketAddress.createUnresolved( local.hostname, local.port );
+  }
+
+  /**
+   * Set the (new) value of the {@code If-Match} header.
+   * @since 4.3
+   */
+  public void function setIfMatch( required string ifMatch ) {
+    set( IF_MATCH, arguments.ifMatch );
+  }
+
+  /**
+   * Set the (new) value of the {@code If-Match} header.
+   * @since 4.3
+   */
+  public void function setIfMatch( required any ifMatchList ) {
+    set( IF_MATCH, toCommaDelimitedString( arguments.ifMatchList ) );
+  }
+
+  /**
+   * Return the value of the {@code If-Match} header.
+   * @since 4.3
+   */
+  public any function getIfMatch() {
+    return getETagValuesAsList( IF_MATCH );
+  }
+
+  /**
+   * Set the (new) value of the {@code If-Modified-Since} header.
+   * <p>The date should be specified as the number of milliseconds since
+   * January 1, 1970 GMT.
+   */
+  public void function setIfModifiedSince( required numeric ifModifiedSince ) {
+    setDate( IF_MODIFIED_SINCE, arguments.ifModifiedSince );
+  }
+
+  /**
+   * Return the value of the {@code If-Modified-Since} header.
+   * <p>The date is returned as the number of milliseconds since
+   * January 1, 1970 GMT. Returns -1 when the date is unknown.
+   */
+  public numeric function getIfModifiedSince() {
+    return getFirstDate( IF_MODIFIED_SINCE, false );
+  }
+
+  /**
+   * Set the (new) value of the {@code If-None-Match} header.
+   */
+  public void function setIfNoneMatch( required string ifNoneMatch ) {
+    set( IF_NONE_MATCH, arguments.ifNoneMatch );
+  }
+
+  /**
+   * Set the (new) values of the {@code If-None-Match} header.
+   */
+  public void function setIfNoneMatch( required any ifNoneMatchList ) {
+    set( IF_NONE_MATCH, toCommaDelimitedString( arguments.ifNoneMatchList ) );
+  }
+
+  /**
+   * Return the value of the {@code If-None-Match} header.
+   */
+  public any function getIfNoneMatch() {
+    return getETagValuesAsList( IF_NONE_MATCH );
+  }
+
+  /**
+   * Set the (new) value of the {@code If-Unmodified-Since} header.
+   * <p>The date should be specified as the number of milliseconds since
+   * January 1, 1970 GMT.
+   * @since 4.3
+   */
+  public void function setIfUnmodifiedSince( required numeric ifUnmodifiedSince ) {
+    setDate( IF_UNMODIFIED_SINCE, arguments.ifUnmodifiedSince );
+  }
+
+  /**
+   * Return the value of the {@code If-Unmodified-Since} header.
+   * <p>The date is returned as the number of milliseconds since
+   * January 1, 1970 GMT. Returns -1 when the date is unknown.
+   * @since 4.3
+   */
+  public numeric function getIfUnmodifiedSince() {
+    return getFirstDate( IF_UNMODIFIED_SINCE, false );
+  }
+
+  /**
+   * Set the time the resource was last changed, as specified by the
+   * {@code Last-Modified} header.
+   * <p>The date should be specified as the number of milliseconds since
+   * January 1, 1970 GMT.
+   */
+  public void function setLastModified( required numeric lastModified ) {
+    setDate( LAST_MODIFIED, arguments.lastModified );
+  }
+
+  /**
+   * Return the time the resource was last changed, as specified by the
+   * {@code Last-Modified} header.
+   * <p>The date is returned as the number of milliseconds since
+   * January 1, 1970 GMT. Returns -1 when the date is unknown.
+   */
+  public numeric function getLastModified() {
+    return getFirstDate( LAST_MODIFIED, false );
+  }
+
+  /**
+   * Set the (new) location of a resource,
+   * as specified by the {@code Location} header.
+   */
+  public void function setLocation( required any location ) {
+    set( LOCATION, arguments.location.toASCIIString() );
+  }
+
+  /**
+   * Return the (new) location of a resource
+   * as specified by the {@code Location} header.
+   * <p>Returns {@code null} when the location is unknown.
+   */
+  public any function getLocation() {
+    local['value'] = getFirst( LOCATION );
+    if ( structKeyExists( local, "value" ) )
+      return createObject("java","java.net.URI").create( local.value );
+  }
+
+  /**
+   * Set the (new) value of the {@code Origin} header.
+   */
+  public void function setOrigin( required string origin ) {
+    set( variables.ORIGIN, arguments.origin );
+  }
+
+  /**
+   * Return the value of the {@code Origin} header.
+   */
+  public string function getOrigin() {
+    return getFirst( ORIGIN );
+  }
+
+  /**
+   * Set the (new) value of the {@code Pragma} header.
+   */
+  public void function setPragma( required string pragma ) {
+    set( variables.PRAGMA, arguments.pragma );
+  }
+
+  /**
+   * Return the value of the {@code Pragma} header.
+   */
+  public string function getPragma() {
+    return getFirst( PRAGMA );
+  }
+
+  /**
+   * Sets the (new) value of the {@code Range} header.
+   */
+  public void function setRange( required any ranges ) {
+    local['value'] = toCommaDelimitedString( arguments.ranges );
+    set( RANGE, local.value );
+  }
+
+  /**
+   * Return the value of the {@code Range} header.
+   * <p>Returns an empty list when the range is unknown.
+   */
+  public any function getRange() {
+    local['value'] = getFirst( RANGE );
+    return HttpRange.parseRanges( local.value );
+  }
+
+  /**
+   * Set the (new) value of the {@code Upgrade} header.
+   */
+  public void function setUpgrade( required string upgrade ) {
+    set( variables.UPGRADE, arguments.upgrade );
+  }
+
+  /**
+   * Return the value of the {@code Upgrade} header.
+   */
+  public string function getUpgrade() {
+    return getFirst( UPGRADE );
+  }
+
+  /**
+   * Set the request header names (e.g. "Accept-Language") for which the
+   * response is subject to content negotiation and variances based on the
+   * value of those request headers.
+   * @param requestHeaders the request header names
+   * @since 4.3
+   */
+  public void function setVary( required any requestHeaders ) {
+    set( VARY, toCommaDelimitedString( arguments.requestHeaders ) );
+  }
+
+  /**
+   * Return the request header names subject to content negotiation.
+   * @since 4.3
+   */
+  public any function getVary() {
+    return getValuesAsList( VARY );
+  }
+
+  /**
+   * Set the given date under the given header name after formatting it as a string
+   * using the pattern {@code "EEE, dd MMM yyyy HH:mm:ss zzz"}. The equivalent of
+   * {@link #set(String, String)} but for date headers.
+   * @since 3.2.4
+   */
+  public void function setDate( required string headerName, required numeric theDate ) {
+    local['dateFormat'] = createObject("java","java.text.SimpleDateFormat").init( DATE_FORMATS[1], Locale.US );
+    local.dateFormat.setTimeZone( GMT );
+    set( arguments.headerName, local.dateFormat.format( createObject("java","java.util.Date").init( javaCast("long", arguments.theDate ) )));
+  }
+
+  /**
+   * Parse the first header value for the given header name as a date,
+   * return -1 if there is no value or also in case of an invalid value
+   * (if {@code rejectInvalid=false}), or raise {@link IllegalArgumentException}
+   * if the value cannot be parsed as a date.
+   * @param headerName the header name
+   * @param rejectInvalid whether to reject invalid values with an
+   * {@link IllegalArgumentException} ({@code true}) or rather return -1
+   * in that case ({@code false})
+   * @return the parsed date header, or -1 if none (or invalid)
+   */
+  private numeric function getFirstDate( required string headerName, boolean rejectInvalid = true ) {
+    local['headerValue'] = getFirst( arguments.headerName );
+    if ( !structKeyExists( local, "headerValue" ) ) {
+      // No header value sent at all
+      return javaCast("long",-1);
+    }
+    if ( local.headerValue.length() >= 3 ) {
+      // Short "0" or "-1" like values are never valid HTTP date headers...
+      // Let's only bother with SimpleDateFormat parsing for long enough values.
+      for ( var dateFormat in DATE_FORMATS ) {
+        local['simpleDateFormat'] = createObject("java","java.text.SimpleDateFormat").init( dateFormat, Locale.US );
+        local.simpleDateFormat.setTimeZone( GMT );
+        try {
+          return local.simpleDateFormat.parse( local.headerValue ).getTime();
+        }
+        catch (java.text.ParseException ex) {
+          // ignore
+        }
+      }
+    }
+    if ( arguments.rejectInvalid ) {
+      throw( object=createObject( "java", "java.lang.IllegalArgumentException" ).init( 'Cannot parse date value "' & local.headerValue & '" for "' & local.headerName & '" header' ) );
+    }
+    return javaCast("long",-1);
+  }
+
+  /**
+   * Return all values of a given header name,
+   * even if this header is set multiple times.
+   * @param headerName the header name
+   * @return all associated values
+   * @since 4.3
+   */
+  public array function getValuesAsList( required string headerName ) {
+    local['values'] = get( arguments.headerName );
+    if ( structKeyExists( local, "values" ) ) {
+      local['result'] = [];
+      for ( var value in local.values ) {
+        if ( !isNull( value ) ) {
+          local['tokens'] = listToArray( value );
+          for ( var token in local.tokens ) {
+            arrayAppend( local.result, trim( token ) );
+          }
+        }
+      }
+      return local.result;
+    }
+    return [];
+  }
+
+  /**
+   * Retrieve a combined result from the field values of the ETag header.
+   * @param headerName the header name
+   * @return the combined result
+   * @since 4.3
+   */
+  public any function getETagValuesAsList( required string headerName ) {
+    variables['Collections'] = createObject("java", "java.util.Collections");
+    local['values'] = get( arguments.headerName );
+    if ( structKeyExists( local, "values" ) ) {
+      local['result'] = createObject("java","java.util.ArrayList").init();
+      for ( var value in local.values ) {
+        if ( !isNull( value ) ) {
+          local['matcher'] = ETAG_HEADER_VALUE_PATTERN.matcher( value );
+          while ( local.matcher.find() ) {
+            local['asterisk'] = "*";
+            if ( local.asterisk.equals( local.matcher.group() ) ) {
+              local.result.add( local.matcher.group() );
+            }
+            else {
+              local.result.add( local.matcher.group( javaCast("int",1) ) );
+            }
+          }
+          if ( local.result.isEmpty() ) {
+            throw( object=createObject( "java", "java.lang.IllegalArgumentException" ).init( 'Could not parse header "' & arguments.headerName & '" with value "' & value & '"' ) );
+          }
+        }
+      }
+      return local.result;
+    }
+    return Collections.emptyList();
+  }
+
+  /**
+   * Retrieve a combined result from the field values of multi-valued headers.
+   * @param headerName the header name
+   * @return the combined result
+   * @since 4.3
+   */
+  public string function getFieldValues( string headerName ) {
+    if ( structKeyExists( arguments, "headerName" ) ) {
+      local['headerValues'] = get( arguments.headerName );
+      if ( structKeyExists( local, "headerValues" ) )
+        return toCommaDelimitedString( local.headerValues );
+    }
+  }
+
+  /**
+   * Turn the given list of header values into a comma-delimited result.
+   * @param headerValues the list of header values
+   * @return a combined result with comma delimitation
+   */
+  public string function toCommaDelimitedString( any headerValues ) {
+    if ( structKeyExists( arguments, "headerValues" ) ) {
+      if ( !isArray( arguments.headerValues ) )
+        arguments.headerValues = [ arguments.headerValues ];
+      local['builder'] = createObject("java","java.lang.StringBuilder").init();
+      local['first'] = true;
+      for ( var headerValue in arguments.headerValues ) {
+        if ( !local.first )
+          local.builder.append(", ");
+        local.builder.append( headerValue );
+        local['first'] = false;
+      }
+      return local.builder.toString();
+    }
+  }
+
+  private numeric function qualityValueCompare( required string obj1, required string obj2 ) {
+    local['objArr1'] = listToArray( arguments.obj1, ";q=" );
+    if ( !arrayIsDefined( local.objArr1, 2 ) ) {
+      arrayAppend( local.objArr1, javaCast( "double", 1 ) );
+    } else {
+      local.objArr1[2] = javaCast( "double", local.objArr1[2] );
+    }
+    local['objArr2'] = listToArray( arguments.obj2, ";q=" );
+    if ( !arrayIsDefined( local.objArr2, 2 ) ) {
+      arrayAppend( local.objArr2, javaCast( "double", 1 ) );
+    } else {
+      local.objArr2[2] = javaCast( "double", local.objArr2[2] );
+    }
+    // Reverse the compare so that the highest quality value is first.
+    if ( local.objArr1[2] < local.objArr2[2] ) {
+      return 1;
+    } else if ( local.objArr1[2] > local.objArr2[2] ) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
 
   // MultiValueMap implementation
 
@@ -1284,31 +1318,44 @@ return builder.toString();
    */
   public string function getFirst( required string headerName ) {
     if ( structKeyExists(_instance.headers, arguments.headerName))
-      local['headerValues'] = _instance.headers.get( arguments.headerName );
-    return (structKeyExists(local,"headerValues") ? local.headerValues.get(0) : javaCast("null",""));
+      local['headerValues'] = _instance.headers[ arguments.headerName ];
+    if ( structKeyExists( local, "headerValues" ) )
+      return local.headerValues[1];
   }
 
-/**
- * Add the given, single header value under the given name.
- * @param headerName the header name
- * @param headerValue the header value
- * @throws UnsupportedOperationException if adding headers is not supported
- * @see #put(String, List)
- * @see #set(String, String)
- * /
-@Override
-public void add(String headerName, @Nullable String headerValue) {
-List<String> headerValues = this.headers.computeIfAbsent(headerName, k -> new LinkedList<>());
-headerValues.add(headerValue);
-}
-*/
-/*
-@Override
-public void addAll(String key, List<String> values) {
-List<String> currentValues = this.headers.computeIfAbsent(key, k -> new LinkedList<>());
-currentValues.addAll(values);
-}
-*/
+  /**
+   * Add the given, single header value under the given name.
+   * @param headerName the header name
+   * @param headerValue the header value
+   * @throws UnsupportedOperationException if adding headers is not supported
+   * @see #put(String, List)
+   * @see #set(String, String)
+   */
+  public void function add( required string headerName, string headerValue ) {
+    if ( structKeyExists( arguments, "headerValue" ) ) {
+      local['headerValues'] = [];
+      if ( structKeyExists( _instance.headers, arguments.headerName ) )
+        local['headerValues'] = _instance.headers[ arguments.headerName ];
+      if ( !arrayFindNoCase( local.headerValues, arguments.headerValue ) ) {
+        arrayAppend( local.headerValues, arguments.headerValue );
+        _instance.headers[ arguments.headerName ] = local.headerValues;
+      }
+    }
+  }
+
+  public void function addAll( required string key, array values ) {
+    if ( structKeyExists( arguments, "values" ) ) {
+      local['headerValues'] = [];
+      if ( structKeyExists( _instance.headers, arguments.key ) )
+        local['headerValues'] = _instance.headers[ arguments.key ];
+      for ( var ele in arguments.values ) {
+        if ( !arrayFindNoCase( local.headerValues, arguments.values[ele] ) )
+          arrayAppend( local.headerValues, arguments.values[ele] );
+      }
+      _instance.headers[ arguments.headerName ] = local.headerValues;
+    }
+  }
+
   /**
    * Set the given, single header value under the given name.
    * @param headerName the header name
@@ -1318,112 +1365,78 @@ currentValues.addAll(values);
    * @see #add(String, String)
    */
   public void function set( required string headerName, required string headerValue ) {
-    local['headerValues'] = createObject("java","java.util.LinkedList").init();
-    local.headerValues.add( arguments.headerValue );
-    _instance.headers.put( arguments.headerName, local.headerValues );
+    local['headerValues'] = [];
+    arrayAppend( local.headerValues, arguments.headerValue );
+    _instance.headers[ arguments.headerName ] = local.headerValues;
   }
 
-/*
-@Override
-public void setAll(Map<String, String> values) {
-for (Entry<String, String> entry : values.entrySet()) {
-set(entry.getKey(), entry.getValue());
-}
-}
+  public void function setAll( struct values ) {
+    for ( var key in arguments.values ) {
+      set( key, arguments.values[ key ] );
+    }
+  }
 
-@Override
-public Map<String, String> toSingleValueMap() {
-LinkedHashMap<String, String> singleValueMap = new LinkedHashMap<>(this.headers.size());
-for (Entry<String, List<String>> entry : this.headers.entrySet()) {
-singleValueMap.put(entry.getKey(), entry.getValue().get(0));
-}
-return singleValueMap;
-}
+  public struct function toSingleValueMap() {
+    local['singleValueMap'] = {};
+    for ( var key in _instance.headers ) {
+      local.singleValueMap[key] = _instance.headers[key][1];
+    }
+    return local.singleValueMap;
+  }
 
+  // Map implementation
 
-// Map implementation
+  public numeric function size() {
+    return _instance.headers.size();
+  }
 
-@Override
-public int size() {
-return this.headers.size();
-}
+  public boolean function isEmpty() {
+    return structIsEmpty( _instance.headers );
+  }
 
-@Override
-public boolean isEmpty() {
-return this.headers.isEmpty();
-}
+  public boolean function containsKey( string key ) {
+    return structKeyExists( _instance.headers, arguments.key );
+  }
 
-@Override
-public boolean containsKey(Object key) {
-return this.headers.containsKey(key);
-}
+  public boolean function containsValue( string value ) {
+    return _instance.headers.containsValue( arguments.value );
+  }
 
-@Override
-public boolean containsValue(Object value) {
-return this.headers.containsValue(value);
-}
+  public any function get( string key ) {
+    if ( structKeyExists( _instance.headers, arguments.key ) )
+      return _instance.headers[ arguments.key ];
+  }
 
-@Override
-public List<String> get(Object key) {
-return this.headers.get(key);
-}
+  public any function put( string key, any value ) {
+    return _instance.headers.put( arguments.key, arguments.value );
+  }
 
-@Override
-public List<String> put(String key, List<String> value) {
-return this.headers.put(key, value);
-}
+  public any function remove( string key ) {
+    return _instance.headers.remove( arguments.key );
+  }
 
-@Override
-public List<String> remove(Object key) {
-return this.headers.remove(key);
-}
+  public void function putAll( struct map ) {
+    _instance.headers.putAll( arguments.map );
+  }
 
-@Override
-public void putAll(Map<? extends String, ? extends List<String>> map) {
-this.headers.putAll(map);
-}
+  public void function clear() {
+    _instance.headers.clear();
+  }
 
-@Override
-public void clear() {
-this.headers.clear();
-}
+  public any function keySet() {
+    return _instance.headers.keySet();
+  }
 
-@Override
-public Set<String> keySet() {
-return this.headers.keySet();
-}
+  public any function values() {
+    return _instance.headers.values();
+  }
 
-@Override
-public Collection<List<String>> values() {
-return this.headers.values();
-}
+  public any function entrySet() {
+    return _instance.headers.entrySet();
+  }
 
-@Override
-public Set<Entry<String, List<String>>> entrySet() {
-return this.headers.entrySet();
-}
+  public string function toString() {
+    return _instance.headers.toString();
+  }
 
-
-@Override
-public boolean equals(Object other) {
-if (this == other) {
-return true;
-}
-if (!(other instanceof HttpHeaders)) {
-return false;
-}
-HttpHeaders otherHeaders = (HttpHeaders) other;
-return this.headers.equals(otherHeaders.headers);
-}
-
-@Override
-public int hashCode() {
-return this.headers.hashCode();
-}
-
-@Override
-public String toString() {
-return this.headers.toString();
-}
-*/
 }

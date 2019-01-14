@@ -58,23 +58,19 @@ component
   /**
    * Internally used during HttpMethod.enum().
    */
-  public cfboom.http.HttpMethod function init( required string value ) {
-    _instance['value'] = arguments.value;
+  public cfboom.http.HttpMethod function init( required string name ) {
+    _instance['name'] = arguments.name;
     return this;
   }
 
-  public string function value() {
-    return _instance.value;
-  }
-
   public string function name() {
-    return _instance.value;
+    return _instance.name;
   }
 
   /**
    * Return the enum values.
    */
-  public struct function values() {
+  public struct function enums() {
     return _instance.enums;
   }
 
@@ -97,14 +93,14 @@ component
    * @since 4.2.4
    */
   public boolean function matches( required string method ) {
-    if ( !structKeyExists( _instance, "value" ) ) {
+    if ( !structKeyExists( _instance, "name" ) ) {
       return false;
     } else {
-      return value() == arguments.method;
+      return _instance.name == arguments.method;
     }
   }
 
   public string function toString() {
-    return "HttpMethod: " & _instance.value;
+    return "HttpMethod: " & _instance.name;
   }
 }
