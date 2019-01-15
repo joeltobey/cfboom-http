@@ -23,7 +23,7 @@ component
   displayname="Abstract Class AbstractClientHttpResponse"
   output="false"
 {
-  property name="HttpStatus" inject="HttpStatus@cfboomHttp";
+  property name="HttpStatus" inject="HttpStatus@cfboom-http";
 
   public cfboom.http.client.AbstractClientHttpResponse function init( any result ) {
     super.init( arguments.result );

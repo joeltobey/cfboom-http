@@ -26,8 +26,8 @@ component
   // this will run once after initialization and before setUp()
   public void function beforeTests() {
     super.beforeTests();
-    variables['HttpStatus'] = getInstance("HttpStatus@cfboomHttp");
-    variables['HttpHeaders'] = getInstance("HttpHeadersSingleton@cfboomHttp");
+    variables['HttpStatus'] = getInstance("HttpStatus@cfboom-http");
+    variables['HttpHeaders'] = getInstance("HttpHeadersSingleton@cfboom-http");
   }
 
   function setup(){

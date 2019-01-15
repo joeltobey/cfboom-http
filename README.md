@@ -19,14 +19,14 @@ Just drop into your **modules** folder or use CommandBox to install
 `box install cfboom-http`
 
 ## WireBox Mappings
-The module registers the BasicHttpClient: `BasicHttpClient@cfboomHttp` that executes all of your HTTP requests. Check out the API Docs for all the possible functions.
+The module registers the BasicHttpClient: `BasicHttpClient@cfboom-http` that executes all of your HTTP requests. Check out the API Docs for all the possible functions.
 
 ## Settings
-There's an optional setting in your `ColdBox.cfc` file under a `cfboomHttp` struct of `moduleSettings` to override the default `HttpRequestExecutor`:
+There's an optional setting in your `ColdBox.cfc` file under a `cfboom-http` struct of `moduleSettings` to override the default `HttpRequestExecutor`:
 
 ```js
 moduleSettings = {
-  cfboomHttp = {
+  cfboom-http = {
     /**
      * The HttpRequestExecutor used by the BasicHttpClient by default.
      * It must implement cfboom.http.protocol.HttpRequestExecutor.
@@ -42,9 +42,9 @@ moduleSettings = {
 Once you have an instance of the `HttpClient`, you can call these methods:
 
 ```
-#getInstance( "BasicHttpClient@cfboomHttp" ).get( string uri )#
-#getInstance( "BasicHttpClient@cfboomHttp" ).execute( cfboom.http.HttpRequest req )#
-#getInstance( "BasicHttpClient@cfboomHttp" ).setExecutor( cfboom.http.protocol.HttpRequestExecutor executor )#
+#getInstance( "BasicHttpClient@cfboom-http" ).get( string uri )#
+#getInstance( "BasicHttpClient@cfboom-http" ).execute( cfboom.http.HttpRequest req )#
+#getInstance( "BasicHttpClient@cfboom-http" ).setExecutor( cfboom.http.protocol.HttpRequestExecutor executor )#
 ```
 
 ## HttpRequest Methods

@@ -22,8 +22,8 @@ component
   displayname="Abstract Class HttpAccessor"
   output="false"
 {
-  property name="requestFactory" inject="SimpleClientHttpRequestFactory@cfboomHttp";
-  property name="HttpMethod" inject="HttpMethod@cfboomHttp";
+  property name="requestFactory" inject="SimpleClientHttpRequestFactory@cfboom-http";
+  property name="HttpMethod" inject="HttpMethod@cfboom-http";
   property name="log" inject="logbox:logger:{this}";
 
   public cfboom.http.client.support.HttpAccessor function init() {

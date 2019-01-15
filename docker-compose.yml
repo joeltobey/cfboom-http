@@ -1,9 +1,13 @@
 version: '3'
 services:
-  cfboom_http:
+  cfboom-http:
+    build:
+      context: .
+      args:
+        RUN_TESTS: "false"
+    image: cfboom/http
     container_name: cfboom-http
-    build: .
     ports:
     - "8888:8888"
     volumes:
-    - .:/var/www/modules_app/cfboom-http
+    - .:/var/www/modules/cfboom/modules/cfboom-http

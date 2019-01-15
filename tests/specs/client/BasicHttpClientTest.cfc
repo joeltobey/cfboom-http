@@ -64,7 +64,7 @@ component
    * @Test
    */
   public void function testDefaults() {
-    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var httpClient = getInstance("BasicHttpClient@cfboom-http");
     var sb = createObject("java", "java.lang.StringBuilder").init("http");
     if (cgi.server_port_secure)
       sb.append("s");
@@ -80,7 +80,7 @@ component
    * @Test
    */
   public void function testJson() {
-    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var httpClient = getInstance("BasicHttpClient@cfboom-http");
     var sb = createObject("java", "java.lang.StringBuilder").init("http");
     if (cgi.server_port_secure)
       sb.append("s");
@@ -104,7 +104,7 @@ nostrum rerum est autem sunt rem eveniet architecto", user.body );
    * @Test
    */
   public void function testXml() {
-    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var httpClient = getInstance("BasicHttpClient@cfboom-http");
     var sb = createObject("java", "java.lang.StringBuilder").init("http");
     if (cgi.server_port_secure)
       sb.append("s");

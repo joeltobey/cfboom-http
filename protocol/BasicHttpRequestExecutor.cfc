@@ -36,7 +36,7 @@ component
   output=false
 {
   property name="httpResponse" inject="coldbox:setting:httpResponse@cfboom-http";
-  property name="HttpStatus" inject="HttpStatus@cfboomHttp";
+  property name="HttpStatus" inject="HttpStatus@cfboom-http";
   property name="wirebox" inject="wirebox";
 
   public cfboom.http.protocol.BasicHttpRequestExecutor function init() {

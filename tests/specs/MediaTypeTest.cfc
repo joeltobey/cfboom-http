@@ -28,7 +28,7 @@ component
   // this will run once after initialization and before setUp()
   public void function beforeTests() {
     super.beforeTests();
-    variables['MediaType'] = getInstance("MediaType@cfboomHttp");
+    variables['MediaType'] = getInstance("MediaType@cfboom-http");
   }
 
   function setup(){}

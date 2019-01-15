@@ -35,11 +35,11 @@ component
     }
     variables['EXAMPLE_FILE'] = trimmedExamplePath;
 
-    variables['HttpMethod'] = getInstance("HttpMethod@cfboomHttp");
+    variables['HttpMethod'] = getInstance("HttpMethod@cfboom-http");
   }
 
   function setup(){
-    variables['factory'] = getInstance("SimpleClientHttpRequestFactory@cfboomHttp");
+    variables['factory'] = getInstance("SimpleClientHttpRequestFactory@cfboom-http");
   }
 
   function teardown(){

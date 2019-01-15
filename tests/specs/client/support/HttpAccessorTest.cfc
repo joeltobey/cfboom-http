@@ -35,7 +35,7 @@ component
     }
     variables['EXAMPLE_FILE'] = trimmedExamplePath;
 
-    variables['HttpMethod'] = getInstance("HttpMethod@cfboomHttp");
+    variables['HttpMethod'] = getInstance("HttpMethod@cfboom-http");
   }
 
   function setup(){

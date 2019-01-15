@@ -30,7 +30,7 @@ component singleton
   output="false"
 {
   property name="wirebox" inject="wirebox";
-  property name="HttpMethod" inject="HttpMethod@cfboomHttp";
+  property name="HttpMethod" inject="HttpMethod@cfboom-http";
 
   variables.DEFAULT_CHUNK_SIZE = javaCast( "int", 4096 );
 
@@ -136,13 +136,13 @@ component singleton
       arguments['uri'] = createObject( "java", "java.net.URI" ).init( arguments.uri );
 
     if ( _instance.standardRequestBody ) {
-      return wirebox.getInstance( name="SimpleClientHttpRequest@cfboomHttp", initArguments={ method= arguments.httpMethod, uri = arguments.uri } );
+      return wirebox.getInstance( name="SimpleClientHttpRequest@cfboom-http", initArguments={ method= arguments.httpMethod, uri = arguments.uri } );
     } else {
       local['connection'] = openConnection( arguments.uri.toURL() );
       prepareConnection( local.connection, arguments.httpMethod.value() );
 
       if ( _instance.bufferRequestBody ) {
-        return wirebox.getInstance( name="SimpleBufferingClientHttpRequest@cfboomHttp", initArguments={ connection= local.connection, outputStreaming = _instance.outputStreaming } );
+        return wirebox.getInstance( name="SimpleBufferingClientHttpRequest@cfboom-http", initArguments={ connection= local.connection, outputStreaming = _instance.outputStreaming } );
       }
       else {
         return new SimpleStreamingClientHttpRequest(connection, this.chunkSize, this._instance );

@@ -23,7 +23,7 @@ component
   displayname="Class SimpleBufferingClientHttpRequest"
   output="false"
 {
-  property name="HttpMethod" inject="HttpMethod@cfboomHttp";
+  property name="HttpMethod" inject="HttpMethod@cfboom-http";
 
   /**
    * @connection.hint java.net.HttpURLConnection

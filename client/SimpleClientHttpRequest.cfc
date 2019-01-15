@@ -25,7 +25,7 @@ component
   displayname="Class SimpleClientHttpRequest"
   output="false"
 {
-  property name="httpClient" inject="BasicHttpClient@cfboomHttp";
+  property name="httpClient" inject="BasicHttpClient@cfboom-http";
 
   public cfboom.http.client.SimpleClientHttpRequest function init( required cfboom.http.HttpMethod method, required any uri ) {
     // Make sure we have an URI

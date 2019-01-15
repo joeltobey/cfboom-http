@@ -26,7 +26,7 @@ component
   // this will run once after initialization and before setUp()
   public void function beforeTests() {
   	super.beforeTests();
-    variables['RestTemplate'] = getInstance( "RestTemplate@cfboomHttp" );
+    variables['RestTemplate'] = getInstance( "RestTemplate@cfboom-http" );
   }
 
   // this will run once after all tests have been run

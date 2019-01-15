@@ -51,7 +51,7 @@ component
     }
     variables['XML_EXAMPLE_FILE'] = trimmedXmlExamplePath;
 
-    variables['HttpMethod'] = getInstance("HttpMethod@cfboomHttp");
+    variables['HttpMethod'] = getInstance("HttpMethod@cfboom-http");
   }
 
   // this will run once after all tests have been run
@@ -74,7 +74,7 @@ component
       .append(cgi.http_host)
       .append(cgi.context_path)
       .append( EXAMPLE_FILE );
-    var req = getInstance( name="SimpleClientHttpRequest@cfboomHttp", initArguments={ method= HttpMethod.GET, uri = sb.toString() } );
+    var req = getInstance( name="SimpleClientHttpRequest@cfboom-http", initArguments={ method= HttpMethod.GET, uri = sb.toString() } );
     var res = req.execute();
     assertEqualsCase("example text", res.getFileContent());
   }
@@ -90,7 +90,7 @@ component
       .append(cgi.http_host)
       .append(cgi.context_path)
       .append( JSON_EXAMPLE_FILE );
-    var req = getInstance( name="SimpleClientHttpRequest@cfboomHttp", initArguments={ method= HttpMethod.GET, uri = sb.toString() } );
+    var req = getInstance( name="SimpleClientHttpRequest@cfboom-http", initArguments={ method= HttpMethod.GET, uri = sb.toString() } );
     var res = req.execute();
     assertEqualsCase('{"userId":1,"id":1,"title":"sunt aut facere repellat provident occaecati excepturi optio reprehenderit","body":"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}', res.getFileContent());
     var user = res.getDeserializedContent();
@@ -114,7 +114,7 @@ nostrum rerum est autem sunt rem eveniet architecto", user.body );
       .append(cgi.http_host)
       .append(cgi.context_path)
       .append( XML_EXAMPLE_FILE );
-    var req = getInstance( name="SimpleClientHttpRequest@cfboomHttp", initArguments={ method= HttpMethod.GET, uri = sb.toString() } );
+    var req = getInstance( name="SimpleClientHttpRequest@cfboom-http", initArguments={ method= HttpMethod.GET, uri = sb.toString() } );
     var res = req.execute();
     assertEqualsCase('<?xml version="1.0" encoding="UTF-8"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don''t forget me this weekend!</body></note>', res.getFileContent());
     var doc = res.getDeserializedContent();

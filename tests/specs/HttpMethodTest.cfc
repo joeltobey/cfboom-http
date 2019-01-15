@@ -38,7 +38,7 @@ component
     httpMethods.put("TRACE", "TRACE");
 
 
-    variables['HttpMethod'] = getInstance("HttpMethod@cfboomHttp");
+    variables['HttpMethod'] = getInstance("HttpMethod@cfboom-http");
   }
 
   // this will run once after all tests have been run

@@ -96,7 +96,7 @@ component
     statusCodes.put(javaCast("int", 510), "NOT_EXTENDED");
     statusCodes.put(javaCast("int", 511), "NETWORK_AUTHENTICATION_REQUIRED");
 
-    variables['HttpStatus'] = getInstance("HttpStatus@cfboomHttp");
+    variables['HttpStatus'] = getInstance("HttpStatus@cfboom-http");
   }
 
   // this will run once after all tests have been run

@@ -90,7 +90,7 @@ component
   property name="acceptHeaderRequestCallback" inject="cfboom.http.web.client.AcceptHeaderRequestCallback";
   property name="httpEntityRequestCallback" inject="cfboom.http.web.client.HttpEntityRequestCallback";
   property name="uriTemplateHandler" inject="cfboom.http.web.util.DefaultUriBuilderFactory";
-  property name="HttpMethod" inject="HttpMethod@cfboomHttp";
+  property name="HttpMethod" inject="HttpMethod@cfboom-http";
 
   public cfboom.http.web.client.RestTemplate function init() {
     return this;
