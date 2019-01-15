@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,9 +43,9 @@ component
       var executorMeta = getComponentMetadata( arguments.executor );
       executorName = structKeyExists( executorMeta, "fullname" ) ? executorMeta.fullname : executorMeta.name;
     }
-    if (!isNull(log))
-      log.debug( getComponentName() & " setting executor with [" & executorName & "]") ;
-    _instance['executor'] = arguments.executor;
+    if (structKeyExists(variables, "log"))
+      variables.log.debug( getComponentName() & " setting executor with [" & executorName & "]") ;
+    variables['_executor'] = arguments.executor;
   }
 
   public cfboom.http.HttpResponse function get( string uri ) {

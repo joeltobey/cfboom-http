@@ -33,9 +33,7 @@
             "version":">9.02"
         }
     ],
-    "dependencies":{
-        "cfboom-lang":"^1"
-    },
+    "dependencies":{},
     "ignore":[
         "**/.*",
         "tests",

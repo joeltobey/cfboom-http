@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,51 +27,51 @@ component
 {
   import cfboom.http.RequestParam;
 
-  _instance['queryParams'] = {};
-  _instance['formFields'] = {};
-  _instance['params'] = {};
-  _instance['executed'] = false;
+  variables['_queryParams'] = {};
+  variables['_formFields'] = {};
+  variables['_params'] = {};
+  variables['_executed'] = false;
 
   public cfboom.http.message.BasicHttpRequest function init(required string method, required string uri) {
     super.init();
-    _instance['method'] = UCase(arguments.method);
-    _instance['uri'] = createObject("java","java.net.URI").init(trim(arguments.uri));
+    variables['_method'] = UCase(arguments.method);
+    variables['_uri'] = createObject("java","java.net.URI").init(trim(arguments.uri));
     return this;
   }
 
   public string function getMethod() {
-    return _instance.method;
+    return variables._method;
   }
 
   public any function getURI() {
-    return _instance.uri;
+    return variables._uri;
   }
 
   public boolean function hasExecuted() {
-    return _instance.executed;
+    return variables._executed;
   }
 
   public void function setExecuted(boolean executed = false) {
-    _instance['executed'] = arguments.executed;
+    variables['_executed'] = arguments.executed;
   }
 
   public string function getName() {
-    if (structKeyExists(_instance, "name"))
-      return _instance.name;
+    if (structKeyExists(variables, "_name"))
+      return variables._name;
   }
 
   public void function setName(required string name) {
-    _instance['name'] = arguments.name;
+    variables['_name'] = arguments.name;
   }
 
   public boolean function containsQueryParam(string name) {
-    return structKeyExists(_instance.queryParams, arguments.name);
+    return structKeyExists(variables._queryParams, arguments.name);
   }
 
   public array function getQueryParams(string name) {
     var arrayToReturn = [];
     if (containsQueryParam(arguments.name)) {
-      var queryParamsArray = _instance.queryParams[arguments.name];
+      var queryParamsArray = variables._queryParams[arguments.name];
       for (var queryParam in queryParamsArray) {
         arrayAppend(arrayToReturn, queryParam);
       }
@@ -81,7 +81,7 @@ component
 
   public string function getFirstQueryParam(string name) {
     if (containsQueryParam(arguments.name)) {
-      var queryParamsArray = _instance.queryParams[arguments.name];
+      var queryParamsArray = variables._queryParams[arguments.name];
       if (arrayLen(queryParamsArray))
         return queryParamsArray[1].getValue();
     }
@@ -89,7 +89,7 @@ component
 
   public string function getLastQueryParam(string name) {
     if (containsQueryParam(arguments.name)) {
-      var queryParamsArray = _instance.queryParams[arguments.name];
+      var queryParamsArray = variables._queryParams[arguments.name];
       if (arrayLen(queryParamsArray))
         return queryParamsArray[arrayLen(queryParamsArray)].getValue();
     }
@@ -97,8 +97,8 @@ component
 
   public array function getAllQueryParams() {
     var queryParamsArray = [];
-    for (var key in _instance.queryParams) {
-      for (var queryParam in _instance.queryParams[key]) {
+    for (var key in variables._queryParams) {
+      for (var queryParam in variables._queryParams[key]) {
         arrayAppend(queryParamsArray, queryParam);
       }
     }
@@ -107,37 +107,37 @@ component
 
   public void function addQueryParam(string name, string value) {
     var queryParam = new RequestParam(arguments.name, arguments.value, "URL");
-    if (!structKeyExists(_instance.queryParams, arguments.name))
-      _instance.queryParams[arguments.name] = [];
-    arrayAppend(_instance.queryParams[arguments.name], queryParam);
+    if (!structKeyExists(variables._queryParams, arguments.name))
+      variables._queryParams[arguments.name] = [];
+    arrayAppend(variables._queryParams[arguments.name], queryParam);
   }
 
   public void function setQueryParam(string name, string value) {
     var queryParam = new RequestParam(arguments.name, arguments.value, "URL");
-    _instance.queryParams[arguments.name] = [ queryParam ];
+    variables._queryParams[arguments.name] = [ queryParam ];
   }
 
   public void function setQueryParams(array queryParams) {
-    structClear(_instance.queryParams);
+    structClear(variables._queryParams);
     for (var queryParam in arguments.queryParams) {
-      if (!structKeyExists(_instance.queryParams, queryParam.getName()))
-        _instance.queryParams[queryParam.getName()] = [];
-      arrayAppend(_instance.queryParams[queryParam.getName()], queryParam);
+      if (!structKeyExists(variables._queryParams, queryParam.getName()))
+        variables._queryParams[queryParam.getName()] = [];
+      arrayAppend(variables._queryParams[queryParam.getName()], queryParam);
     }
   }
 
   public void function removeQueryParams(string name) {
-    structDelete(_instance.queryParams, arguments.name);
+    structDelete(variables._queryParams, arguments.name);
   }
 
   public boolean function containsFormField(string name) {
-    return structKeyExists(_instance.formFields, arguments.name);
+    return structKeyExists(variables._formFields, arguments.name);
   }
 
   public array function getFormFields(string name) {
     var arrayToReturn = [];
     if (containsFormField(arguments.name)) {
-      var formFieldsArray = _instance.formFields[arguments.name];
+      var formFieldsArray = variables._formFields[arguments.name];
       for (var formField in formFieldsArray) {
         arrayAppend(arrayToReturn, formField);
       }
@@ -147,7 +147,7 @@ component
 
   public string function getFirstFormField(string name) {
     if (containsFormField(arguments.name)) {
-      var formFieldsArray = _instance.formFields[arguments.name];
+      var formFieldsArray = variables._formFields[arguments.name];
       if (arrayLen(formFieldsArray))
         return formFieldsArray[1].getValue();
     }
@@ -155,7 +155,7 @@ component
 
   public string function getLastFormField(string name) {
     if (containsFormField(arguments.name)) {
-      var formFieldsArray = _instance.formFields[arguments.name];
+      var formFieldsArray = variables._formFields[arguments.name];
       if (arrayLen(formFieldsArray))
         return formFieldsArray[arrayLen(formFieldsArray)].getValue();
     }
@@ -163,8 +163,8 @@ component
 
   public array function getAllFormFields() {
     var formFieldsArray = [];
-    for (var key in _instance.formFields) {
-      for (var formField in _instance.formFields[key]) {
+    for (var key in variables._formFields) {
+      for (var formField in variables._formFields[key]) {
         arrayAppend(formFieldsArray, formField);
       }
     }
@@ -174,73 +174,73 @@ component
   public void function addFormField(string name, string value, boolean encoded = true) {
     var formField = new RequestParam(arguments.name, arguments.value, "formfield");
     formField.setEncoded(arguments.encoded ? "true" : "false");
-    if (!structKeyExists(_instance.formFields, arguments.name))
-      _instance.formFields[arguments.name] = [];
-    arrayAppend(_instance.formFields[arguments.name], formField);
+    if (!structKeyExists(variables._formFields, arguments.name))
+      variables._formFields[arguments.name] = [];
+    arrayAppend(variables._formFields[arguments.name], formField);
   }
 
   public void function setFormField(string name, string value, boolean encoded = true) {
     var formField = new RequestParam(arguments.name, arguments.value, "formfield");
     formField.setEncoded(arguments.encoded ? "true" : "false");
-    _instance.formFields[arguments.name] = [ formField ];
+    variables._formFields[arguments.name] = [ formField ];
   }
 
   public void function setFormFields(array formFields) {
-    structClear(_instance.formFields);
+    structClear(variables._formFields);
     for (var formField in arguments.formFields) {
-      if (!structKeyExists(_instance.formFields, formField.getName()))
-        _instance.formFields[formField.getName()] = [];
-      arrayAppend(_instance.formFields[formField.getName()], formField);
+      if (!structKeyExists(variables._formFields, formField.getName()))
+        variables._formFields[formField.getName()] = [];
+      arrayAppend(variables._formFields[formField.getName()], formField);
     }
   }
 
   public void function removeFormFields(string name) {
-    structDelete(_instance.formFields, arguments.name);
+    structDelete(variables._formFields, arguments.name);
   }
 
   public any function getBody() {
-    if (structKeyExists(_instance, "body"))
-      return _instance.body;
+    if (structKeyExists(variables, "_body"))
+      return variables._body;
   }
 
   public void function setBody(cfboom.http.RequestParam body) {
-    _instance['body'] = arguments.body;
+    variables['_body'] = arguments.body;
   }
 
   public void function addBody(string value) {
-    _instance['body'] = new RequestParam("body", arguments.value, "body");
+    variables['_body'] = new RequestParam("body", arguments.value, "body");
   }
 
   public void function removeBody() {
-    structDelete(_instance, "body");
+    structDelete(variables, "_body");
   }
 
   public void function addParam(cfboom.http.RequestParam param) {
     if (arguments.param.getType() == "header") {
-      if (!structKeyExists(_instance.headers, arguments.param.getName()))
-        _instance.headers[arguments.param.getName()] = [];
-      arrayAppend(_instance.headers[arguments.param.getName()], arguments.param);
+      if (!structKeyExists(variables._headers, arguments.param.getName()))
+        variables._headers[arguments.param.getName()] = [];
+      arrayAppend(variables._headers[arguments.param.getName()], arguments.param);
     } else if (arguments.param.getType() == "body") {
-      _instance['body'] = arguments.param;
+      variables['_body'] = arguments.param;
     } else if (arguments.param.getType() == "URL") {
-      if (!structKeyExists(_instance.queryParams, arguments.param.getName()))
-        _instance.queryParams[arguments.param.getName()] = [];
-      arrayAppend(_instance.queryParams[arguments.param.getName()], arguments.param);
+      if (!structKeyExists(variables._queryParams, arguments.param.getName()))
+        variables._queryParams[arguments.param.getName()] = [];
+      arrayAppend(variables._queryParams[arguments.param.getName()], arguments.param);
     } else if (arguments.param.getType() == "formfield") {
-      if (!structKeyExists(_instance.formFields, arguments.param.getName()))
-        _instance.formFields[arguments.param.getName()] = [];
-      arrayAppend(_instance.formFields[arguments.param.getName()], arguments.param);
+      if (!structKeyExists(variables._formFields, arguments.param.getName()))
+        variables._formFields[arguments.param.getName()] = [];
+      arrayAppend(variables._formFields[arguments.param.getName()], arguments.param);
     } else {
-      if (!structKeyExists(_instance.params, arguments.param.getName()))
-        _instance.params[arguments.param.getName()] = [];
-      arrayAppend(_instance.params[arguments.param.getName()], arguments.param);
+      if (!structKeyExists(variables._params, arguments.param.getName()))
+        variables._params[arguments.param.getName()] = [];
+      arrayAppend(variables._params[arguments.param.getName()], arguments.param);
     }
   }
 
   public array function getAllOtherParams() {
     var paramArray = [];
-    for (var key in _instance.params) {
-      for (var rp in _instance.params[key]) {
+    for (var key in variables._params) {
+      for (var rp in variables._params[key]) {
         arrayAppend(paramArray, rp);
       }
     }
@@ -251,18 +251,18 @@ component
     var returnJson = '{"' & listLast(getComponentName(), ".") & '":{'
       & '"method":"#getMethod()#",'
       & '"URI":"#getURI().toURL().toString()#",'
-      & '"executed":#_instance.executed#';
+      & '"executed":#variables._executed#';
 
-    if (!structIsEmpty(_instance.headers) && !noHeaders) {
-      returnJson &= ',"headers":' & paramsToJson( _instance.headers );
+    if (!structIsEmpty(variables._headers) && !noHeaders) {
+      returnJson &= ',"headers":' & paramsToJson( variables._headers );
     }
 
-    if (!structIsEmpty(_instance.queryParams)) {
-      returnJson &= ',"queryParams":' & paramsToJson( _instance.queryParams );
+    if (!structIsEmpty(variables._queryParams)) {
+      returnJson &= ',"queryParams":' & paramsToJson( variables._queryParams );
     }
 
-    if (!structIsEmpty(_instance.formFields)) {
-      returnJson &= ',"formfields":' & paramsToJson( _instance.formFields );
+    if (!structIsEmpty(variables._formFields)) {
+      returnJson &= ',"formfields":' & paramsToJson( variables._formFields );
     }
 
     if (!isNull(getBody())) {
@@ -274,8 +274,8 @@ component
       }
     }
 
-    if (!structIsEmpty(_instance.params)) {
-      returnJson &= ',"params":' & paramsToJson( _instance.params, true );
+    if (!structIsEmpty(variables._params)) {
+      returnJson &= ',"params":' & paramsToJson( variables._params, true );
     }
 
     returnJson &= '}}';
@@ -305,6 +305,6 @@ component
   }
 
   public string function toString() {
-    return listLast(getComponentName(), ".") & ": " & _instance.method & " " & _instance.uri.toURL().toString();
+    return listLast(getComponentName(), ".") & ": " & variables._method & " " & variables._uri.toURL().toString();
   }
 }

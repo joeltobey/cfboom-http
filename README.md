@@ -14,7 +14,7 @@ Apache License, Version 2.0.
 - ColdFusion 9+
 
 # INSTRUCTIONS
-Just drop into your **modules** folder or use CommandBox to install
+Ensure `cfboom` is already installed and use CommandBox to install
 
 `box install cfboom-http`
 
@@ -26,7 +26,7 @@ There's an optional setting in your `ColdBox.cfc` file under a `cfboom-http` str
 
 ```js
 moduleSettings = {
-  cfboom-http = {
+  "cfboom-http" = {
     /**
      * The HttpRequestExecutor used by the BasicHttpClient by default.
      * It must implement cfboom.http.protocol.HttpRequestExecutor.

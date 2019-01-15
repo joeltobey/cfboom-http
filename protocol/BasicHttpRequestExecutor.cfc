@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,11 +44,11 @@ component
   }
 
   public void function onDIComplete() {
-    _instance['httpResponseClass'] = httpResponse;
+    variables['_httpResponseClass'] = variables.httpResponse;
   }
 
   public void function setHttpResponseClass( required string httpResponseClass ) {
-    _instance['httpResponseClass'] = arguments.httpResponseClass;
+    variables['_httpResponseClass'] = arguments.httpResponseClass;
   }
 
   public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
@@ -82,7 +82,7 @@ component
       }
     }
 
-    var res = wirebox.getInstance( name=_instance.httpResponseClass, initArguments={ result= httpService.send() } );
+    var res = wirebox.getInstance( name=variables._httpResponseClass, initArguments={ result=httpService.send() } );
     arguments.req.setExecuted( true );
     res.setStatus( HttpStatus.valueOf( res.getCode() ) );
     res.setRequest( arguments.req );

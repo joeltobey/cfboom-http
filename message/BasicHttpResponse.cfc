@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ component
 {
   import cfboom.http.RequestParam;
 
-  _instance['code'] = javaCast("int", 999);
-  _instance['reasonPhrase'] = "Unknown";
+  variables['_code'] = javaCast("int", 999);
+  variables['_reasonPhrase'] = "Unknown";
 
   public cfboom.http.message.BasicHttpResponse function init( any result ) {
     super.init();
     if ( structKeyExists( arguments, "result" ) ) {
       if ( structKeyExists( arguments.result, "getPrefix" ) ) {
         // cfscript http result
-        _instance['source'] = arguments.result;
+        variables['_source'] = arguments.result;
         processPrefix( arguments.result.getPrefix() );
       } else {
         // cfhttp
@@ -46,173 +46,173 @@ component
   }
 
   private void function processPrefix( struct prefix ) {
-    _instance['prefix'] = arguments.prefix;
-    if ( structKeyExists( _instance.prefix, "status_code" ) )
-      _instance['code'] = javaCast("int", _instance.prefix.status_code);
-    if ( structKeyExists( _instance.prefix, "status_text" ) )
-      _instance['reasonPhrase'] = _instance.prefix.status_text;
-    if ( structKeyExists( _instance.prefix, "responseheader" ) )
-      _instance['headers'] = _instance.prefix.responseheader;
+    variables['_prefix'] = arguments.prefix;
+    if ( structKeyExists( variables._prefix, "status_code" ) )
+      variables['_code'] = javaCast("int", variables._prefix.status_code);
+    if ( structKeyExists( variables._prefix, "status_text" ) )
+      variables['_reasonPhrase'] = variables._prefix.status_text;
+    if ( structKeyExists( variables._prefix, "responseheader" ) )
+      variables['_headers'] = variables._prefix.responseheader;
 
     // Deserialize JSON if needed
     if ( findNoCase( "json", getMimeType() ) ) {
       if ( isJson( getFileContent() ) )
-        _instance.prefix['deserializedContent'] = deserializeJson( getFileContent() );
+        variables._prefix['deserializedContent'] = deserializeJson( getFileContent() );
     }
 
     // Deserialize XML if needed
     if ( findNoCase( "xml", getMimeType() ) ) {
       if ( isXml( getFileContent() ) )
-        _instance.prefix['deserializedContent'] = xmlParse( getFileContent() );
+        variables._prefix['deserializedContent'] = xmlParse( getFileContent() );
     }
   }
 
   public void function setStatus( required cfboom.http.HttpStatus status ) {
-    _instance['status'] = status;
+    variables['_status'] = status;
   }
 
   public cfboom.http.HttpStatus function getStatus() {
-    return _instance.status;
+    return variables._status;
   }
 
   public numeric function getCode() {
-    return _instance.code;
+    return variables._code;
   }
 
   public string function getReasonPhrase() {
-    return _instance.reasonPhrase;
+    return variables._reasonPhrase;
   }
 
   public boolean function hasRequest() {
-    return structKeyExists( _instance, "request" );
+    return structKeyExists( variables, "_request" );
   }
 
   public any function getRequest() {
-    if ( structKeyExists( _instance, "request" ) )
-      return _instance.request;
+    if ( structKeyExists( variables, "_request" ) )
+      return variables._request;
   }
 
   public void function setRequest( cfboom.http.HttpRequest req ) {
-    _instance['request'] = arguments.req;
+    variables['_request'] = arguments.req;
   }
 
   public boolean function isInformational() {
-    return _instance.status.is1xxInformational();
+    return variables._status.is1xxInformational();
   }
 
   public boolean function isSuccess() {
-    return _instance.status.is2xxSuccessful();
+    return variables._status.is2xxSuccessful();
   }
 
   public boolean function isRedirection() {
-    return _instance.status.is3xxRedirection();
+    return variables._status.is3xxRedirection();
   }
 
   public boolean function isClientError() {
-    return _instance.status.is4xxClientError();
+    return variables._status.is4xxClientError();
   }
 
   public boolean function isServerError() {
-    return _instance.status.is5xxServerError();
+    return variables._status.is5xxServerError();
   }
 
   public any function getSource() {
-    if ( structKeyExists( _instance, "source" ) )
-      return _instance.source;
+    if ( structKeyExists( variables, "_source" ) )
+      return variables._source;
   }
 
   public any function getResult() {
-    if ( structKeyExists( _instance, "source" ) )
-      return _instance.source.getResult();
+    if ( structKeyExists( variables, "_source" ) )
+      return variables._source.getResult();
   }
 
   public boolean function hasPrefix() {
-    return structKeyExists( _instance, "prefix" );
+    return structKeyExists( variables, "_prefix" );
   }
 
   public any function getPrefix() {
-    if ( structKeyExists( _instance, "prefix" ) )
-      return _instance.prefix;
+    if ( structKeyExists( variables, "_prefix" ) )
+      return variables._prefix;
   }
 
   public string function getFileContent() {
-    if ( structKeyExists( _instance, "prefix" ) && structKeyExists( _instance.prefix, "filecontent" ) )
-      return _instance.prefix.filecontent;
+    if ( structKeyExists( variables, "_prefix" ) && structKeyExists( variables._prefix, "filecontent" ) )
+      return variables._prefix.filecontent;
   }
 
   public any function getDeserializedContent() {
-    if ( structKeyExists( _instance, "prefix" ) && structKeyExists( _instance.prefix, "deserializedContent" ))
-      return _instance.prefix.deserializedContent;
+    if ( structKeyExists( variables, "_prefix" ) && structKeyExists( variables._prefix, "deserializedContent" ))
+      return variables._prefix.deserializedContent;
   }
 
   public string function getMimeType() {
-    if ( structKeyExists( _instance, "prefix" ) && structKeyExists( _instance.prefix, "mimetype" ) )
-      return _instance.prefix.mimetype;
+    if ( structKeyExists( variables, "_prefix" ) && structKeyExists( variables._prefix, "mimetype" ) )
+      return variables._prefix.mimetype;
   }
 
   public string function getErrorDetail() {
-    if ( structKeyExists( _instance, "prefix" ) && structKeyExists( _instance.prefix, "errordetail" ) )
-      return _instance.prefix.errordetail;
+    if ( structKeyExists( variables, "_prefix" ) && structKeyExists( variables._prefix, "errordetail" ) )
+      return variables._prefix.errordetail;
   }
 
   public any function getCookies() {
-    if ( structKeyExists( _instance, "prefix" ) && structKeyExists( _instance.prefix, "cookies" ) )
-      return _instance.prefix.cookies;
+    if ( structKeyExists( variables, "_prefix" ) && structKeyExists( variables._prefix, "cookies" ) )
+      return variables._prefix.cookies;
   }
 
   public boolean function containsHeader( string name ) {
-    return structKeyExists( _instance.headers, arguments.name );
+    return structKeyExists( variables._headers, arguments.name );
   }
 
   public array function getHeaders( string name ) {
     var arrayToReturn = [];
-    if ( structKeyExists( _instance.headers, arguments.name ) ) {
-      if ( isArray( _instance.headers[ arguments.name ] ) ) {
-        arrayToReturn = _instance.headers[ arguments.name ];
+    if ( structKeyExists( variables._headers, arguments.name ) ) {
+      if ( isArray( variables._headers[ arguments.name ] ) ) {
+        arrayToReturn = variables._headers[ arguments.name ];
       } else {
-        arrayAppend( arrayToReturn, _instance.headers[ arguments.name ] );
+        arrayAppend( arrayToReturn, variables._headers[ arguments.name ] );
       }
     }
     return arrayToReturn;
   }
 
   public string function getFirstHeader( string name ) {
-    if ( structKeyExists( _instance.headers, arguments.name ) ) {
-      if ( isArray( _instance.headers[ arguments.name ] ) ) {
-        return _instance.headers[ arguments.name ][ 1 ];
+    if ( structKeyExists( variables._headers, arguments.name ) ) {
+      if ( isArray( variables._headers[ arguments.name ] ) ) {
+        return variables._headers[ arguments.name ][ 1 ];
       } else {
-        return _instance.headers[ arguments.name ];
+        return variables._headers[ arguments.name ];
       }
     }
   }
 
   public string function getLastHeader( string name ) {
-    if ( structKeyExists( _instance.headers, arguments.name ) ) {
-      if ( isArray( _instance.headers[ arguments.name ] ) ) {
-        return _instance.headers[ arguments.name ][ arrayLen( _instance.headers[ arguments.name ] ) ];
+    if ( structKeyExists( variables._headers, arguments.name ) ) {
+      if ( isArray( variables._headers[ arguments.name ] ) ) {
+        return variables._headers[ arguments.name ][ arrayLen( variables._headers[ arguments.name ] ) ];
       } else {
-        return _instance.headers[ arguments.name ];
+        return variables._headers[ arguments.name ];
       }
     }
   }
 
   public array function getAllHeaders() {
     var headerArray = [];
-    for ( var key in _instance.headers ) {
-      if ( isArray( _instance.headers[ key ] ) ) {
-        for ( var value in _instance.headers[ key ] ) {
+    for ( var key in variables._headers ) {
+      if ( isArray( variables._headers[ key ] ) ) {
+        for ( var value in variables._headers[ key ] ) {
           arrayAppend( headerArray, new RequestParam( key, value, "header" ) );
         }
       } else {
-        arrayAppend( headerArray, new RequestParam( key, _instance.headers[ key ], "header" ) );
+        arrayAppend( headerArray, new RequestParam( key, variables._headers[ key ], "header" ) );
       }
     }
     return headerArray;
   }
 
   public string function toString() {
-    sb = createObject("java", "java.lang.StringBuilder").init();
-    sb.append( _instance.code ).append( " " ).append( _instance.reasonPhrase ).append( " " ).append( super.toString() );
+    var sb = createObject("java", "java.lang.StringBuilder").init();
+    sb.append( variables._code ).append( " " ).append( variables._reasonPhrase ).append( " " ).append( super.toString() );
     return sb.toString();
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2018 Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ component
   this.layoutParentLookup = true;
   // Module Entry Point
   this.entryPoint         = "http";
-  // Inherit entry point from parent, so this will be /cfboom/util
+  // Inherit entry point from parent, so this will be /cfboom/http
   this.inheritEntryPoint  = true;
   // Model Namespace
   this.modelNamespace     = "cfboom-http";
@@ -56,33 +56,22 @@ component
 
     // Binder Mappings
     binder.map("BasicHttpClient@cfboom-http").to("cfboom.http.client.BasicHttpClient");
-    binder.map("SimpleClientHttpRequestFactory@cfboom-http").to("cfboom.http.client.SimpleClientHttpRequestFactory");
-    binder.map("SimpleClientHttpRequest@cfboom-http").to("cfboom.http.client.SimpleClientHttpRequest");
-    binder.map("SimpleBufferingClientHttpRequest@cfboom-http").to("cfboom.http.client.SimpleBufferingClientHttpRequest");
-    binder.map("RestTemplate@cfboom-http").to("cfboom.http.web.client.RestTemplate");
 
     // Need to map cfboom.http.HttpStatus with noInit(). Otherwise, the factory method mapping
     // will try to autowire it and attempt to do the init() method.
     binder.map("cfboom.http.HttpStatus").to("cfboom.http.HttpStatus").noInit();
     binder.map("HttpStatus@cfboom-http").toFactoryMethod("cfboom.http.HttpStatus", "enum").asSingleton().noInit();
 
-    binder.map("cfboom.http.HttpMethod").to("cfboom.http.HttpMethod").noInit();
-    binder.map("HttpMethod@cfboom-http").toFactoryMethod("cfboom.http.HttpMethod", "enum").asSingleton().noInit();
-
-    binder.map("HttpHeadersSingleton@cfboom-http").to("cfboom.http.HttpHeaders").asSingleton();
-
-    binder.map("cfboom.http.MediaType").to("cfboom.http.MediaType").noInit();
-    binder.map("MediaType@cfboom-http").toFactoryMethod("cfboom.http.MediaType", "enum").asSingleton().noInit();
   }
 
   /**
    * Fired when the module is registered and activated.
    */
   function onLoad() {
+
     // Init Enums
     wirebox.getInstance( "HttpStatus@cfboom-http" );
-    wirebox.getInstance( "HttpMethod@cfboom-http" );
-    wirebox.getInstance( "HttpHeadersSingleton@cfboom-http" );
+
   }
 
   /**

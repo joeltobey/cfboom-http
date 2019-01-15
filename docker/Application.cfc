@@ -11,13 +11,6 @@ component
   this.sessionTimeout = createTimeSpan(0,0,30,0);
   this.setClientCookies = true;
 
-  // Java Integration
-  this.javaSettings = {
-    loadPaths = [ ".\lib" ],
-    loadColdFusionClassPath = true,
-    reloadOnChange= false
-  };
-
   this.mappings['cfboom'] = expandPath("/modules/cfboom");
   this.mappings['cfboom/http'] = expandPath("/modules/cfboom/modules/cfboom-http");
 
