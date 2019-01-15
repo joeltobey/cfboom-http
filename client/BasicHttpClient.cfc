@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,14 +35,10 @@ component
   }
 
   public void function onDIComplete() {
-    setExecutor( wirebox.getInstance( httpRequestExecutor ) );
-  }
-
-  public void function setHttpResponseClass( required string httpResponseClass ) {
-    _instance.executor.setHttpResponseClass( arguments.httpResponseClass );
+    setExecutor( variables.wirebox.getInstance( variables.httpRequestExecutor ) );
   }
 
   public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
-    return _instance.executor.execute( arguments.req );
+    return variables._executor.execute( arguments.req );
   }
 }

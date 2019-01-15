@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,20 +27,20 @@ component
 {
   import cfboom.http.RequestParam;
 
-  _instance['headers'] = {};
+  variables['_headers'] = {};
 
   public cfboom.http.message.AbstractHttpMessage function init() {
     return this;
   }
 
   public boolean function containsHeader(string name) {
-    return structKeyExists(_instance.headers, arguments.name);
+    return structKeyExists(variables._headers, arguments.name);
   }
 
   public array function getHeaders(string name) {
     var arrayToReturn = [];
     if (containsHeader(arguments.name)) {
-      var headerArray = _instance.headers[arguments.name];
+      var headerArray = variables._headers[arguments.name];
       if (isArray(headerArray)) {
         for (var header in headerArray) {
           arrayAppend(arrayToReturn, header.getValue());
@@ -54,7 +54,7 @@ component
 
   public string function getFirstHeader(string name) {
     if (containsHeader(arguments.name)) {
-      var headerArray = _instance.headers[arguments.name];
+      var headerArray = variables._headers[arguments.name];
       if (isArray(headerArray)) {
         if (arrayLen(headerArray))
           return headerArray[1].getValue();
@@ -66,7 +66,7 @@ component
 
   public string function getLastHeader(string name) {
     if (containsHeader(arguments.name)) {
-      var headerArray = _instance.headers[arguments.name];
+      var headerArray = variables._headers[arguments.name];
       if (isArray(headerArray)) {
         if (arrayLen(headerArray))
           return headerArray[arrayLen(headerArray)].getValue();
@@ -78,8 +78,8 @@ component
 
   public array function getAllHeaders() {
     var headerArray = [];
-    for (var key in _instance.headers) {
-      for (var header in _instance.headers[key]) {
+    for (var key in variables._headers) {
+      for (var header in variables._headers[key]) {
         arrayAppend(headerArray, header);
       }
     }
@@ -88,44 +88,44 @@ component
 
   public void function addHeader(string name, string value) {
     var headerParam = new RequestParam(arguments.name, arguments.value, "header");
-    if (!structKeyExists(_instance.headers, arguments.name))
-      _instance.headers[arguments.name] = [];
-    arrayAppend(_instance.headers[arguments.name], headerParam);
+    if (!structKeyExists(variables._headers, arguments.name))
+      variables._headers[arguments.name] = [];
+    arrayAppend(variables._headers[arguments.name], headerParam);
   }
 
   public void function setHeader(string name, string value) {
     var headerParam = new RequestParam(arguments.name, arguments.value, "header");
-    _instance.headers[arguments.name] = [ headerParam ];
+    variables._headers[arguments.name] = [ headerParam ];
   }
 
   public void function setHeaders(array headers) {
-    structClear(_instance.headers);
+    structClear(variables._headers);
     for (var header in arguments.headers) {
-      if (!structKeyExists(_instance.headers, header.getName()))
-        _instance.headers[header.getName()] = [];
-      arrayAppend(_instance.headers[header.getName()], header);
+      if (!structKeyExists(variables._headers, header.getName()))
+        variables._headers[header.getName()] = [];
+      arrayAppend(variables._headers[header.getName()], header);
     }
   }
 
   public void function removeHeaders(string name) {
-    structDelete(_instance.headers, arguments.name);
+    structDelete(variables._headers, arguments.name);
   }
 
   public numeric function getContentLength() {
-    if (structKeyExists(_instance, "contentLength")) {
-      return javaCast("long", _instance.contentLength);
+    if (structKeyExists(variables, "contentLength")) {
+      return javaCast("long", variables.contentLength);
     } else {
       return javaCast("long", -1);
     }
   }
 
   public string function getContentType() {
-    if (structKeyExists(_instance, "contentType"))
-      return _instance.contentType;
+    if (structKeyExists(variables, "contentType"))
+      return variables.contentType;
   }
 
   public string function getContentEncoding() {
-    if (structKeyExists(_instance, "contentEncoding"))
-      return _instance.contentEncoding;
+    if (structKeyExists(variables, "contentEncoding"))
+      return variables.contentEncoding;
   }
 }

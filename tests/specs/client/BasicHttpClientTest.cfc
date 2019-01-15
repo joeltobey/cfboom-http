@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ component
    * @Test
    */
   public void function testDefaults() {
-    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var httpClient = getInstance("BasicHttpClient@cfboom-http");
     var sb = createObject("java", "java.lang.StringBuilder").init("http");
     if (cgi.server_port_secure)
       sb.append("s");
@@ -80,7 +80,7 @@ component
    * @Test
    */
   public void function testJson() {
-    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var httpClient = getInstance("BasicHttpClient@cfboom-http");
     var sb = createObject("java", "java.lang.StringBuilder").init("http");
     if (cgi.server_port_secure)
       sb.append("s");
@@ -104,7 +104,7 @@ nostrum rerum est autem sunt rem eveniet architecto", user.body );
    * @Test
    */
   public void function testXml() {
-    var httpClient = getInstance("BasicHttpClient@cfboomHttp");
+    var httpClient = getInstance("BasicHttpClient@cfboom-http");
     var sb = createObject("java", "java.lang.StringBuilder").init("http");
     if (cgi.server_port_secure)
       sb.append("s");

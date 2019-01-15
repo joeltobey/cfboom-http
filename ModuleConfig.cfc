@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2018 Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,21 +25,23 @@ component
   this.author             = "Joel Tobey";
   this.webURL             = "https://github.com/joeltobey/cfboom-http";
   this.description        = "The cfboom-http module provides solid, consistent HTTP request and response handling.";
-  this.version            = "1.2.0";
+  this.version            = "2.0.0";
   // If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
   this.viewParentLookup   = true;
   // If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
   this.layoutParentLookup = true;
   // Module Entry Point
-  this.entryPoint         = "cfboom/http";
+  this.entryPoint         = "http";
+  // Inherit entry point from parent, so this will be /cfboom/http
+  this.inheritEntryPoint  = true;
   // Model Namespace
-  this.modelNamespace     = "cfboomHttp";
+  this.modelNamespace     = "cfboom-http";
   // CF Mapping
   this.cfmapping          = "cfboom/http";
   // Auto-map models
   this.autoMapModels      = false;
   // Module Dependencies
-  this.dependencies       = [ "cfboom-lang" ];
+  this.dependencies       = [ "cfboom" ];
 
   function configure() {
 
@@ -53,27 +55,23 @@ component
     };
 
     // Binder Mappings
-    binder.map("BasicHttpClient@cfboomHttp").to("cfboom.http.client.BasicHttpClient");
-    binder.map("SimpleClientHttpRequestFactory@cfboomHttp").to("cfboom.http.client.SimpleClientHttpRequestFactory");
-    binder.map("SimpleClientHttpRequest@cfboomHttp").to("cfboom.http.client.SimpleClientHttpRequest");
-    binder.map("SimpleBufferingClientHttpRequest@cfboomHttp").to("cfboom.http.client.SimpleBufferingClientHttpRequest");
+    binder.map("BasicHttpClient@cfboom-http").to("cfboom.http.client.BasicHttpClient");
 
     // Need to map cfboom.http.HttpStatus with noInit(). Otherwise, the factory method mapping
     // will try to autowire it and attempt to do the init() method.
     binder.map("cfboom.http.HttpStatus").to("cfboom.http.HttpStatus").noInit();
-    binder.map("HttpStatus@cfboomHttp").toFactoryMethod("cfboom.http.HttpStatus", "enum").asSingleton().noInit();
+    binder.map("HttpStatus@cfboom-http").toFactoryMethod("cfboom.http.HttpStatus", "enum").asSingleton().noInit();
 
-    binder.map("cfboom.http.HttpMethod").to("cfboom.http.HttpMethod").noInit();
-    binder.map("HttpMethod@cfboomHttp").toFactoryMethod("cfboom.http.HttpMethod", "enum").asSingleton().noInit();
   }
 
   /**
    * Fired when the module is registered and activated.
    */
   function onLoad() {
+
     // Init Enums
-    wirebox.getInstance( "HttpStatus@cfboomHttp" );
-    wirebox.getInstance( "HttpMethod@cfboomHttp" );
+    wirebox.getInstance( "HttpStatus@cfboom-http" );
+
   }
 
   /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2019 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ component
   output=false
 {
   property name="httpResponse" inject="coldbox:setting:httpResponse@cfboom-http";
-  property name="HttpStatus" inject="HttpStatus@cfboomHttp";
+  property name="HttpStatus" inject="HttpStatus@cfboom-http";
   property name="wirebox" inject="wirebox";
 
   public cfboom.http.protocol.BasicHttpRequestExecutor function init() {
@@ -44,16 +44,16 @@ component
   }
 
   public void function onDIComplete() {
-    _instance['httpResponseClass'] = httpResponse;
+    variables['_httpResponseClass'] = variables.httpResponse;
   }
 
   public void function setHttpResponseClass( required string httpResponseClass ) {
-    _instance['httpResponseClass'] = arguments.httpResponseClass;
+    variables['_httpResponseClass'] = arguments.httpResponseClass;
   }
 
   public cfboom.http.HttpResponse function execute( cfboom.http.HttpRequest req ) {
     var httpService = new http();
-    httpService.setUrl( arguments.req.getURI().toString() );
+    httpService.setUrl( arguments.req.getURI().toURL().toString() );
     httpService.setMethod( arguments.req.getMethod() );
     if ( !isNull( arguments.req.getName() ) )
       httpService.setName( arguments.req.getName() );
@@ -82,7 +82,7 @@ component
       }
     }
 
-    var res = wirebox.getInstance( name=_instance.httpResponseClass, initArguments={ result= httpService.send() } );
+    var res = wirebox.getInstance( name=variables._httpResponseClass, initArguments={ result=httpService.send() } );
     arguments.req.setExecuted( true );
     res.setStatus( HttpStatus.valueOf( res.getCode() ) );
     res.setRequest( arguments.req );

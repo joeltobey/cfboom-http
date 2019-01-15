@@ -1,6 +1,6 @@
 <!---
 /*
- * Copyright 2016-2018 the original author or authors and Joel Tobey <joeltobey@gmail.com>
+ * Copyright 2016-2017 the original author or authors and Joel Tobey <joeltobey@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
 --->
 <cfscript>
   strategy = new docbox.strategy.api.HTMLAPIStrategy(
-    expandPath("/modules_app/cfboom-http/apidocs"),
-    "&ltcfboom/&gt HTTP"
+    expandPath("/modules/cfboom/modules/cfboom-http/apidocs"),
+    "&ltcfboom/&gt http"
   );
 
   docbox = new docbox.DocBox( strategy );
 
   docbox.generate(
-    source  = expandPath( "/modules_app/cfboom-http" ),
+    source  = expandPath( "/modules/cfboom/modules/cfboom-http" ),
     mapping = "cfboom.http",
     excludes = "tests|ModuleConfig.cfc|Coldbox.cfc"
   );
